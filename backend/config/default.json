@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://blogAdmin:1234567j@seoblog-xbxgu.gcp.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://blogAdmin:1234567j@seoblog-xbxgu.gcp.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "FHUHF47F7473F8H2H3GHF383FH"
 }
