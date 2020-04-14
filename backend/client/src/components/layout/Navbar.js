@@ -9,7 +9,12 @@ const Navbar = (props) => {
   const authLinks = (
     <ul>
       <li><NavLink to="/developers">Developers</NavLink></li>
-      <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+      <li>
+        <NavLink to="/dashboard">
+          <i className='fas fa-user'></i>{' '}
+          <span className='hide-sm'>Dashboard</span>
+        </NavLink>
+      </li>
       <li>
         <NavLink onClick={props.logout} to="/">
           <i className='fas fa-sign-out-alt'></i>{' '}
