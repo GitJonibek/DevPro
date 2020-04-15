@@ -39,7 +39,8 @@ const EditProfile = (props) => {
       linkedin: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.linkedin,
       youtube: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.youtube,
       instagram: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.instagram,
-    })
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.profile.loading]);
 
   const {

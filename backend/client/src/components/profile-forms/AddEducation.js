@@ -64,10 +64,17 @@ const AddEducation = (props) => {
             <input type="date" value={to} onChange={e => onChange(e)} name="to" disabled={toDateDisabled && 'disabled'} />
           </div>
           <div className="form-group">
-            <p><input type="checkbox" value={current} checked={current} onChange={() => {
-              setFormData({ ...formData, current: !current });
-              toggleDisabled(!toDateDisabled);
-            }} name="current" value="" />{' '}Current School</p>
+            <p>
+              <input
+                type="checkbox"
+                value={current}
+                checked={current}
+                onChange={() => {
+                  setFormData({ ...formData, current: !current });
+                  toggleDisabled(!toDateDisabled);
+                }}
+                name="current" />{' '}Current School
+            </p>
           </div>
           <div className="form-group">
             <textarea

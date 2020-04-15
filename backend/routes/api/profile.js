@@ -3,9 +3,11 @@ const router = express.Router();
 const request = require('request');
 const config = require('config');
 const auth = require('../../middleware/auth');
-const Profile = require('../../models/Profile');
-const User = require('../../models/Users');
 const { check, validationResult } = require('express-validator')
+
+const Profile = require('../../models/Profile');
+const Post = require('../../models/Post');
+const User = require('../../models/Users');
 
 // @route   GET /api/profile/me
 // @desc    Test route
@@ -65,7 +67,7 @@ router.post('/', [ auth, [
    if(status) profileFields.status = status;
    if(githubusername) profileFields.githubusername = githubusername;
    if(skills) profileFields.skills = (Array.isArray(skills)) ? skills : skills.split(',').map(skill => skill.trim());
-   
+
    profileFields.social = {}
    if(youtube) profileFields.social.youtube = youtube;
    if(facebook) profileFields.social.facebook = facebook;
@@ -138,6 +140,7 @@ router.get('/user/:user_id', async (req, res) => {
 router.delete('/', auth, async (req, res) => {
   try {
     // TODO: rem,ove user's posts
+    await Post.deleteMany({user: req.user.id})
 
     // Remove profile
     await Profile.findOneAndRemove({user: req.user.id});
