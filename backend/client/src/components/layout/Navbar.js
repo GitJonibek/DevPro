@@ -8,7 +8,12 @@ const Navbar = (props) => {
 
   const authLinks = (
     <ul>
-      <li><NavLink to="/developers">Developers</NavLink></li>
+      <li>
+        <NavLink to="/profiles">
+          <i className='fas fa-code'></i>{' '}
+          <span className='hide-sm'>Developers</span>
+        </NavLink>
+      </li>
       <li>
         <NavLink to="/dashboard">
           <i className='fas fa-user'></i>{' '}
@@ -26,7 +31,7 @@ const Navbar = (props) => {
 
   const guestLinks = (
     <ul>
-      <li><NavLink to="/developers">Developers</NavLink></li>
+      <li><NavLink to="/profiles">Developers</NavLink></li>
       <li><NavLink to="/register">Register</NavLink></li>
       <li><NavLink to="/login">Login</NavLink></li>
     </ul>
