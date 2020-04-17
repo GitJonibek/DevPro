@@ -9,6 +9,12 @@ const Navbar = (props) => {
   const authLinks = (
     <ul>
       <li>
+        <NavLink to="/posts">
+          <i className='fas fa-blog'></i>{' '}
+          <span className='hide-sm'>Posts</span>
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/profiles">
           <i className='fas fa-code'></i>{' '}
           <span className='hide-sm'>Developers</span>

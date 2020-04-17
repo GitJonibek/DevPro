@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Moment from "react-moment";
 import PropTypes from 'prop-types'
 
-const ProfileExperience = ({ profile: { experience } }) => {
+const ProfileExperience = ({profile}) => {
 
-  const experiences = experience.map((exp, index) => (
-    <div>
+  const experiences = profile.map((exp, index) => (
+    <div key={index}>
       <h3>{exp.company}</h3>
       <p>
         <Moment format='YYYY/MM/DD'>{exp.from}</Moment> - {' '}
@@ -19,16 +19,11 @@ const ProfileExperience = ({ profile: { experience } }) => {
     </div>
   ));
 
-  return (
-    <div className="profile-exp bg-white p-2">
-      <h2 className="text-primary">Experiences</h2>
-      {experiences}
-    </div>
-  )
+  return <Fragment>{experiences}</Fragment>;
 }
 
 ProfileExperience.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.array.isRequired
 }
 
 export default ProfileExperience;

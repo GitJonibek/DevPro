@@ -22,6 +22,8 @@ export const getCurrentProfile = () => async dispatch => {
       });
     }, 1500);
   } catch (e) {
+    dispatch({ type: CLEAR_PROFILE });
+    
     dispatch({
       type: PROFILE_ERROR,
       payload: {msg: e.response.statusText, status: e.response.status}
@@ -50,7 +52,7 @@ export const getProfiles = () => async dispatch => {
 export const getProfileById = user_id => async dispatch => {
   try {
     const res = await axios.get(`/api/profile/user/${user_id}`);
-    
+
     dispatch({
       type: GET_PROFILE,
       payload: res.data
