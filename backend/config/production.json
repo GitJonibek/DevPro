@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://blogAdmin:1234567j@seoblog-xbxgu.gcp.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "FHUHF47F7473F8H2H3GHF383FH",
+  "githubClientId": "8f6eb02bfcdaa7b11bed",
+  "githubClientSecret": "a2767e740103dd0d3d64506a0c16021f646d5c90"
+}
