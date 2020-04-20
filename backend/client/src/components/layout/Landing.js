@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, Redirect } from "react-router-dom";
 import {connect} from "react-redux";
+require('dotenv').config()
 
 const Landing = (props) => {
 
@@ -21,6 +22,10 @@ const Landing = (props) => {
           <div className="buttons">
             <Link to="/register" className="btn btn-primary">Sign Up</Link>
             <Link to="/login" className="btn btn">Login</Link>
+            <a href='https://github.com/login/oauth/authorize?client_id=8f6eb02bfcdaa7b11bed'
+              target='_blank' rel='noopener noreferrer'>
+              <i className="fab fa-github fa-2x"></i>
+            </a>
           </div>
         </div>
       </div>
