@@ -23,9 +23,9 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
 
             <div>
               <ul>
-                <li className=""><i class="fas fa-star"></i>{' '}{repo.stargazers_count}</li>
-                <li className=""><i class="fas fa-eye"></i>{' '}{repo.watchers_count}</li>
-                <li className="">{' '}<i class="fas fa-code-branch"></i>{' '}{repo.forks_count}</li>
+                <li className=""><i className="fas fa-star"></i>{' '}{repo.stargazers_count}</li>
+                <li className=""><i className="fas fa-eye"></i>{' '}{repo.watchers_count}</li>
+                <li className="">{' '}<i className="fas fa-code-branch"></i>{' '}{repo.forks_count}</li>
               </ul>
             </div>
           </div>

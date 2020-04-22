@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const request = require('request');
+const axios = require('axios');
 const {check, validationResult} = require("express-validator");
 
 const User = require('../../models/Users')
@@ -69,34 +70,37 @@ router.post('/', [
 });
 
 // Authorize with Github
-router.get('/github', (req, res) => {
-  const code = req.query.code
+router.get('/github', async (req, res) => {
+  const code = req.query.code;
 
   if(!code) {
     return res.send({ msg: 'Server error', success: false });
   }
   try {
-    const options = {
-      uri: `https://github.com/login/oauth/access_token&client_id=${config.get('githubClientId')}&client_secret=${config.get('githubClientSecret')}&code=${code}`,
-      method: 'POST',
-      headers: { 'user-agent': 'node.js' }
-    }
+    const route = `https://github.com/login/oauth/access_token?client_id=${config.get('githubClientId')}&client_secret=${config.get('githubClientSecret')}&code=${code}`;
 
-    request(options, (error, response, body) => {
-      if(error) console.error(error);
-
-      console.log(response.statusCode);
-      // if(response.statusCode !== 200) {
-      //   return res.status(404).json({msg: 'No Github profile found!'});
-      // }
-
-      console.log(body);
-
-      res.json(JSON.parse(body));
+    const token = await axios({
+      method: 'post',
+      url: route,
+      headers: {
+        accept: 'application/json'
+      }
     });
 
-  } catch (e) {
+    const access_token = token.data.access_token;
 
+    const body = await axios({
+      method: 'get',
+      url: 'https://api.github.com/user',
+      headers: {
+        Authorization: 'token ' + access_token
+      }
+    });
+
+    res.json(body.data);
+
+  } catch (e) {
+    console.log(e.message);
   }
 });
 

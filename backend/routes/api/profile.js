@@ -79,11 +79,16 @@ router.post('/', [ auth, [
 
    if(githubusername) {
      const body = await axios.get(`https://api.github.com/users/${githubusername}`);
-     await User.updateOne({_id: req.user.id}, { $set: { avatar: body.data.avatar_url } });
+     await User.updateOne({_id: req.user.id}, { $set: { avatar: body.data.avatar_url }});
+     await Post.updateMany({user: req.user.id}, { $set: { avatar: body.data.avatar_url }})
+     .catch (err => {
+       console.log(err);
+     });
    }
 
    try {
      let profile = await Profile.findOne({user: req.user.id});
+     let posts = await Post.find({user: req.user.id});
      if(profile) {
        // Update
        profile = await Profile.findOneAndUpdate(
