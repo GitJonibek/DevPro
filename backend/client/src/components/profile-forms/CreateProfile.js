@@ -82,7 +82,7 @@ const CreateProfile = (props) => {
           <small className="form-text">City & state suggested (eg. Boston, MA)</small>
         </div>
         <div className="form-group">
-          <input type="text" placeholder="* Skills" name="skills" value={skills} onChange={(e) => onChange(e)} />
+          <input type="text" placeholder="* Skills" name="skills" value={skills} onChange={(e) => onChange(e)} required />
           <small className="form-text">Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)</small>
         </div>
         <div className="form-group">
@@ -90,7 +90,9 @@ const CreateProfile = (props) => {
             type="text"
             placeholder="Github Username"
             name="githubusername"
-            value={githubusername} onChange={(e) => onChange(e)}
+            value={githubusername}
+            onChange={(e) => onChange(e)}
+            required
           />
           <small className="form-text">If you want your latest repos and a Github link, include your username</small>
         </div>

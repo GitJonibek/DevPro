@@ -25,8 +25,8 @@ const CommentForm = ({ postId, addComment }) => {
 
   return (
     <div className='post-form'>
-      <div className='bg-primary p'>
-        <h3>Leave a Comment down below!</h3>
+      <div className='p'>
+        <h3>Leave your comment!</h3>
       </div>
       <form
         className='form my-1'

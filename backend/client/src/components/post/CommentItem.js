@@ -11,7 +11,7 @@ const CommentItem = ({ postId, comment: { date, _id, text, name, avatar, user },
     <div className="post bg-white p-1 my-1">
       <div>
         <Link to={`/profile/${user}`}>
-          <img className="round-img" src={avatar} alt="" />
+          <img className="round-img" src={avatar} alt=""  style={{width: '70px'}} />
           <h4>{name}</h4>
         </Link>
       </div>
@@ -22,8 +22,12 @@ const CommentItem = ({ postId, comment: { date, _id, text, name, avatar, user },
           <Moment format='YYYY/MM/DD hh:mm'>{date}</Moment>
         </p>
         {!auth.loading && user === auth.user._id &&
-          <button type='button' className='btn btn-danger' onClick={(e) => removeComment(postId, _id)}>
-            <i className='fas fa-times'></i>
+          <button
+            style={{margin: '5px 0'}}
+            type='button'
+            className='btn-danger btn-delete'
+            onClick={(e) => removeComment(postId, _id)}>
+            Delete
           </button>
         }
       </div>

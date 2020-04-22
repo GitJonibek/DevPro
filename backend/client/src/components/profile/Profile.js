@@ -35,19 +35,21 @@ const Profile = ({
           <div className="profile-grid my-1">
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
-            <div className="profile-exp bg-white p-2">
-              <h2 className="text-primary">Experiences</h2>
-              { profile.experience.length > 0 ?
-                <ProfileExperience profile={profile.experience} />
-                 : <h4> No experience credentials </h4>
-              }
-            </div>
-            <div className="profile-edu bg-white p-2">
-              <h2 className="text-primary">Educations</h2>
-              { profile.education.length > 0 ?
-                <ProfileEducation profile={profile.education} />
-                 : <h4> No education credentials </h4>
-              }
+            <div className='exp-edu-wrapper'>
+              <div className="profile-exp bg-white p-2">
+                <h2 className="text-primary">Experiences</h2>
+                { profile.experience.length > 0 ?
+                  <ProfileExperience profile={profile.experience} />
+                   : <h4> No experience credentials </h4>
+                }
+              </div>
+              <div className="profile-edu bg-white p-2">
+                <h2 className="text-primary">Educations</h2>
+                { profile.education.length > 0 ?
+                  <ProfileEducation profile={profile.education} />
+                   : <h4> No education credentials </h4>
+                }
+              </div>
             </div>
             { profile.githubusername && <ProfileGithub username={profile.githubusername} /> }
           </div>

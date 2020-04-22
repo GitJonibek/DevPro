@@ -23,7 +23,7 @@ export const getCurrentProfile = () => async dispatch => {
     }, 1500);
   } catch (e) {
     dispatch({ type: CLEAR_PROFILE });
-    
+
     dispatch({
       type: PROFILE_ERROR,
       payload: {msg: e.response.statusText, status: e.response.status}
@@ -223,7 +223,7 @@ export const deleteEducation = id => async dispatch => {
 
 // Delete Account & Profile
 export const deleteAccount = () => async dispatch => {
-  if(window.confirm('Are you sure? This action cannot be undone.')){
+  if(window.confirm('Are you sure? This action cannot be undone.')) {
     try {
       await axios.delete('/api/profile');
 

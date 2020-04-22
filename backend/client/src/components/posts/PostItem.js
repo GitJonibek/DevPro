@@ -16,11 +16,11 @@ const PostItem = ({
 }) => {
 
   return (
-    <div className="post bg-white my-1 p-1">
-      <div>
+    <div className="post bg-white s-1 p-1">
+      <div className='img-wrapper'>
         <Link to={`/profile/${user}`}>
-          <img className="round-img" src={avatar} alt="" />
-          <h4>{name}</h4>
+          <img className="round-img" src={avatar} alt="" style={{width: '70px'}}/>
+          <h4 className='text-primary'>{name.split(' ')[0]}</h4>
         </Link>
       </div>
 
@@ -32,15 +32,15 @@ const PostItem = ({
         </p>
         {showActions &&
           <Fragment>
-            <button type='button' className="btn btn-light" onClick={(e) => addLike(_id)}>
+            <span type='button' className="btn-thumb-up btn-fixed-sm" onClick={(e) => addLike(_id)}>
               <i className="fas fa-thumbs-up"></i>{' '}
               {likes && likes.length > 0 && <span>{likes.length}</span> }
-            </button>
-            <button type='button' className="btn btn-light"  onClick={(e) => removeLike(_id)}>
+            </span>
+            <span type='button' className="btn-thumb-down btn-fixed-sm"  onClick={(e) => removeLike(_id)}>
               <i className="fas fa-thumbs-down"></i>
-            </button>
-            <Link to={`/posts/${_id}`} className="btn btn-primary" onClick={(e => getPost(_id))}>
-              Discussion{' '}
+            </span>
+            <Link to={`/posts/${_id}`} className="btn-comment btn-fixed-sm" onClick={(e => getPost(_id))}>
+              Comments{' '}
               {comments && comments.length > 0 && (
                 <span className='comment-count'>{comments.length}</span>
               )}
@@ -48,9 +48,9 @@ const PostItem = ({
             {!auth.loading && user === auth.user._id && (
               <button
                 type='button'
-                className="btn btn-danger"
+                className="btn-danger btn-delete"
                 onClick={(e) => deletePost(_id)}>
-                <i className="fas fa-times"></i>
+                Delete
               </button>
             )}
           </Fragment>

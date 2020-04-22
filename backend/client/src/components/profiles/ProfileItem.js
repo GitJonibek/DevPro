@@ -19,7 +19,9 @@ const ProfileItem = ({
 
   return (
     <div className='profile bg-light'>
-      <img src={avatar} alt='' className='round-img' />
+      <div className='img-small'>
+        <img src={avatar} alt='' className='round-img' />
+      </div>
 
       <div>
         <h2>{name}</h2>

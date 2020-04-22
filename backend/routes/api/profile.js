@@ -3,6 +3,7 @@ const router = express.Router();
 const request = require('request');
 const config = require('config');
 const auth = require('../../middleware/auth');
+const axios = require('axios');
 const { check, validationResult } = require('express-validator')
 
 const Profile = require('../../models/Profile');
@@ -34,7 +35,8 @@ router.get('/me', auth, async (req, res) => {
 // @access  Private
 router.post('/', [ auth, [
   check('status', 'status is required!').not().isEmpty(),
-  check('skills', 'Skills are required!').not().isEmpty()
+  check('skills', 'Skills are required!').not().isEmpty(),
+  check('githubusername', 'GitHub username is required!').not().isEmpty(),
 ]], async (req, res) => {
 
   const errors = validationResult(req);
@@ -75,6 +77,11 @@ router.post('/', [ auth, [
    if(instagram) profileFields.social.instagram = instagram;
    if(linkedin) profileFields.social.linkedin = linkedin;
 
+   if(githubusername) {
+     const body = await axios.get(`https://api.github.com/users/${githubusername}`);
+     await User.updateOne({_id: req.user.id}, { $set: { avatar: body.data.avatar_url } });
+   }
+
    try {
      let profile = await Profile.findOne({user: req.user.id});
      if(profile) {
@@ -90,6 +97,8 @@ router.post('/', [ auth, [
 
      // Create
      profile = new Profile(profileFields);
+
+     console.log(avatar);
 
      await profile.save();
      res.json(profile);

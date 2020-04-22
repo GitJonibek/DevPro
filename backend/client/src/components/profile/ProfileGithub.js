@@ -17,15 +17,15 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
         repos.map((repo, index) => (
           <div key={index} className='repo bg-white p-1 my-1' >
             <div>
-              <h4><a href={repo.html_url} rel='opener'>{repo.name}</a></h4>
+              <h4 className='text-primary'><a href={repo.html_url} rel='opener'>{repo.name}</a></h4>
               <p>{repo.description}</p>
             </div>
 
             <div>
               <ul>
-                <li className="badge badge-primary">Stars: {repo.stargazers_count}</li>
-                <li className="badge badge-dark">Watchers: {repo.watchers_count}</li>
-                <li className="badge badge-light">Forks: {repo.forks_count}</li>
+                <li className=""><i class="fas fa-star"></i>{' '}{repo.stargazers_count}</li>
+                <li className=""><i class="fas fa-eye"></i>{' '}{repo.watchers_count}</li>
+                <li className="">{' '}<i class="fas fa-code-branch"></i>{' '}{repo.forks_count}</li>
               </ul>
             </div>
           </div>

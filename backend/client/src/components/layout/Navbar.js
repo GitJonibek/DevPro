@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 const Navbar = (props) => {
 
   const authLinks = (
-    <ul>
+    <ul className='nav-items'>
       <li>
         <NavLink to="/posts">
           <i className='fas fa-blog'></i>{' '}
@@ -36,7 +36,7 @@ const Navbar = (props) => {
   );
 
   const guestLinks = (
-    <ul>
+    <ul className='nav-items'>
       <li><NavLink to="/profiles">Developers</NavLink></li>
       <li><NavLink to="/register">Register</NavLink></li>
       <li><NavLink to="/login">Login</NavLink></li>
@@ -44,16 +44,19 @@ const Navbar = (props) => {
   );
 
   return (
-    <nav className="navbar bg-dark">
-      <h1>
-        <NavLink to="/"> <i className="fas fa-code"></i> DevConnector </NavLink>
-      </h1>
-      {!props.auth.loading && (
-        <React.Fragment>
-          {props.auth.isAuthenticated ? authLinks : guestLinks}
-        </React.Fragment>
-      )}
-    </nav>
+    <header className='mNavbar-wrapper'>
+      <div className="mNavbar-helper-bk back-grad"></div>
+      <nav className="mNavbar grad">
+        <h1>
+          <NavLink to="/"> <i className="fas fa-code"></i> DevConnector </NavLink>
+        </h1>
+        {!props.auth.loading && (
+          <React.Fragment>
+            {props.auth.isAuthenticated ? authLinks : guestLinks}
+          </React.Fragment>
+        )}
+      </nav>
+    </header>
   )
 }
 
