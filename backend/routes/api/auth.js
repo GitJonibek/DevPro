@@ -4,22 +4,21 @@ const auth = require('../../middleware/auth');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const request = require('request');
 const axios = require('axios');
 const {check, validationResult} = require("express-validator");
 
 const User = require('../../models/Users')
 
 // @route   GET /api/auth
-// @desc    Test route
+// @desc    Get User
 // @access  public
-router.get('/', auth, async (req, res) => {
+router.get('/me', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
-    res.json(user)
+    res.json(user);
   } catch (e) {
     console.log(e.message);
-    res.status(500).send('Server error!');
+    res.status(401).send('Server error!');
   }
 });
 
@@ -35,18 +34,19 @@ router.post('/', [
     return res.status(400).json({errors: errors.array()});
   }
 
-  const {email, password} = req.body;
+  const { email, password } = req.body;
 
   try {
     // See If user exists
     let user = await User.findOne({ email });
-    if(! user){
+    if(!user){
       return res.status(400).json({ erros: [{msg: 'Invalid cridentials!'}] });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if(!isMatch){
+      console.log('Not Match!');
       return res.status(400).json({ erros: [{msg: 'Invalid cridentials!'}] });
     }
 
@@ -57,7 +57,7 @@ router.post('/', [
       }
     };
 
-    jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 3600 }, (err, token) => {
+    jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 36000 }, (err, token) => {
       if(err) throw err;
       res.json({token});
     });
@@ -97,10 +97,31 @@ router.get('/github', async (req, res) => {
       }
     });
 
-    res.json(body.data);
+    const name = body.data.name;
+    const email = body.data.email;
+    const password = body.data.node_id;
+    const avatar = body.data.avatar_url;
+    const bio = body.data.bio;
+
+    const payload = JSON.stringify({ name, email, password, avatar, bio });
+
+    const regRes = await axios.post(`http://localhost:8000/api/users?access_token=${access_token}`, payload,
+      { headers: { 'Content-Type': 'application/json' }
+    });
+    if (regRes.data.token) {
+      res.redirect(`/api/auth/me?xauthtk=${regRes.data.token}`);
+    }
+    else {
+      await axios.post('http://localhost:8000/api/auth', { email, password },
+        { headers: { 'Content-Type': 'application/json' }
+      })
+      .then(logRes => res.redirect(`/api/auth/me?xauthtk=${logRes.data.token}`))
+      .catch(err => res.status(500).send('Server error!'));
+    }
 
   } catch (e) {
     console.log(e.message);
+    res.status(500).send('Server error!');
   }
 });
 
