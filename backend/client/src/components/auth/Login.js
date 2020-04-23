@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { login } from "../../actions/auth";
+import { login, withGithub } from "../../actions/auth";
 import PropTypes from 'prop-types'
 
 const Login = (props) => {
@@ -54,12 +54,16 @@ const Login = (props) => {
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>
       </p>
+      <span onClick={props.withGithub} style={{cursor: 'pointer'}}>
+        Continue with GitHub{' '}<i className="fab fa-github"></i>
+      </span>
     </Fragment>
   )
 }
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  withGithub: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 }
 
@@ -67,4 +71,7 @@ const mapStatetoProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStatetoProps, {login})(Login);
+export default connect(mapStatetoProps, {
+  login,
+  withGithub
+})(Login);

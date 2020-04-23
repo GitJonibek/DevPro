@@ -83,7 +83,8 @@ router.get('/github', async (req, res) => {
       method: 'post',
       url: route,
       headers: {
-        accept: 'application/json'
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
       }
     });
 
@@ -93,7 +94,8 @@ router.get('/github', async (req, res) => {
       method: 'get',
       url: 'https://api.github.com/user',
       headers: {
-        Authorization: 'token ' + access_token
+        Authorization: 'token ' + access_token,
+        Accept: 'application/json'
       }
     });
 
@@ -109,13 +111,17 @@ router.get('/github', async (req, res) => {
       { headers: { 'Content-Type': 'application/json' }
     });
     if (regRes.data.token) {
-      res.redirect(`/api/auth/me?xauthtk=${regRes.data.token}`);
+      const { token } = regRes.data;
+      res.json({ token });
     }
     else {
       await axios.post('http://localhost:8000/api/auth', { email, password },
         { headers: { 'Content-Type': 'application/json' }
       })
-      .then(logRes => res.redirect(`/api/auth/me?xauthtk=${logRes.data.token}`))
+      .then(logRes => {
+        const { token } = logRes.data;
+        res.json({ token });
+      })
       .catch(err => res.status(500).send('Server error!'));
     }
 

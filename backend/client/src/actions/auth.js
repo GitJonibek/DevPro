@@ -91,6 +91,37 @@ export const login = ({email, password}) => async dispatch => {
   }
 }
 
+// Auth with gitHub
+export const withGithub = () => async dispatch => {
+  try {
+    await axios({
+      url: 'https://github.com/login/oauth/authorize?client_id=8f6eb02bfcdaa7b11bed',
+      method: 'get',
+      headers: {
+        'Accept': '*/*',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => {
+      console.log(res.data);
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      dispatch(loadUser());
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+
+  } catch (e) {
+    const errors = e.response.data.erros;
+    if(errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+    dispatch({
+      type: LOGIN_FAIL
+    });
+  }
+}
+
 //Logout
 export const logout = () => dispatch => {
   dispatch({ type: CLEAR_PROFILE });
