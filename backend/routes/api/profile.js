@@ -77,9 +77,14 @@ router.post('/', [ auth, [
    if(instagram) profileFields.social.instagram = instagram;
    if(linkedin) profileFields.social.linkedin = linkedin;
 
+   let avatar = null;
    if(githubusername) {
      const body = await axios.get(`https://api.github.com/users/${githubusername}`);
-     await User.updateOne({_id: req.user.id}, { $set: { avatar: body.data.avatar_url }});
+     avatar = body.data.avatar_url;
+     await User.updateOne({_id: req.user.id}, { $set: { avatar: body.data.avatar_url }})
+     .catch (err => {
+       console.log(err);
+     });
      await Post.updateMany({user: req.user.id}, { $set: { avatar: body.data.avatar_url }})
      .catch (err => {
        console.log(err);
@@ -102,8 +107,6 @@ router.post('/', [ auth, [
 
      // Create
      profile = new Profile(profileFields);
-
-     console.log(avatar);
 
      await profile.save();
      res.json(profile);

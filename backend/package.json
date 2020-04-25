@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@octokit/auth-oauth-app": "^3.0.2",
+    "@sendgrid/mail": "^7.0.1",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.1",
@@ -24,11 +25,11 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
+    "nodemailer": "^6.4.6",
     "request": "^2.88.2"
   },
   "devDependencies": {
     "concurrently": "^5.1.0",
     "nodemon": "^2.0.2"
-  },
-  "proxy": "http://localhost:8000"
+  }
 }

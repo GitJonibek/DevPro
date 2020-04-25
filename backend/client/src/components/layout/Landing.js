@@ -22,7 +22,7 @@ const Landing = (props) => {
           <div className="buttons">
             <Link to="/register" className="btn btn-primary">Sign Up</Link>
             <Link to="/login" className="btn btn-primary">Login</Link>
-            <a href='https://github.com/login/oauth/authorize?client_id=8f6eb02bfcdaa7b11bed' alt=''>Login with github</a>
+            {/* <a href='https://github.com/login/oauth/authorize?client_id=8f6eb02bfcdaa7b11bed' alt=''>Login with github</a> */}
           </div>
         </div>
       </div>

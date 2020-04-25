@@ -38,16 +38,19 @@ router.post('/', [
 
   try {
     // See If user exists
-    let user = await User.findOne({ email });
-    if(!user){
-      return res.status(400).json({ erros: [{msg: 'Invalid cridentials!'}] });
+    let user = await User.findOne({ email: email.toLowerCase() });
+    if(!user) {
+      return res.status(400).json({ errors: [{msg: 'Invalid cridentials!'}] });
+    }
+    if(!user.confirmed) {
+      return res.status(400).json({ errors: [{msg: 'Email has not been confirmed yet! Please, confirm your email.'}] });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if(!isMatch){
       console.log('Not Match!');
-      return res.status(400).json({ erros: [{msg: 'Invalid cridentials!'}] });
+      return res.status(400).json({ errors: [{msg: 'Invalid cridentials!'}] });
     }
 
     // return jwt
@@ -70,7 +73,7 @@ router.post('/', [
 });
 
 // Authorize with Github
-router.get('/github', async (req, res) => {
+router.get('/oauth-callback', async (req, res) => {
   const code = req.query.code;
 
   if(!code) {

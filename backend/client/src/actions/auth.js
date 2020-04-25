@@ -18,16 +18,16 @@ export const loadUser = () => async dispatch => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get('/api/auth/me');
+    await axios.get('/api/auth/me')
+    .then(res => {
+      dispatch({ type: USER_LOADED, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: AUTH_ERROR });
+    });
 
-    dispatch({
-      type: USER_LOADED,
-      payload: res.data
-    });
   } catch (e) {
-    dispatch({
-      type: AUTH_ERROR
-    });
+    dispatch({ type: AUTH_ERROR });
   }
 }
 
@@ -44,12 +44,10 @@ export const register = ({name, email, password}) => async dispatch => {
   try {
     const res = await axios.post('/api/users', body, config);
 
-    dispatch({
-      type: REGISTER_SUCCESS,
-      payload: res.data
-    });
+    dispatch({ type: REGISTER_SUCCESS });
 
-    dispatch(loadUser());
+    dispatch(setAlert('Account created successfully. ' + res.data.msg, 'success'));
+
   } catch (e) {
     const errors = e.response.data.errors;
     if(errors) {
@@ -72,16 +70,19 @@ export const login = ({email, password}) => async dispatch => {
   const body = JSON.stringify({email, password});
 
   try {
-    const res = await axios.post('/api/auth', body, config);
+    await axios.post('/api/auth', body, config)
+    .then(res => {
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      dispatch(loadUser());
+    })
+    .catch(e => {
+      const errors = e.response.data.errors;
+      if(errors) { errors.forEach(error => dispatch(setAlert(error.msg, 'danger'))); }
+      dispatch({ type: LOGIN_FAIL });
+    })
 
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data
-    });
-
-    dispatch(loadUser());
   } catch (e) {
-    const errors = e.response.data.erros;
+    const errors = e.response.data.errors;
     if(errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
@@ -104,8 +105,8 @@ export const withGithub = () => async dispatch => {
     })
     .then(res => {
       console.log(res.data);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-      dispatch(loadUser());
+      // dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      // dispatch(loadUser());
     })
     .catch(err => {
       console.log(err.message);

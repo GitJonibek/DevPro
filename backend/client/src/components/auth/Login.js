@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { login, withGithub } from "../../actions/auth";
@@ -25,7 +25,7 @@ const Login = (props) => {
   }
 
   return (
-    <Fragment>
+    <div className='form-container'>
       <h1 className="large text-primary">
         Sign In
       </h1>
@@ -57,7 +57,7 @@ const Login = (props) => {
       <span onClick={props.withGithub} style={{cursor: 'pointer'}}>
         Continue with GitHub{' '}<i className="fab fa-github"></i>
       </span>
-    </Fragment>
+    </div>
   )
 }
 

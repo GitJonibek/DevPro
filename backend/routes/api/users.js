@@ -7,6 +7,19 @@ const config = require('config');
 const axios = require('axios');
 const {check, validationResult} = require("express-validator");
 
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  rejectUnauthorized: false,
+  auth: {
+    user: 'norboev707@gmail.com',
+    pass: 'vaqllfcjdzuxunjy',
+  },
+});
+
 const User = require('../../models/Users');
 const AccessToken = require('../../models/AccessToken');
 
@@ -24,7 +37,6 @@ router.post('/', [
   }
 
   let { name, email, password, avatar, bio } = req.body;
-  const { access_token } = req.query;
 
   try {
     // See If user exists
@@ -45,18 +57,6 @@ router.post('/', [
 
     await user.save();
 
-    if(access_token) {
-      let accToken = await AccessToken.findOne({ user: user._id });
-      if(!accToken) {
-        accToken = new AccessToken({ _id: access_token, user: user._id });
-        await accToken.save();
-      }
-      else {
-        accToken._id = access_token;
-        await accToken.save();
-      }
-    }
-
     // return jwt
     const payload = {
       user: {
@@ -64,14 +64,122 @@ router.post('/', [
       }
     };
 
-    jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 36000 }, (err, token) => {
+    jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 36000 }, async (err, token) => {
       if(err) throw err;
-      res.json({ token });
+      // res.json({ token });
+
+      let accToken = new AccessToken({ _id: token, user: user._id });
+      await accToken.save();
+
+      const url = `http://localhost:8000/api/users/confirmation/${token}`;
+
+      await transporter.sendMail({
+        from: 'DevPro Team: <dv-team@devpro.com>',
+        to: user.email,
+        subject: 'Confirm Your Email!',
+        html: `Please click this link to confirm your email: <a href='${url}'>${url}</a>`
+      })
+      .then(resp => {
+        res.json({msg: `Varification token sent to <${user.email}>`})
+      })
+      .catch(err => {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+      })
+
     });
 
   } catch (e) {
     console.error(e.message);
     res.status(500).send('Server error!');
+  }
+
+});
+
+router.get('/confirmation/:token', async (req, res) => {
+
+  const { token } = req.params;
+  let accToken = await AccessToken.findOne({ _id: token });
+  let user = null;
+  try {
+    let decoded = jwt.verify(token, config.get('jwtSecret'));
+    let user = decoded ? await User.findById({_id: decoded.user.id}) : null;
+
+    if(user) {
+      if(user.confirmed) {
+        return res.status(400).send('Account has already been varified! Please. login to continue');
+      }
+      user.confirmed = true;
+      await user.save();
+
+      console.log('/confirmation/:token ->', user);
+
+      res.set('Content-Type', 'text/html');
+      let html = `Account varified! Login to continue. <a href="http://localhost:3000/login">Login To Continue!</a>`
+      res.status(200).send(new Buffer(html));
+    }
+
+  } catch (e) {
+    console.error(e.message);
+    if(accToken) {
+      user = await User.findById({_id: accToken.user});
+      let html = `Session expired! Click here to resend new link
+      <a href="http://localhost:8000/api/users/resend/${token}">Resend The Link!</a>`;
+
+      res.set('Content-Type', 'text/html');
+      res.status(400).send(html);
+    }
+    else {
+      res.status(500).send('Server Error!');
+    }
+
+  }
+
+
+});
+
+router.get('/resend/:token', async (req, res) => {
+  const { token } = req.params;
+
+  try {
+    let access_token = await AccessToken.findById(token);
+
+    const user = await User.findById(access_token.user).select('-password');
+    // return jwt
+    const payload = {
+      user: {
+        id: user._id
+      }
+    };
+
+    jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 36000 }, async (err, new_token) => {
+      if(err) throw err;
+      console.log(access_token._id);
+      await AccessToken.deleteOne({_id: access_token._id});
+      const newAccToken = new AccessToken({ _id: new_token, user: access_token.user });
+      await newAccToken.save();
+      console.log(newAccToken._id);
+      const url = `http://localhost:8000/api/users/confirmation/${new_token}`;
+
+      await transporter.sendMail({
+        from: 'DevPro Team: <dv-team@devpro.com>',
+        to: user.email,
+        subject: 'Confirm Your Email!',
+        html: `Please click this link to confirm your email: <a href='${url}'>${url}</a>`
+      })
+      .then(resp => {
+        res.send(`Varification token sent to your email address: <${user.email}>`)
+      })
+      .catch(err => {
+        console.error(err.message);
+        res.status(400).send('Server Error');
+      });
+
+    });
+
+  } catch (e) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 
 });

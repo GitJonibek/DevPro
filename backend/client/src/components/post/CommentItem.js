@@ -9,12 +9,13 @@ const CommentItem = ({ postId, comment: { date, _id, text, name, avatar, user },
 
   return (
     <div className="post bg-white p-1 my-1">
-      <div>
+      <div className='img-wrapper'>
         <Link to={`/profile/${user}`}>
-          <img className="round-img" src={avatar} alt=""  style={{width: '70px'}} />
-          <h4>{name}</h4>
+          <img className="round-img" src={avatar} alt="" style={{width: '70px'}}/>
+          <h4 className='text-primary'>{name.split(' ')[0]}</h4>
         </Link>
       </div>
+
       <div>
         <p className="my-1">{text}</p>
         <p className="post-date" style={{fontSize: '0.9em', color: '#666'}}>

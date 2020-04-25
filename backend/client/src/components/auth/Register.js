@@ -1,9 +1,13 @@
-import React, { Fragment, useState } from 'react'
-import { Link, Redirect } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link } from "react-router-dom";
 import {connect} from "react-redux";
 import {setAlert} from "../../actions/alert";
 import {register} from "../../actions/auth";
+import Spinner from '../layout/Spinner'
 import PropTypes from 'prop-types'
+
+
+const passRegEx = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
 
 const Register = (props) => {
 
@@ -13,27 +17,47 @@ const Register = (props) => {
     password: '',
     password2: ''
   });
+  const [validator, setValidator] = useState({
+    password: false,
+    password2: false
+  });
 
   const { name, email, password, password2 } = formData;
 
-  const onChangeHandler = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChangeHandler = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    switch(e.target.name){
+      case 'password':
+        setValidator({ ...validator, [e.target.name]: (passRegEx.test(password) && password.length > 0) });
+        break;
+      case 'password2':
+        setValidator({ ...validator, [e.target.name]: passRegEx.test(password2) && (e.target.value === password) });
+        break;
+      default: break;
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if(password !== password2) {
-      props.setAlert('Passwords do not match!', 'danger', 3000);
+    if(validator.password && validator.password2) {
+      props.register({name, email, password});
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        password2: ''
+      });
     }
     else {
-      props.register({name, email, password});
+      props.setAlert('Passwords do not match!', 'danger', 3000);
     }
   }
 
-  if(props.isAuthenticated) {
-    return <Redirect to='/dashboard' />
-  }
+  const style1 = (validator.password && (password.length > 0)) ? {border: '2px solid #101D30'} : {border: '2px solid #FF5D73'};
+  const style2 = (validator.password2&& (password2.length> 0)) ? {border: '2px solid #101D30'} : {border: '2px solid #FF5D73'};
 
-  return (
-    <Fragment>
+  return props.loading ? <Spinner /> : (
+    <div className='form-container'>
       <h1 className="large text-primary">
         Sign Up
       </h1>
@@ -63,6 +87,7 @@ const Register = (props) => {
         </div>
         <div className="form-group">
           <input
+            style={style1}
             onChange={e => onChangeHandler(e)}
             type="password"
             name="password"
@@ -72,6 +97,7 @@ const Register = (props) => {
         </div>
         <div className="form-group">
           <input
+            style={style2}
             onChange={e => onChangeHandler(e)}
             type="password"
             name="password2"
@@ -84,18 +110,20 @@ const Register = (props) => {
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
-    </Fragment>
+    </div>
   )
 }
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
+  loading: PropTypes.bool,
 }
 
 const mapStatetoProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading,
 });
 
 export default connect(mapStatetoProps, {setAlert, register})(Register);

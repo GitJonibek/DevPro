@@ -13,6 +13,9 @@ const DashboardActions = (props) => {
       <Link to="/add-education" className="btn btn-custom-primary">
         <i className="fas fa-graduation-cap"></i> Add Education
       </Link>
+      <Link to={`/profile/${props.id}`} className="btn btn-custom-primary">
+        <i className="fas fa-id-badge"></i> Go To Profile
+      </Link>
     </div>
   )
 }
