@@ -11,7 +11,7 @@ const CommentItem = ({ postId, comment: { date, _id, text, name, avatar, user },
     <div className="post bg-white p-1 my-1">
       <div className='img-wrapper'>
         <Link to={`/profile/${user}`}>
-          <img className="round-img" src={avatar} alt="" style={{width: '70px'}}/>
+          <img className="round-img img-hovered" src={avatar} alt="" style={{width: '70px'}}/>
           <h4 className='text-primary'>{name.split(' ')[0]}</h4>
         </Link>
       </div>

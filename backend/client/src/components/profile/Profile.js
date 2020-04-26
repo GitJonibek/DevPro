@@ -26,7 +26,7 @@ const Profile = ({
     <Fragment>
       { profile === null || loading ? <Spinner /> :
         <Fragment>
-          <Link to='/profiles' className='btn btn-light'>Back To Developers' Page</Link>
+          <Link to='/profiles' className='btn btn-dark my-1'>Back To Developers{"'"} Page</Link>
           { auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id &&

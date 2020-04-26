@@ -19,7 +19,7 @@ const PostItem = ({
     <div className="post bg-white s-1 p-1">
       <div className='img-wrapper'>
         <Link to={`/profile/${user}`}>
-          <img className="round-img" src={avatar} alt="" style={{width: '70px'}}/>
+          <img className="round-img img-hovered" src={avatar} alt="" style={{width: '70px'}}/>
           <h4 className='text-primary'>{name.split(' ')[0]}</h4>
         </Link>
       </div>

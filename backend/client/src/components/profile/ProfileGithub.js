@@ -17,8 +17,8 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
         repos.map((repo, index) => (
           <div key={index} className='repo bg-white p-1 my-1' >
             <div>
-              <h4 className='text-primary'><a href={repo.html_url} rel='opener'>{repo.name}</a></h4>
-              <p>{repo.description}</p>
+              <h4><a className='text-primary' href={repo.html_url} rel='opener'>{repo.name}</a></h4>
+              <p className='text-primary-light'>{repo.description}</p>
             </div>
 
             <div>

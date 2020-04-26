@@ -49,7 +49,7 @@ const Login = (props) => {
             placeholder="Password"
             minLength="6" />
         </div>
-        <input type="submit" value="Login" className="btn btn-primary" />
+        <input type="submit" value="Login" className="btn btn-custom-primary btn-full" />
       </form>
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>

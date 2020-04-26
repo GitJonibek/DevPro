@@ -53,8 +53,8 @@ const Register = (props) => {
     }
   }
 
-  const style1 = (validator.password && (password.length > 0)) ? {border: '2px solid #101D30'} : {border: '2px solid #FF5D73'};
-  const style2 = (validator.password2&& (password2.length> 0)) ? {border: '2px solid #101D30'} : {border: '2px solid #FF5D73'};
+  const style1 = (validator.password) ? {border: '1px solid #101D30'} : {border: '1px solid #FF5D73'};
+  const style2 = (validator.password2) ? {border: '1px solid #101D30'} : {border: '1px solid #FF5D73'};
 
   return props.loading ? <Spinner /> : (
     <div className='form-container'>
@@ -87,7 +87,7 @@ const Register = (props) => {
         </div>
         <div className="form-group">
           <input
-            style={style1}
+            style={(password.length > 0) ? style1 : null}
             onChange={e => onChangeHandler(e)}
             type="password"
             name="password"
@@ -97,7 +97,7 @@ const Register = (props) => {
         </div>
         <div className="form-group">
           <input
-            style={style2}
+            style={(password2.length > 0) ? style2 : null}
             onChange={e => onChangeHandler(e)}
             type="password"
             name="password2"
@@ -105,7 +105,7 @@ const Register = (props) => {
             placeholder="Confirm Password"
             minLength="7" />
         </div>
-        <input type="submit" value="Register" className="btn btn-primary" />
+        <input type="submit" value="Register" className="btn btn-custom-primary btn-full" />
       </form>
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>

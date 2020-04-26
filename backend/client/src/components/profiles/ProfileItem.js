@@ -20,14 +20,14 @@ const ProfileItem = ({
   return (
     <div className='profile bg-light'>
       <div className='img-small'>
-        <img src={avatar} alt='' className='round-img' />
+        <img src={avatar} alt='' className='round-img img-hovered' />
       </div>
 
       <div>
         <h2>{name}</h2>
         <p>{status} {company && <span> at {company}</span>}</p>
         <p className='my-1'>{location && <span>{location}</span>}</p>
-        <Link to={`/profile/${_id}`} className='btn btn-primary' >View Profile</Link>
+        <Link to={`/profile/${_id}`} className='btn btn-custom-primary' >View Profile</Link>
       </div>
 
       <ul>{mSkills}</ul>

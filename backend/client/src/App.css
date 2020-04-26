@@ -119,9 +119,10 @@
 }
 
 .text-primary {
-	background: linear-gradient(90deg, rgba(36,0,26,1) 0%, rgba(121,9,90,1) 50%, rgba(68,34,98,1) 100%, rgba(255,141,0,1) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	color: #101D30;
+}
+.text-primary-light {
+	color: #666;
 }
 
 .round-img {
@@ -265,7 +266,7 @@
   padding: 5px;
   transition: all .15s ease;
 }
-.btn-thumb-up > i:hover, .btn-thumb-down > i:hover, .btn-comment > i:hover, .btn-delete:hover {
+.btn-thumb-up > i:hover, .btn-thumb-down > i:hover, .btn-comment > i:hover {
   transform: scale(1.15);
 }
 .btn-thumb-up {
@@ -300,6 +301,11 @@
 .btn-delete:hover {
   background: #c42847;
   color: #fff;
+}
+
+.btn-full {
+  margin: auto;
+  width: 100%;
 }
 
 .alert {
@@ -398,21 +404,36 @@
 	width: 100%;
 	padding: 0.4rem;
 	font-size: 1.2rem;
-  border: 2px solid #101D30;
+  border: 1px solid #999;
   border-radius: 4px;
   outline: none;
+}
+.form input[type='email']:active,
+.form input[type='email']:hover,
+.form input[type='password']:active,
+.form input[type='password']:hover,
+.form input[type='date']:active,
+.form input[type='date']:hover,
+.form input[type='text']:active,
+.form input[type='text']:hover,
+.form textarea:hover,
+.form textarea:active {
+  border: 1px solid #101D30;
 }
 
 .form-container {
   margin: auto;
-  border: 1px solid #ddd;
+  border: 1px solid #333;
   border-radius: 10px;
   padding: 40px 20px;
   max-width: 450px;
 }
+.form-container:hover {
+  border: 1px solid #1c1;
+}
 
 .form input[type='submit'] {
-	font: inherit
+	font: inherit;
 }
 
 .form .social-input {
@@ -482,9 +503,19 @@ p {
   height: 75px;
   position: relative;
 }
+.fixed {
+  top: 0;
+  position: fixed;
+  width: 100%;
+}
 .mNavbar-helper-bk {
   width: 100%;
   height: 60px;
+  background: white;
+  border-bottom: 1px solid #333;
+}
+.mNavbar-helper-bk:hover {
+  border-bottom: 1px solid #1c1;
 }
 .mNavbar {
 	font-family: 'Rubik', sans-serif;
@@ -501,12 +532,15 @@ p {
 	justify-content: space-between;
   position: absolute;
 	border-radius: 10px;
-	color: white;
+  border: 1px solid #333;
+  background-color: white;
   top: 10px;
   bottom: 0;
   left: 20px;
   right: 20px;
-  box-shadow: 0px 1px 30px white;
+}
+.mNavbar:hover {
+  border: 1px solid #1c1;
 }
 .mNavbar > h1 {
 	margin: 0 20px;
@@ -518,19 +552,34 @@ p {
 	margin: 0 20px;
 }
 .mNavbar > ul > li {
-	margin-left: 20px;
+	margin-left: 5px;
 }
 .nav-items {
 	color: white;
 }
 .mNavbar a {
-	color: #fff;
+  color: #333;
+  -webkit-transition: all .2s ease-in;
+  -ms-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+.mNavbar a:hover {
+  color: rgba(249,119,0,1);
+}
+.nav-items a {
+  position: relative;
+	color: #333;
 	font-weight: bolder;
+  border-bottom: 0px solid rgba(249,119,0,1);
 	padding: 0.45rem;
-	margin: 0 0.25rem
+	margin: 0 0.25rem;
+  -webkit-transition: border color .2s linear;
+  -ms-transition: border color .2s linear;
+  transition: border color .2s linear;
 }
 
-.mNavbar a:hover {
+.nav-items a:hover {
+  border-bottom: 2px solid rgba(249,119,0,1);
 	color: rgba(249,119,0,1);
 }
 
@@ -580,6 +629,12 @@ p {
 	border-radius: 10px;
 	background: #fff;
 }
+.profile:hover {
+  border: 1px solid #101D30;
+}
+.img-hovered:hover {
+  border: 1px solid #101D30;
+}
 
 .profile-grid {
 	display: -ms-grid;
@@ -609,8 +664,8 @@ p {
 	text-align: center;
   border-radius: 10px 10px 0 0;
 }
-
 .profile-grid .profile-top img {
+  border: 4px solid white;
 	width: 250px;
 }
 .img-medium img {
@@ -754,7 +809,7 @@ p {
   word-wrap: break-word;
 }
 .post:hover {
-	box-shadow: 0 0 3px 0 rgba(121,9,90,1);
+  border: 1px solid #101D30;
 }
 
 .img-wrapper {
@@ -793,6 +848,7 @@ p {
 		-ms-flex-pack: center;
 		justify-content: center
 	}
+
 	.dash-buttons a {
 		display: block;
 		width: 100%;
