@@ -9,43 +9,55 @@ const Navbar = (props) => {
   const authLinks = (
     <ul className='nav-items'>
       <li>
-        <NavLink to="/posts">
-          <i className='fas fa-blog'></i>{' '}
-          <span className='hide-sm'>Posts</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/profiles">
-          <i className='fas fa-code'></i>{' '}
-          <span className='hide-sm'>Developers</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard">
-          <i className='fas fa-user'></i>{' '}
-          <span className='hide-sm'>Dashboard</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink onClick={props.logout} to="/">
-          <i className='fas fa-sign-out-alt'></i>{' '}
-          <span className='hide-sm'>Logout</span>
-        </NavLink>
-      </li>
+        <NavLink to="/jobs" id='jobs'>
+        <i className="fas fa-search-dollar"></i>{' '}
+        <span className='hide-sm'>Jobs</span>
+      </NavLink></li>
+    <li>
+      <NavLink to="/posts" id='posts'>
+        <i className='fas fa-blog'></i>{' '}
+        <span className='hide-sm'>Posts</span>
+      </NavLink></li>
+    <li>
+      <NavLink to="/profiles" id='profiles'>
+        <i className='fas fa-code'></i>{' '}
+        <span className='hide-sm'>Developers</span>
+      </NavLink></li>
+    <li>
+      <NavLink to="/dashboard" id='dashboard'>
+        <i className='fas fa-user'></i>{' '}
+        <span className='hide-sm'>Dashboard</span>
+      </NavLink></li>
+    <li>
+      <NavLink onClick={props.logout} to="/" id='logout'>
+        <i className='fas fa-sign-out-alt'></i>{' '}
+        <span className='hide-sm'>Logout</span>
+      </NavLink></li>
     </ul>
   );
 
   const guestLinks = (
     <ul className='nav-items'>
-      <li><NavLink to="/profiles">
-        <i className='fas fa-code'></i>{' '}<span className='hide-sm'>Developers</span>
-      </NavLink></li>
-      <li><NavLink to="/register">
-        <i className="fas fa-user-plus"></i>{' '}<span className='hide-sm'>Sign Up</span>
-      </NavLink></li>
-      <li><NavLink to="/login">
-        <i className="fas fa-sign-in-alt"></i>{' '}<span className='hide-sm'>Sign In</span>
-      </NavLink></li>
+      <li>
+        <NavLink to="/jobs" id='jobs'>
+          <i className="fas fa-search-dollar"></i>{' '}
+          <span className='hide-sm'>Jobs</span>
+        </NavLink></li>
+      <li>
+        <NavLink to="/profiles" id='developers'>
+          <i className='fas fa-code'></i>{' '}
+          <span className='hide-sm'>Developers</span>
+        </NavLink></li>
+      <li>
+        <NavLink to="/register" id='signup'>
+          <i className="fas fa-user-plus"></i>{' '}
+          <span className='hide-sm'>Sign Up</span>
+        </NavLink></li>
+      <li>
+        <NavLink to="/login" id='signin'>
+          <i className="fas fa-sign-in-alt"></i>{' '}
+          <span className='hide-sm'>Sign In</span>
+        </NavLink></li>
     </ul>
   );
 

@@ -1,0 +1,133 @@
+
+.jobs > div:first-child {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.jobs-stack,
+.jobs-local {
+  margin: 0 10px;
+  transition: border color .2s linear;
+}
+
+.jobs-stack:hover,
+.jobs-local:hover {
+  border-bottom: 2px solid rgba(249,119,0,1);
+  color: rgba(249,119,0,1);
+}
+
+
+.gl_jobs_container {
+  margin: auto;
+  width: 100%;
+  display: block;
+}
+
+.jobs_header {
+  width: 100%;
+  margin: 20px 0;
+  padding: 30px;
+  border: 1px solid #aaa;
+}
+
+.jobs_main {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.jobs_list {
+  flex: 1;
+}
+.jobs_list > .jobs_list_wrapper {
+  border: 1px solid #aaa;
+  width: 100%;
+  display: block;
+  padding: 5px;
+}
+.jobs_list > .jobs_list_wrapper > .jobs_item {
+  display: grid;
+  padding: 10px;
+  grid-template-columns: 20% auto;
+  grid-template-rows: 35% 25% 20% 20%;
+  grid-template-areas:
+    "img  title"
+    "img  location"
+    "img  category"
+    "img  date_time";
+  border-bottom: 1px solid #aaa;
+}
+.jobs_list > .jobs_list_wrapper > div:last-child {
+  border: none;
+}
+.jobs_item > .item_img {
+  grid-area: img;
+}
+.jobs_item > .item_title {
+  grid-area: title;
+}
+.jobs_item > .item_location {
+  grid-area: location;
+}
+.jobs_item > .item_category {
+  grid-area: category;
+}
+.jobs_item > .item_datetime {
+  grid-area: date_time;
+}
+
+.jobs_viewer_item {
+  flex: 2;
+  width: 100%;
+  display: block;
+  margin-left: 20px;
+  border: 1px solid #aaa;
+  padding: 20px;
+}
+.jobs_viewer_item > .jobs_viewer_item_header {
+  display: grid;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  grid-template-columns: 10% auto;
+  grid-template-rows: 35% 35% 30%;
+  grid-template-areas:
+    "vimg  title"
+    "vimg  location"
+    "vimg  actions";
+  border-bottom: 1px solid #aaa;
+}
+.jobs_viewer_item_header > .viewer-img {
+  grid-area: vimg;
+}
+.jobs_viewer_item_header > .viewer-title {
+  grid-area: title;
+}
+.jobs_viewer_item_header > .viewer-location {
+  grid-area: location;
+}
+.jobs_viewer_item_header > .jobs_viewer_item_header_actions {
+  grid-area: actions;
+}
+.jobs_viewer_item > .jobs_viewer_item_body {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  grid-template-rows: 7% 93%;
+  grid-template-areas:
+    "vdate  vcategory"
+    "vdesc  vdesc";
+}
+.jobs_viewer_item_body > .viewer-body-date {
+  grid-area: vdate;
+  width: 100%;
+}
+.jobs_viewer_item_body > .viewer-body-category {
+  grid-area: vcategory;
+  width: 100%;
+}
+.jobs_viewer_item_body > .viewer-body-description {
+  grid-area: vdesc;
+  width: 100%;
+  margin-top: 5%;
+}

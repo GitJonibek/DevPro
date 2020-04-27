@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
@@ -14,11 +15,13 @@ import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
+import Jobs from './components/jobs/Jobs';
+import StackJobs from './components/jobs/stackjobs/Jobs';
 import PrivateRoute from "./components/routing/PrivateRoute";
 import './App.css';
 // Redux
 import { Provider } from "react-redux";
-import {loadUser} from "./actions/auth";
+import { loadUser } from "./actions/auth";
 import store from './store'
 import setAuthToken from "./utils/setAuthToken";
 
@@ -45,6 +48,7 @@ const App = () => {
               <Route exact path='/login' component={Login} />
               <Route exact path='/profiles' component={Profiles} />
               <Route exact path='/profile/:id' component={Profile} />
+              <Route exact path='/jobs' component={Jobs} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
               <PrivateRoute exact path='/create-profile' component={CreateProfile} />
               <PrivateRoute exact path='/edit-profile' component={EditProfile} />

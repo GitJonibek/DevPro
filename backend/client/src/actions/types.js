@@ -30,3 +30,7 @@ export const UPDATE_LIKES = 'UPDATE_LIKES';
 export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+
+// Jobs
+export const GET_GL_JOBS = 'GET_GL_JOBS';
+export const JOBS_ERROR = 'JOBS_ERROR';

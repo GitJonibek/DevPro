@@ -1,5 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Oxygen|Rubik:400,500&display=swap');
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 3px #ccc;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
 .grad {
   background: rgb(36,0,26);
   background: linear-gradient(90deg, rgba(36,0,26,1) 0%, rgba(121,9,90,1) 50%, rgba(68,34,98,1) 100%, rgba(255,141,0,1) 100%);
@@ -559,9 +576,6 @@ p {
 }
 .mNavbar a {
   color: #333;
-  -webkit-transition: all .2s ease-in;
-  -ms-transition: all .2s ease-in;
-  transition: all .2s ease-in;
 }
 .mNavbar a:hover {
   color: rgba(249,119,0,1);
@@ -805,7 +819,7 @@ p {
 	transition: all .2s;
 }
 .post>div:last-child {
-  overflow-x: hidden;
+  overflow: hidden;
   word-wrap: break-word;
 }
 .post:hover {

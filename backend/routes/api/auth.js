@@ -8,13 +8,15 @@ const axios = require('axios');
 const {check, validationResult} = require("express-validator");
 
 const User = require('../../models/Users')
+const AccessToken = require('../../models/AccessToken')
 
-// @route   GET /api/auth
+// @route   GET /api/auth/me
 // @desc    Get User
 // @access  public
 router.get('/me', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
+
     res.json(user);
   } catch (e) {
     console.log(e.message);
@@ -60,8 +62,11 @@ router.post('/', [
       }
     };
 
-    jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 36000 }, (err, token) => {
+    jwt.sign(payload, config.get("jwtSecret"), { expiresIn: 36000 }, async (err, token) => {
       if(err) throw err;
+      await AccessToken.deleteOne({user: user._id});
+      const newAccToken = new AccessToken({ _id: token, user: user._id });
+      await newAccToken.save();
       res.json({token});
     });
 

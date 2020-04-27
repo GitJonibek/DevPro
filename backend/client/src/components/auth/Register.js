@@ -7,7 +7,7 @@ import Spinner from '../layout/Spinner'
 import PropTypes from 'prop-types'
 
 
-const passRegEx = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
+const passRegEx = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&.*])[\w!@#$.%^&*]{8,}$/;
 
 const Register = (props) => {
 
@@ -15,18 +15,22 @@ const Register = (props) => {
     name: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
+    checkbox: false
   });
   const [validator, setValidator] = useState({
     password: false,
     password2: false
   });
 
-  const { name, email, password, password2 } = formData;
+  const { name, email, password, password2, checkbox } = formData;
 
   const onChangeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     switch(e.target.name){
+      case 'checkbox':
+        setFormData({ ...formData, [e.target.name]: !checkbox });
+        break;
       case 'password':
         setValidator({ ...validator, [e.target.name]: (passRegEx.test(password) && password.length > 0) });
         break;
@@ -45,7 +49,8 @@ const Register = (props) => {
         name: '',
         email: '',
         password: '',
-        password2: ''
+        password2: '',
+        checkbox: false
       });
     }
     else {
@@ -55,6 +60,8 @@ const Register = (props) => {
 
   const style1 = (validator.password) ? {border: '1px solid #101D30'} : {border: '1px solid #FF5D73'};
   const style2 = (validator.password2) ? {border: '1px solid #101D30'} : {border: '1px solid #FF5D73'};
+  const styleS1 = (validator.password) ? { display: 'none' } : {color: '#FF5D73'};
+  const styleS2 = (validator.password2) ? { display: 'none' } : {color: '#FF5D73'};
 
   return props.loading ? <Spinner /> : (
     <div className='form-container'>
@@ -94,6 +101,10 @@ const Register = (props) => {
             value={ password }
             placeholder="Password"
             minLength="7" />
+          <small className="form-text" style={(password.length > 0) ? styleS1 : {display: 'none'}}>
+            Password must contain at least one Capital character, small character,
+            one digit, one symbol, and must be more than 7 characters.
+          </small>
         </div>
         <div className="form-group">
           <input
@@ -104,6 +115,18 @@ const Register = (props) => {
             value={ password2 }
             placeholder="Confirm Password"
             minLength="7" />
+          <small className="form-text" style={(password2.length > 0) ? styleS2 : {display: 'none'}}>
+            Passwords must be match to each other.
+          </small>
+        </div>
+        <div className="form-group">
+          <input
+            id='SUBSCRIBTION'
+            onChange={e => onChangeHandler(e)}
+            type="checkbox"
+            name="checkbox"
+            value={checkbox}/>
+          <label for="SUBSCRIBTION"><small>{' '}Do you agree to receive notifications and important announcements?</small></label>
         </div>
         <input type="submit" value="Register" className="btn btn-custom-primary btn-full" />
       </form>
