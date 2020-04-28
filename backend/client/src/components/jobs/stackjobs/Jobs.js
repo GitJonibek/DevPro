@@ -10,20 +10,29 @@ import { getStackJobs } from '../../../actions/jobs'
 const StackJobs = ({ getStackJobs, auth, jobs: { jobs, loading } }) => {
 
   const [query, setQuery] = useState({ search: '', location: '' });
+  const [itemId, setItemId] = useState(null);
   const onchange = (e) => {setQuery({ ...query, [e.target.name]: e.target.value })}
 
   const { search, location } = query;
 
+  const clickHandler = (id) => setItemId(id);
+
   const onSubmit = e => {
     e.preventDefault();
     getStackJobs(search, location);
+    setQuery({ search: '', location: '' })
   }
 
   useEffect(() => {
-    getStackJobs(search, location);
-  }, [search, location]);
+    getStackJobs();
+  }, [getStackJobs]);
 
-  const joblist = jobs.map(job => <JobItem key={job.pubDate + Math.random()} job={job}/>);
+  const joblist = jobs.map(job => <JobItem key={job.pubDate + Math.random()} job={job} clicked={id => clickHandler(id)}/>);
+  let mJob = null;
+  if(itemId) {
+    mJob = jobs.find(job => job.guid === itemId);
+  }
+  const itemview = itemId && <JobView key={Math.random()} job={mJob}/>;
 
   return (
     <div className="gl_jobs_container">
@@ -57,14 +66,16 @@ const StackJobs = ({ getStackJobs, auth, jobs: { jobs, loading } }) => {
             <section className="jobs_list">
               <div className="jobs_list_wrapper">
                 {joblist}
+                <p>Sourse from {' '}<i className="fab fa-stack-overflow"></i>Stack Overflow</p>
               </div>
             </section>
             <section className="jobs_viewer_item">
-              <JobView />
+              {itemview}
             </section>
           </Fragment>
         )}
       </main>
+
     </div>
   )
 }

@@ -22,8 +22,7 @@
 .gl_jobs_container {
   margin: auto;
   width: 100%;
-  min-height: 1000px;
-  max-height: 1200px;
+  min-height: 1200px;
   overflow-y: hide;
   display: block;
 }
@@ -80,14 +79,21 @@
 .jobs_item > .item_img {
   grid-area: img;
 }
-.jobs_item > .item_title {
+img.item_img {
+  padding: 10px;
+}
+h1.item_title {
   grid-area: title;
+  cursor: pointer;
 }
 .jobs_item > .item_location {
   grid-area: location;
 }
 .jobs_item > .item_category {
   grid-area: category;
+}
+div.item_category span {
+  cursor: pointer;
 }
 .jobs_item > .item_datetime {
   grid-area: date_time;
@@ -107,8 +113,9 @@
 }
 .jobs_viewer_item > .jobs_viewer_item_header {
   display: grid;
+  grid-gap: 10px;
   margin-bottom: 25px;
-  padding-bottom: 10px;
+  padding-bottom: 25px;
   grid-template-columns: 10% auto;
   grid-template-rows: 35% 35% 30%;
   grid-template-areas:
@@ -129,6 +136,35 @@
 .jobs_viewer_item_header > .jobs_viewer_item_header_actions {
   grid-area: actions;
 }
+button.btn-jobview-apply {
+  outline: none;
+  padding: 5px;
+  width: 150px;
+  font-size: 1.1em;
+  color: #fff;
+  background: #4577D1;
+  border: 2px solid #4577D1;
+  border-radius: 4px;
+  margin: 2px 3px;
+}
+button.btn-jobview-apply:hover {
+  background: #1157D1;
+}
+button.btn-jobview-save {
+  outline: none;
+  padding: 5px;
+  width: 100px;
+  font-size: 1.1em;
+  color: #4577D1;
+  background: #fff;
+  border: 2px solid #4577D1;
+  border-radius: 4px;
+  margin: 2px 3px;
+}
+button.btn-jobview-save:hover {
+  color: #fff;
+  background: #1157D1;
+}
 .jobs_viewer_item > .jobs_viewer_item_body {
   display: grid;
   grid-template-columns: 35% 65%;
@@ -140,6 +176,7 @@
 .jobs_viewer_item_body > .viewer-body-date {
   grid-area: vdate;
   width: 100%;
+  color: #c42847;
 }
 .jobs_viewer_item_body > .viewer-body-category {
   grid-area: vcategory;
@@ -155,7 +192,7 @@
 }
 .form-flex > div {
   margin: 0 10px;
-  flex: 3;
+  flex: 6;
 }
 .form-flex > input:last-child {
   flex: 1;

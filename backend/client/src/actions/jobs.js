@@ -7,7 +7,7 @@ import {
 export const getStackJobs = (search, location) => async dispatch => {
   try {
     const res = await axios.get(`/api/jobs/global?query=${search}&location=${location}`)
-    console.log(res.data.length);
+
     dispatch({ type: GET_GL_JOBS, payload: res.data });
   } catch (e) {
     console.log(e.response.message);
