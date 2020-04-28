@@ -126,7 +126,7 @@ const Register = (props) => {
             type="checkbox"
             name="checkbox"
             value={checkbox}/>
-          <label for="SUBSCRIBTION"><small>{' '}Do you agree to receive notifications and important announcements?</small></label>
+          <label forhtml="SUBSCRIBTION"><small>{' '}Do you agree to receive notifications and important announcements?</small></label>
         </div>
         <input type="submit" value="Register" className="btn btn-custom-primary btn-full" />
       </form>

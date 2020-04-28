@@ -1,28 +1,22 @@
 import React, {Fragment} from 'react'
 
-const JobItem = (props) => {
+const JobItem = ({ job: { title, link, pubDate, content, contentSnippet, categories }}) => {
+  const ttl = title.substring(0, title.indexOf(' at '));
+  const loc = title.substring(title.indexOf(' at ') + 3);
+  const cats = categories ? categories.map(cat => <span key={Math.random()} className='category-span'>{cat}</span>) : null;
+
   return (
     <Fragment>
       <div className="jobs_item">
-        <img className="item_img" src="" alt="icon"/>
-        <h1 className="item_title">Title</h1>
-        <p className="item_location">location</p>
-        <div className="item_category">Django,PHP,Laravel,C++</div>
-        <p className="item_datetime">Date & time</p>
-      </div>
-      <div className="jobs_item">
-        <img className="item_img" src="" alt="icon"/>
-        <h1 className="item_title">Title</h1>
-        <p className="item_location">location</p>
-        <div className="item_category">Django,PHP,Laravel,C++</div>
-        <p className="item_datetime">Date & time</p>
-      </div>
-      <div className="jobs_item">
-        <img className="item_img" src="" alt="icon"/>
-        <h1 className="item_title">Title</h1>
-        <p className="item_location">location</p>
-        <div className="item_category">Django,PHP,Laravel,C++</div>
-        <p className="item_datetime">Date & time</p>
+        <div>
+          <img className="item_img" src="" alt="icon"/>
+        </div>
+        <div>
+          <h1 className="item_title">{ttl}</h1>
+          <p className="item_location">{loc}</p>
+          <div className="item_category">{cats}</div>
+          <small className="item_datetime">{pubDate}</small>
+        </div>
       </div>
     </Fragment>
   )

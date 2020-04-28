@@ -1,17 +1,12 @@
-import React, { useState, useEffect, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { Link, Route } from "react-router-dom";
-import Spinner from '../layout/Spinner';
+import React, { useState } from 'react'
+import { NavLink, Route } from "react-router-dom";
 import StackJobs from './stackjobs/Jobs'
-import {connect} from 'react-redux'
 import './Jobs.css'
-
-import { getStackJobs } from '../../actions/jobs'
 
 const Jobs = (props) => {
 
   const [page, setPage] = useState({
-    stack: true,
+    stack: false,
     local: false,
   });
 
@@ -28,31 +23,19 @@ const Jobs = (props) => {
   return (
     <div className='jobs'>
       <div>
-        <Link to={`${props.match.url}/gl-stack`}>
-          <span style={page.stack ? style : null} className='jobs-stack text-primary' onClick={() => onPageChange('stack')}>
+        <NavLink to={`${props.match.url}/gl-stack`} onClick={() => onPageChange('stack')}>
+          <span style={page.stack ? style : null} className='jobs-stack text-primary'>
           Search Stack Jobs</span>
-        </Link>
-        <Link to={`${props.match.url}/lc-local`}>
-          <span style={page.local ? style : null} className='jobs-local text-primary' onClick={() => onPageChange('local')}>
+        </NavLink>
+        <NavLink to={`${props.match.url}/lc-local`} onClick={() => onPageChange('local')}>
+          <span style={page.local ? style : null} className='jobs-local text-primary'>
           Jobs In Japan</span>
-        </Link>
+        </NavLink>
       </div>
-      <Fragment>
-        <Route path={`${props.match.url}/:page`} component={StackJobs}/>
-      </Fragment>
+      <Route path={`${props.match.url}/gl-stack`} component={StackJobs}/>
     </div>
   )
 }
 
-Jobs.propTypes = {
-  getStackJobs: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  jobs: PropTypes.object.isRequired
-};
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  jobs: state.jobs
-});
-
-export default connect(mapStateToProps, { getStackJobs })(Jobs);
+export default Jobs;

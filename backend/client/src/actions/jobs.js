@@ -6,13 +6,9 @@ import {
 
 export const getStackJobs = (search, location) => async dispatch => {
   try {
-    await axios.get(`/api/jobs/global?query=${search}&location=${location}`)
-    .then(res => {
-      dispatch({ type: GET_GL_JOBS, payload: res.data });
-    })
-    .catch(err => {
-      dispatch({ type: JOBS_ERROR });
-    })
+    const res = await axios.get(`/api/jobs/global?query=${search}&location=${location}`)
+    console.log(res.data.length);
+    dispatch({ type: GET_GL_JOBS, payload: res.data });
   } catch (e) {
     console.log(e.response.message);
     dispatch({ type: JOBS_ERROR });

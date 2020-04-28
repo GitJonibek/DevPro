@@ -10,7 +10,7 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-  const { type, payload } = state;
+  const { type, payload } = action;
   switch (type) {
     case GET_GL_JOBS:
       return {
