@@ -20,8 +20,8 @@ const Landing = (props) => {
             other developers
           </p>
           <div className="buttons">
-            <Link to="/register" className="btn btn-dark my-1">Sign Up</Link>
-            <Link to="/login" className="btn btn-dark my-1">Sign In</Link>
+            <Link to="/register" className="btn btn-light my-1">Sign Up</Link>
+            <Link to="/login" className="btn btn-light my-1">Sign In</Link>
             {/* <a href='https://github.com/login/oauth/authorize?client_id=8f6eb02bfcdaa7b11bed' alt=''>Login with github</a> */}
           </div>
         </div>

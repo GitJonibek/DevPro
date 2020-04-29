@@ -3,19 +3,34 @@ import Moment from 'react-moment';
 
 import JobViewActions from './JobViewActions'
 
-const JobView = ({ job: { title, link, pubDate, content, contentSnippet, categories }}) => {
+const JobView = (props) => {
 
-  const ttl = title.substring(0, title.indexOf(' at '));
-  const loc = title.substring(title.indexOf(' at ') + 3);
-  const cats = categories ? categories.map(cat => <input key={cat} type='button' className='category-span' value={cat}/>) : null;
+  //history.push(`/job/${itemId}`)
+  let ttl = '', loc = '', cats = null;
+  if(props.job){
+    ttl = props.job.title.substring(0, props.job.title.indexOf(' at '));
+    loc = props.job.title.substring(props.job.title.indexOf(' at ') + 3);
+    cats = props.job.categories ? props.job.categories.map(
+      cat => <input key={cat} type='button' className='category-span' value={cat}/>
+    ) : null;
+  }
+  else if (props.params.id) {
+
+    ttl = props.job.title.substring(0, props.job.title.indexOf(' at '));
+    loc = props.job.title.substring(props.job.title.indexOf(' at ') + 3);
+    cats = props.job.categories ? props.job.categories.map(
+      cat => <input key={cat} type='button' className='category-span' value={cat}/>
+    ) : null;
+  }
+
 
   const icon = require('../company-icon.svg');
 
   const parser = new DOMParser();
-  const doc = parser.parseFromString(content, "text/html");
+  const doc = parser.parseFromString(props.job.content, "text/html");
 
   return (
-    <Fragment>
+    <section className="jobs_viewer_item">
       <div className="jobs_viewer_item_header">
         <img className="viewer-img" src={icon} alt="icon"/>
         <h1 className="viewer-title">{ttl}</h1>
@@ -25,11 +40,11 @@ const JobView = ({ job: { title, link, pubDate, content, contentSnippet, categor
         </div>
       </div>
       <div className="jobs_viewer_item_body">
-        <p className="viewer-body-date"><small><Moment format='D MMM YYYY, HH:mm (Z)'>{pubDate}</Moment>TMZ</small></p>
+        <p className="viewer-body-date"><small><Moment format='D MMM YYYY, HH:mm (Z)'>{props.job.pubDate}</Moment>TMZ</small></p>
         <div className="viewer-body-category">{cats}</div>
-        <p id='content' className="viewer-body-description">{content}</p>
+        <p id='content' className="viewer-body-description">{props.job.content}</p>
       </div>
-    </Fragment>
+    </section>
   )
 }
 

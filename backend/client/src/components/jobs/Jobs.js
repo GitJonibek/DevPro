@@ -18,7 +18,7 @@ const Jobs = (props) => {
     }
   }
 
-  const style = { borderBottom: '2px solid rgba(249,119,0,1)', color: 'rgba(249,119,0,1)' }
+  const style = { borderBottom: '2px solid #ccc', color: '#ccc' }
 
   return (
     <div className='jobs'>

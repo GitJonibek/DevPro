@@ -197,9 +197,9 @@
 	-webkit-transition: all 0.2s ease-in;
 	transition: all 0.2s ease-in;
 	border-radius: 4px;
-	-webkit-transition: background-color 300ms linear;
-	-ms-transition: background-color 300ms linear;
-	transition: background-color 300ms linear;
+	-webkit-transition: background-color 200ms linear;
+	-ms-transition: background-color 200ms linear;
+	transition: background-color 200ms linear;
 }
 .btn:hover {
 	background: linear-gradient(90deg, rgba(36,0,26,1) 0%, rgba(68,34,98,1) 100%, rgba(255,141,0,1) 100%);
@@ -222,6 +222,15 @@
 
 .btn.btn-primary:hover {
 	background: linear-gradient(90deg, rgba(8,15,91,1) 0%, rgba(77,132,224,1) 100%);
+}
+
+.btn.btn-light {
+	background-color: #fff;
+	color: #030509;
+}
+.btn.btn-light:hover {
+	background: #030509;
+  color: #fff;
 }
 
 .btn.btn-dark {
@@ -579,13 +588,13 @@ p {
   color: #333;
 }
 .mNavbar a:hover {
-  color: rgba(249,119,0,1);
+  color: #aaa;
 }
 .nav-items a {
   position: relative;
 	color: #333;
 	font-weight: bolder;
-  border-bottom: 0px solid rgba(249,119,0,1);
+  border-bottom: 0px solid #aaa;
 	padding: 0.45rem;
 	margin: 0 0.25rem;
   -webkit-transition: border color .2s linear;
@@ -594,8 +603,8 @@ p {
 }
 
 .nav-items a:hover {
-  border-bottom: 2px solid rgba(249,119,0,1);
-	color: rgba(249,119,0,1);
+  border-bottom: 2px solid #aaa;
+	color: #aaa;
 }
 
 .landing {

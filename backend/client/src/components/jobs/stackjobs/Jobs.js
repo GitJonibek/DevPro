@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect, useLayoutEffect, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Spinner from '../../layout/Spinner';
@@ -7,16 +7,28 @@ import JobView from './jobview/JobView'
 
 import { getStackJobs } from '../../../actions/jobs'
 
-const StackJobs = ({ getStackJobs, auth, jobs: { jobs, loading } }) => {
+const useWindowSize = () => {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+}
+
+const StackJobs = ({ match, history, getStackJobs, auth, jobs: { jobs, loading } }) => {
 
   const [query, setQuery] = useState({ search: '', location: '' });
   const [itemId, setItemId] = useState(null);
-  const onchange = (e) => {setQuery({ ...query, [e.target.name]: e.target.value })}
-
+  const [width, height] = useWindowSize();
   const { search, location } = query;
 
   const clickHandler = (id) => setItemId(id);
-
+  const onchange = (e) => {setQuery({ ...query, [e.target.name]: e.target.value })}
   const onSubmit = e => {
     e.preventDefault();
     getStackJobs(search, location);
@@ -69,9 +81,7 @@ const StackJobs = ({ getStackJobs, auth, jobs: { jobs, loading } }) => {
                 <p>Sourse from {' '}<i className="fab fa-stack-overflow"></i>Stack Overflow</p>
               </div>
             </section>
-            <section className="jobs_viewer_item">
-              {itemview}
-            </section>
+            {itemview}
           </Fragment>
         )}
       </main>
