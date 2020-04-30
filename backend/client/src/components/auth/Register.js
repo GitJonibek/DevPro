@@ -76,7 +76,7 @@ const Register = (props) => {
             type="text"
             name='name'
             value={name}
-            placeholder="Name"
+            placeholder="full name"
             required />
         </div>
         <div className="form-group">
@@ -85,7 +85,7 @@ const Register = (props) => {
             type="email"
             name='email'
             value={ email }
-            placeholder="Email Address"
+            placeholder="email"
             required />
           <small className="form-text">
             This site uses Gravatar, so if you want a profile image, use a
@@ -99,7 +99,7 @@ const Register = (props) => {
             type="password"
             name="password"
             value={ password }
-            placeholder="Password"
+            placeholder="password"
             minLength="7" />
           <small className="form-text" style={(password.length > 0) ? styleS1 : {display: 'none'}}>
             Password must contain at least one Capital character, small character,
@@ -113,7 +113,7 @@ const Register = (props) => {
             type="password"
             name="password2"
             value={ password2 }
-            placeholder="Confirm Password"
+            placeholder="confirm password"
             minLength="7" />
           <small className="form-text" style={(password2.length > 0) ? styleS2 : {display: 'none'}}>
             Passwords must be match to each other.
@@ -128,7 +128,7 @@ const Register = (props) => {
             value={checkbox}/>
           <label forhtml="SUBSCRIBTION"><small>{' '}Do you agree to receive notifications and important announcements?</small></label>
         </div>
-        <input type="submit" value="Register" className="btn btn-custom-primary btn-full" />
+        <input type="submit" value="Register" className="btn btn-round-dark btn-full" />
       </form>
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>

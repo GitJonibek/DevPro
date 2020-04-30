@@ -33,4 +33,5 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 
 // Jobs
 export const GET_GL_JOBS = 'GET_GL_JOBS';
+export const GET_CURR_JOB = 'GET_CURR_JOB';
 export const JOBS_ERROR = 'JOBS_ERROR';

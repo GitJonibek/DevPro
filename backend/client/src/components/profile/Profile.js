@@ -26,11 +26,11 @@ const Profile = ({
     <Fragment>
       { profile === null || loading ? <Spinner /> :
         <Fragment>
-          <Link to='/profiles' className='btn btn-dark my-1'>Back To Developers{"'"} Page</Link>
+          <Link to='/profiles' className='btn btn-round-light my-1'>Back To Developers{"'"} Page</Link>
           { auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id &&
-            <Link to='/edit-profile' className='btn btn-dark'>Edit Profile</Link>
+            <Link to='/edit-profile' className='btn btn-round-dark'>Edit Profile</Link>
           }
           <div className="profile-grid my-1">
             <ProfileTop profile={profile} />

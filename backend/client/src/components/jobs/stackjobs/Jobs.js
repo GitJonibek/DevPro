@@ -5,7 +5,7 @@ import Spinner from '../../layout/Spinner';
 import JobItem from './JobItem'
 import JobView from './jobview/JobView'
 
-import { getStackJobs } from '../../../actions/jobs'
+import { getStackJobs, getCurrentStack } from '../../../actions/jobs';
 
 const useWindowSize = () => {
   const [size, setSize] = useState([0, 0]);
@@ -20,15 +20,25 @@ const useWindowSize = () => {
   return size;
 }
 
-const StackJobs = ({ match, history, getStackJobs, auth, jobs: { jobs, loading } }) => {
+const StackJobs = ({
+  match,
+  history,
+  getStackJobs,
+  getCurrentStack,
+  auth,
+  jobs: { gl_jobs, loading }
+}) => {
 
   const [query, setQuery] = useState({ search: '', location: '' });
   const [itemId, setItemId] = useState(null);
   const [width, height] = useWindowSize();
   const { search, location } = query;
 
-  const clickHandler = (id) => setItemId(id);
   const onchange = (e) => {setQuery({ ...query, [e.target.name]: e.target.value })}
+  const clickHandler = (id) => {
+    setItemId(id);
+    getCurrentStack(id);
+  };
   const onSubmit = e => {
     e.preventDefault();
     getStackJobs(search, location);
@@ -39,12 +49,9 @@ const StackJobs = ({ match, history, getStackJobs, auth, jobs: { jobs, loading }
     getStackJobs();
   }, [getStackJobs]);
 
-  const joblist = jobs.map(job => <JobItem key={job.pubDate + Math.random()} job={job} clicked={id => clickHandler(id)}/>);
+  const joblist = gl_jobs.map(job => <JobItem key={job.pubDate + Math.random()} job={job} clicked={id => clickHandler(id)}/>);
   let mJob = null;
-  if(itemId) {
-    mJob = jobs.find(job => job.guid === itemId);
-  }
-  const itemview = itemId && <JobView key={Math.random()} job={mJob}/>;
+  if(itemId) { mJob = gl_jobs.find(job => job.guid === itemId); }
 
   return (
     <div className="gl_jobs_container">
@@ -55,7 +62,7 @@ const StackJobs = ({ match, history, getStackJobs, auth, jobs: { jobs, loading }
               type="text"
               name="search"
               value={search}
-              placeholder='Search all jobs'
+              placeholder='search'
               onChange={e => onchange(e)}/>
           </div>
           <div className='form-group'>
@@ -63,13 +70,14 @@ const StackJobs = ({ match, history, getStackJobs, auth, jobs: { jobs, loading }
               type="text"
               name="location"
               value={location}
-              placeholder='Location anywhere'
+              placeholder='location'
               onChange={e => onchange(e)}/>
           </div>
           <input
             type="submit"
             value="Search"
-            className="btn btn-custom-primary btn-full" />
+            style={{border: '1px solid #101D30'}}
+            className="btn btn-round-light btn-full" />
         </form>
       </header>
       <main className="jobs_main">
@@ -81,7 +89,14 @@ const StackJobs = ({ match, history, getStackJobs, auth, jobs: { jobs, loading }
                 <p>Sourse from {' '}<i className="fab fa-stack-overflow"></i>Stack Overflow</p>
               </div>
             </section>
-            {itemview}
+            { (width > 902) ?
+              (itemId && <JobView key={Math.random()} job={mJob} width={width}/>) :
+              (itemId && history.push({
+                pathname: `/job/${itemId}`,
+                search: `?q=${mJob.link}`,
+                state: { job: mJob, width: width }
+              }))
+            }
           </Fragment>
         )}
       </main>
@@ -92,6 +107,7 @@ const StackJobs = ({ match, history, getStackJobs, auth, jobs: { jobs, loading }
 
 StackJobs.propTypes = {
   getStackJobs: PropTypes.func.isRequired,
+  getCurrentStack: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   jobs: PropTypes.object.isRequired
 };
@@ -101,4 +117,4 @@ const mapStateToProps = state => ({
   jobs: state.jobs
 });
 
-export default connect(mapStateToProps, { getStackJobs })(StackJobs);
+export default connect(mapStateToProps, { getCurrentStack, getStackJobs })(StackJobs);

@@ -31,8 +31,11 @@
   width: 100%;
   margin: 20px 0;
   padding: 30px;
-  border: 1px solid #aaa;
-  border-radius: 10px;
+  border-bottom: 1px solid #aaa;
+}
+.jobs_header:hover {
+border-radius: 10px;
+  border: 1px solid #101D30;
 }
 
 .jobs_main {
@@ -50,21 +53,21 @@
 .jobs_list > .jobs_list_wrapper {
   border: 1px solid #aaa;
   display: block;
-  padding: 5px;
-  border-left: none;
+  padding: 0;
   -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
   width: 100%;
   height: 100%;
   min-height: 1000px;
   display: inline-block;
+  cursor: pointer;
   position: absolute;
   z-index: 0;
 }
 .jobs_list > .jobs_list_wrapper > .jobs_item {
   display: grid;
   padding: 10px;
-  grid-template-columns: 20% auto;
+  grid-template-columns: 15% auto;
   grid-template-rows: 35% 25% 20% 20%;
   grid-template-areas:
     "img  title"
@@ -81,6 +84,7 @@
 }
 img.item_img {
   padding: 10px;
+  max-width: 120px;
 }
 h1.item_title {
   grid-area: title;
@@ -106,7 +110,6 @@ div.item_category span {
   width: 100%;
   display: block;
   margin-left: 5px;
-  border: 1px solid #aaa;
   padding: 20px;
   overflow-y: scroll;
   border-right: none;
@@ -117,7 +120,7 @@ div.item_category span {
   margin-bottom: 25px;
   padding-bottom: 25px;
   grid-template-columns: 10% auto;
-  grid-template-rows: 35% 35% 30%;
+  grid-template-rows: auto;
   grid-template-areas:
     "vimg  title"
     "vimg  location"
@@ -138,8 +141,7 @@ div.item_category span {
 }
 button.btn-jobview-apply {
   outline: none;
-  padding: 5px;
-  width: 150px;
+  padding: 5px 20px;
   font-size: 1.1em;
   color: #fff;
   background: #4577D1;
@@ -152,8 +154,7 @@ button.btn-jobview-apply:hover {
 }
 button.btn-jobview-save {
   outline: none;
-  padding: 5px;
-  width: 100px;
+  padding: 5px 20px;
   font-size: 1.1em;
   color: #4577D1;
   background: #fff;
@@ -168,7 +169,7 @@ button.btn-jobview-save:hover {
 .jobs_viewer_item > .jobs_viewer_item_body {
   display: grid;
   grid-template-columns: 35% 65%;
-  grid-template-rows: 7% 93%;
+  grid-template-rows: auto;
   grid-template-areas:
     "vdate  vcategory"
     "vdesc  vdesc";

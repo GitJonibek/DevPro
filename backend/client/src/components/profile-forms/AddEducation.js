@@ -85,8 +85,8 @@ const AddEducation = (props) => {
               placeholder="Program Description"
             ></textarea>
           </div>
-          <input type="submit" className="btn btn-primary my-1" />
-          <Link className="btn my-1" to="/dashboard">Go Back</Link>
+          <input type="submit" className="btn btn-round-dark my-1" />
+          <Link className="btn btn-round-light my-1" to="/dashboard">Go Back</Link>
         </form>
       </Fragment>
     )

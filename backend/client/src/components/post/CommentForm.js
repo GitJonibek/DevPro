@@ -35,7 +35,7 @@ const CommentForm = ({ postId, addComment }) => {
         <textarea style={{outline: 'none'}}
           name='text' cols='30' rows={rows} placeholder='Create a post'
           value={text} onChange={onChange} required />
-        <input type='submit' className='btn btn-dark my-1' value='Submit' />
+        <input type='submit' className='btn btn-round-dark my-1' value='Submit' />
       </form>
     </div>
   )

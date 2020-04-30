@@ -1,10 +1,12 @@
 import {
   GET_GL_JOBS,
-  JOBS_ERROR
+  JOBS_ERROR,
+  GET_CURR_JOB
 } from '../actions/types'
 
 const initialState = {
-  jobs: [],
+  gl_jobs: [],
+  lc_jobs: [],
   job: null,
   loading: true
 }
@@ -12,16 +14,25 @@ const initialState = {
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case GET_CURR_JOB:
+      return {
+        ...state,
+        job: payload.type === 'gl' ?
+          state.gl_jobs.find(job => job.guid === payload.id) :
+          state.lc_jobs.find(job => job.guid === payload.id),
+        loading: false,
+      };
     case GET_GL_JOBS:
       return {
         ...state,
-        jobs: payload,
+        gl_jobs: payload,
         loading: false,
       };
     case JOBS_ERROR:
       return {
         ...state,
-        jobs: [],
+        gl_jobs: [],
+        lc_jobs: [],
         job: null,
         loading: false
       };

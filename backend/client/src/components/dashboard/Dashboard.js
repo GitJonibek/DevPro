@@ -28,7 +28,7 @@ const Dashboard = ({getCurrentProfile, auth, profile, deleteAccount}) => {
           <Education education={profile.profile.education} />
 
           <div className='my-2'>
-            <button className='btn btn-danger' onClick={() => deleteAccount()}>
+            <button className='btn btn-round-danger' onClick={() => deleteAccount()}>
               <i className='fas fa-user-minus'></i>{' '}Delete Account
             </button>
           </div>

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import { NavLink, Route } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { NavLink, Route, Switch } from "react-router-dom";
 import StackJobs from './stackjobs/Jobs'
+import LocalJobs from './localjobs/Jobs'
 import './Jobs.css'
 
 const Jobs = (props) => {
@@ -18,7 +19,7 @@ const Jobs = (props) => {
     }
   }
 
-  const style = { borderBottom: '2px solid #ccc', color: '#ccc' }
+  const style = { borderBottom: '2px solid #ccc', color: '#212121', fontWeight: '600' }
 
   return (
     <div className='jobs'>
@@ -32,7 +33,10 @@ const Jobs = (props) => {
           Jobs In Japan</span>
         </NavLink>
       </div>
-      <Route path={`${props.match.url}/gl-stack`} component={StackJobs}/>
+      <Switch>
+        <Route exact path={`${props.match.url}/gl-stack`} component={StackJobs}/>
+        <Route exact path={`${props.match.url}/lc-local`} component={LocalJobs}/>
+      </Switch>
     </div>
   )
 }

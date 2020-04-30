@@ -37,19 +37,19 @@ const Login = (props) => {
             type="email"
             name='email'
             value={ email }
-            placeholder="Email Address"
+            placeholder="email"
             required />
         </div>
-        <div className="form-group">
+        <div className="form-group rounded">
           <input
             onChange={e => onChangeHandler(e)}
             type="password"
             name="password"
             value={ password }
-            placeholder="Password"
+            placeholder="password"
             minLength="6" />
         </div>
-        <input type="submit" value="Login" className="btn btn-custom-primary btn-full" />
+        <input type="submit" value="Login" className="btn btn-round-dark btn-full" />
       </form>
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>
