@@ -16,6 +16,7 @@ import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
 import StackJobs from './components/jobs/stackjobs/Jobs';
+import LocalJobs from './components/jobs/localjobs/Jobs';
 import Jobs from './components/jobs/Jobs';
 import JobView from './components/jobs/stackjobs/jobview/JobView';
 import PrivateRoute from "./components/routing/PrivateRoute";
@@ -60,8 +61,9 @@ const App = () => {
               <Route exact path='/login' component={Login} />
               <Route exact path='/profiles' component={Profiles} />
               <Route exact path='/profile/:id' component={Profile} />
-              <Route path='/jobs' component={Jobs} />
-              <Route exact path='/jobs/:name' component={StackJobs} />
+              <Route exact path='/jobs' component={Jobs} />
+              <Route exact path='/jobs/gl-stack' component={StackJobs} />
+              <Route exact path='/jobs/lc-local' component={LocalJobs} />
               <Route exact path='/job/:id' component={JobView}/>
               <PrivateRoute exact path='/posts' component={Posts} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />

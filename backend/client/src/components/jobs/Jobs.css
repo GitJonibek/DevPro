@@ -20,7 +20,7 @@
 
 
 .gl_jobs_container {
-  margin: auto;
+  margin: 20px auto;
   width: 100%;
   min-height: 1200px;
   overflow-y: hide;
@@ -31,10 +31,10 @@
   width: 100%;
   margin: 20px 0;
   padding: 30px;
-  border-bottom: 1px solid #aaa;
+  border: 1px solid #aaa;
+  border-radius: 10px;
 }
 .jobs_header:hover {
-border-radius: 10px;
   border: 1px solid #101D30;
 }
 
@@ -48,32 +48,31 @@ border-radius: 10px;
   flex: 1.5;
   position: relative;
   box-sizing: border-box;
+  height: auto;
+  min-height: 1080px;
 }
 
 .jobs_list > .jobs_list_wrapper {
-  border: 1px solid #aaa;
   display: block;
   padding: 0;
   -webkit-overflow-scrolling: touch;
-  overflow-y: scroll;
+  overflow-y: hidden;
+  cursor: pointer;
   width: 100%;
   height: 100%;
-  min-height: 1000px;
-  display: inline-block;
-  cursor: pointer;
-  position: absolute;
-  z-index: 0;
 }
-.jobs_list > .jobs_list_wrapper > .jobs_item {
+.jobs_item {
   display: grid;
-  padding: 10px;
-  grid-template-columns: 15% auto;
+  padding: 5px;
+  grid-template-columns: 10% 50% auto;
   grid-template-rows: auto;
   grid-template-areas:
-    "img  title"
-    "img  location"
-    "img  category"
-    "img  date_time";
+    "img  title   category"
+    "img  location  date_time";
+  border-top: 1px solid #aaa;
+  position: relative;
+}
+.jobs_list_wrapper > div:last-child {
   border-bottom: 1px solid #aaa;
 }
 .jobs_list > .jobs_list_wrapper > div:last-child {
@@ -82,9 +81,24 @@ border-radius: 10px;
 .jobs_item > .item_img {
   grid-area: img;
 }
+.item_img_wrap {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 75px;
+  overflow: hidden;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #aaa;
+  border-radius: 99px;
+}
 img.item_img {
-  padding: 10px;
-  max-width: 100px;
+  padding: 5px;
+  max-width: 60px;
+  display: block;
+  object-fit: cover;
 }
 h1.item_title {
   grid-area: title;
@@ -244,5 +258,46 @@ button.btn-jobview-save:hover {
   .jobs_main > .jobs_viewer_item {
     width: 100%;
     margin: auto;
+  }
+  .jobs_item {
+    margin: 20px;
+    display: grid;
+    padding: 5px;
+    grid-template-columns: 25% auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "img_wrap  title_wrap"
+      "img_wrap  details";
+    box-shadow: 1px 1px 10px 1px #ccc;
+    border-radius: 5px;
+    position: relative;
+  }
+  .item_img_wrap {
+    grid-area: img_wrap;
+    width: 100%;
+  }
+  .item_title_wrap {
+    grid-area: title_wrap;
+    width: 100%;
+  }
+  .item_details {
+    grid-area: details;
+    width: 100%;
+  }
+  .item_img_wrap {
+    width: 85px;
+    height: 85px;
+  }
+}
+@media only screen and (max-width: 634px) {
+  .item_img_wrap {
+    width: 70px;
+    height: 70px;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .item_img_wrap {
+    width: 50px;
+    height: 50px;
   }
 }

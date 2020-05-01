@@ -7,16 +7,10 @@ import {connect} from 'react-redux'
 import {} from '../../../actions/jobs';
 
 const LocalJobs = ({ history, auth, jobs: { lc_jobs, loading }}) => {
-  return ( auth.isAuthenticated ?
+  return (
     <div>
-      No Jobs Found!
-    </div> :
-    <div style={{ width: '250px', margin: '40px auto'}}>
-      <input
-        onClick={() => history.push('/login')}
-        type='button'
-        className='btn btn-round-dark btn-full'
-        value='Please Login to Continue!' />
+      <input type='button' className='btn btn-round-dark' value='Go Back' onClick={() => history.goBack()} />
+      No Jobs found
     </div>
   )
 }

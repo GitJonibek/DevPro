@@ -59,6 +59,7 @@ const StackJobs = React.memo(({
 
   return (
     <div className="gl_jobs_container">
+      <input type='button' className='btn btn-round-dark' value='Go Back' onClick={() => history.goBack()} />
       <header className="jobs_header">
         <form className='form form-flex' onSubmit={e=>onSubmit(e)}>
           <div className='form-group'>

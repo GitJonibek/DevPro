@@ -1,42 +1,32 @@
-import React, { useState } from 'react'
-import { NavLink, Route, Switch } from "react-router-dom";
-import StackJobs from './stackjobs/Jobs'
-import LocalJobs from './localjobs/Jobs'
+import React from 'react'
+import { NavLink } from "react-router-dom";
 import './Jobs.css'
 
 const Jobs = (props) => {
 
-  const [page, setPage] = useState({
-    stack: false,
-    local: false,
-  });
-
-  const onPageChange = (type) => {
-    switch (type) {
-      case 'stack': setPage({ stack: true, local: false }); break;
-      case 'local': setPage({ stack: false, local: true }); break;
-      default: break;
-    }
-  }
-
-  const style = { borderBottom: '2px solid #ccc', color: '#212121', fontWeight: '600' }
+  const global = require('../../img/global.png');
+  const japan = require('../../img/japan.png');
 
   return (
     <div className='jobs'>
-      <div>
-        <NavLink to={`${props.match.url}/gl-stack`} onClick={() => onPageChange('stack')}>
-          <span style={page.stack ? style : null} className='jobs-stack text-primary'>
-          Search Stack Jobs</span>
-        </NavLink>
-        <NavLink to={`${props.match.url}/lc-local`} onClick={() => onPageChange('local')}>
-          <span style={page.local ? style : null} className='jobs-local text-primary'>
-          Jobs In Japan</span>
-        </NavLink>
-      </div>
-      <Switch>
-        <Route exact path={`${props.match.url}/gl-stack`} component={StackJobs}/>
-        <Route exact path={`${props.match.url}/lc-local`} component={LocalJobs}/>
-      </Switch>
+      <NavLink to={`${props.match.url}/gl-stack`} className='gl-wrapper'>
+        <div className='gl-card'>
+          <div className='jobs-backdrop'></div>
+          <img src={global} alt='gl'/>
+          <span className='text-primary jobs-gl-text center'>
+            Search Jobs Globally
+          </span>
+        </div>
+      </NavLink>
+      <NavLink to={`${props.match.url}/lc-local`} className='lc-wrapper'>
+        <div className='lc-card'>
+          <div className='jobs-backdrop'></div>
+          <img src={japan} alt='lc'/>
+          <span className='text-primary jobs-lc-text center'>
+            Jobs In Japan
+          </span>
+        </div>
+      </NavLink>
     </div>
   )
 }

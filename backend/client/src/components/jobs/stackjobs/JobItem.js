@@ -17,12 +17,14 @@ const JobItem = React.memo(({ clicked, job: { guid, title, link, pubDate, conten
   return (
     <Fragment>
       <div className="jobs_item" style={borderRainbow[num]}>
-        <div>
+        <div className='item_img_wrap'>
           <img className="item_img" src={icon} alt="icon"/>
         </div>
-        <div>
+        <div className='item_title_wrap'>
           <h1 className="item_title" onClick={() => clicked(guid)}>{ttl}</h1>
           <p className="item_location">{loc}</p>
+        </div>
+        <div className='item_details'>
           <div className="item_category">{cats}</div>
           <small className="item_datetime">{pubDate}</small>
         </div>

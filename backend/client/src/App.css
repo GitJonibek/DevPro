@@ -868,7 +868,87 @@ p {
 	height: auto;
 }
 
+.jobs {
+  width: 100%;
+  margin: 50px 0px;
+  display: grid;
+  grid-gap: 40px;
+  text-align: center;
+  align-items: center;
+  grid-template-columns: 50% auto;
+}
+.gl-wrapper,
+.lc-wrapper {
+
+}
+
+.jobs .gl-card,
+.jobs .lc-card {
+  max-height: 275px;
+  max-width: 100%;
+  background: gray;
+  overflow: hidden;
+  transition: all .2s ease-in;
+  position: relative;
+  border-radius: 5px;
+  background-position: 50% 50%;
+}
+.gl-card img,
+.lc-card img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  transition: all .2s ease-in;
+}
+.jobs-gl-text,
+.jobs-lc-text {
+  color: #fff;
+  z-index: 200;
+  font-size: 1.5em;
+  transition: all .2s ease-in;
+}
+.jobs-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 150;
+}
+.gl-card:hover .jobs-backdrop,
+.lc-card:hover .jobs-backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+.gl-card:hover .jobs-gl-text,
+.lc-card:hover .jobs-lc-text {
+  font-weight: 600px;
+  font-size: 1.7em;
+  letter-spacing: 2px;
+}
+.gl-card:hover img,
+.lc-card:hover img {
+  transform: scale(1.05);
+}
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+  -webkit-transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+
 @media (max-width: 755px) {
+  .jobs {
+    grid-template-columns: 100%;
+  }
+  .jobs div:first-child,
+  .jobs div:last-child {
+    height: 200px;
+  }
 	.img-medium img, .img-small img, .img-smaller img {
 		position: relative;
 		text-align: center;
