@@ -115,7 +115,7 @@ router.get('/oauth-callback', async (req, res) => {
 
     const payload = JSON.stringify({ name, email, password, avatar, bio });
 
-    const regRes = await axios.post(`http://localhost:8000/api/users?access_token=${access_token}`, payload,
+    const regRes = await axios.post(`${config.get('host')}/api/users?access_token=${access_token}`, payload,
       { headers: { 'Content-Type': 'application/json' }
     });
     if (regRes.data.token) {
@@ -123,7 +123,7 @@ router.get('/oauth-callback', async (req, res) => {
       res.json({ token });
     }
     else {
-      await axios.post('http://localhost:8000/api/auth', { email, password },
+      await axios.post(`${config.get('host')}/api/auth`, { email, password },
         { headers: { 'Content-Type': 'application/json' }
       })
       .then(logRes => {

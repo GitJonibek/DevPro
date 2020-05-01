@@ -13,9 +13,10 @@ import ProfileGithub from './ProfileGithub'
 
 const Profile = ({
   match,
+  history,
   getProfileById,
-  profile: {profile, loading},
-  auth
+  profile: { profile, loading },
+  auth,
 }) => {
 
   useEffect(() => {
@@ -24,9 +25,10 @@ const Profile = ({
 
   return (
     <Fragment>
-      { profile === null || loading ? <Spinner /> :
+      { loading ? <Spinner /> : profile !== null ? (
         <Fragment>
-          <Link to='/profiles' className='btn btn-round-light my-1'>Back To Developers{"'"} Page</Link>
+          <input type='button' className='btn btn-round-dark' value='Go Back' onClick={() => history.goBack()}/>
+          <Link to='/profiles' className='btn btn-round-light my-1'>To Developers{"'"} Page</Link>
           { auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id &&
@@ -54,7 +56,12 @@ const Profile = ({
             { profile.githubusername && <ProfileGithub username={profile.githubusername} /> }
           </div>
         </Fragment>
-      }
+      ) : (
+        <Fragment>
+          <p>You didn't create your profile!</p>
+          <Link to='/create-profile' className='btn btn-round-dark my-1'>Create Profile</Link>
+        </Fragment>
+      )}
     </Fragment>
   )
 }

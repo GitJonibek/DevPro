@@ -29,7 +29,7 @@ const Education = ({education, deleteEducation}) => {
     return (
       <Fragment>
         <p >Add Education to your profile.</p>
-        <Link to='/add-education' className='btn btn-primary my-1'>Add Education</Link>
+        <Link to='/add-education' className='btn btn-round-primary my-1'>Add Education</Link>
       </Fragment>
     );
   }

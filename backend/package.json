@@ -28,7 +28,8 @@
     "mongoose": "^5.9.7",
     "nodemailer": "^6.4.6",
     "request": "^2.88.2",
-    "rss-parser": "^3.7.6"
+    "rss-parser": "^3.7.6",
+    "vhost": "^3.0.2"
   },
   "devDependencies": {
     "concurrently": "^5.1.0",

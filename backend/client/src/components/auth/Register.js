@@ -7,7 +7,7 @@ import Spinner from '../layout/Spinner'
 import PropTypes from 'prop-types'
 
 
-const passRegEx = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&.*])[\w!@#$.%^&*]{8,}$/;
+const passRegEx = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&.*])[\w!@#$.%^&*]{7,}$/;
 
 const Register = (props) => {
 
@@ -43,8 +43,8 @@ const Register = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if(validator.password && validator.password2) {
-      props.register({name, email, password});
+    if(password === password2 && validator.password && validator.password2) {
+      props.register({name, email, password, checkbox});
       setFormData({
         name: '',
         email: '',

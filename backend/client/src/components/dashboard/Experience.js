@@ -29,7 +29,7 @@ const Experience = ({experience, deleteExperience}) => {
     return (
       <Fragment>
         <p >Add Experience to your profile.</p>
-        <Link to='/add-experience' className='btn btn-primary my-1'>Add Experience</Link>
+        <Link to='/add-experience' className='btn btn-round-primary my-1'>Add Experience</Link>
       </Fragment>
     );
   }

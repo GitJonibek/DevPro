@@ -36,7 +36,7 @@ router.post('/', [
     return res.status(400).json({errors: errors.array()});
   }
 
-  let { name, email, password, avatar, bio } = req.body;
+  let { name, email, password, avatar, bio, subscribed } = req.body;
 
   try {
     // See If user exists
@@ -49,7 +49,7 @@ router.post('/', [
     if(!avatar) {
       avatar = gravatar.url( email, { s: '200', r: 'pg', d: 'mm' } );
     }
-    user = new User({ name, email, password, avatar, bio });
+    user = new User({ name, email, password, avatar, bio, subscribed });
 
     // Encrypt password
     const salt = await bcrypt.genSalt(10);
@@ -71,7 +71,7 @@ router.post('/', [
       let accToken = new AccessToken({ _id: token, user: user._id });
       await accToken.save();
 
-      const url = `http://localhost:8000/api/users/confirmation/${token}`;
+      const url = `${config.get('host')}/api/users/confirmation/${token}`;
 
       await transporter.sendMail({
         from: 'DevPro Team: <dv-team@devpro.com>',
@@ -124,7 +124,7 @@ router.get('/confirmation/:token', async (req, res) => {
     if(accToken) {
       user = await User.findById({_id: accToken.user});
       let html = `Session expired! Click here to resend new link
-      <a href="http://localhost:8000/api/users/resend/${token}">Resend The Link!</a>`;
+      <a href="${config.get('host')}/api/users/resend/${token}">Resend The Link!</a>`;
 
       res.set('Content-Type', 'text/html');
       res.status(400).send(html);

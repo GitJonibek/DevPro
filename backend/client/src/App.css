@@ -432,6 +432,10 @@
   border-radius: 4px;
   outline: none;
 }
+p {
+  white-space: pre-wrap;
+  white-space: pre-line;
+}
 .form input[type='text'],
 .form input[type='email'],
 .form input[type='password'] {
@@ -568,7 +572,6 @@ p {
 	border-radius: 10px;
   border: 1px solid #fff;
   background: #212121;
-  box-shadow: 1px 1px 5px 1px #999;
   color: #fff;
   top: 10px;
   bottom: 0;
