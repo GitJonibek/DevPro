@@ -20,12 +20,11 @@ const useWindowSize = () => {
   return size;
 }
 
-const StackJobs = ({
+const StackJobs = React.memo(({
   match,
   history,
   getStackJobs,
   getCurrentStack,
-  auth,
   jobs: { gl_jobs, loading }
 }) => {
 
@@ -41,15 +40,20 @@ const StackJobs = ({
   };
   const onSubmit = e => {
     e.preventDefault();
-    getStackJobs(search, location);
-    setQuery({ search: '', location: '' })
+    if (search !== '' || location !== '') {
+      getStackJobs(search, location);
+      setQuery({ search: '', location: '' })
+    }
   }
 
   useEffect(() => {
-    getStackJobs();
+    if (search === '' && location === '' && !gl_jobs.length) {
+      getStackJobs();
+    }
   }, [getStackJobs]);
 
-  const joblist = gl_jobs.map(job => <JobItem key={job.pubDate + Math.random()} job={job} clicked={id => clickHandler(id)}/>);
+  const joblist = gl_jobs.map(job =>
+    <JobItem key={job.pubDate + Math.random()} job={job} clicked={id => clickHandler(id)}/>);
   let mJob = null;
   if(itemId) { mJob = gl_jobs.find(job => job.guid === itemId); }
 
@@ -89,13 +93,13 @@ const StackJobs = ({
                 <p>Sourse from {' '}<i className="fab fa-stack-overflow"></i>Stack Overflow</p>
               </div>
             </section>
-            { (width > 902) ?
-              (itemId && <JobView key={Math.random()} job={mJob} width={width}/>) :
-              (itemId && history.push({
+            {
+              itemId && history.push({
                 pathname: `/job/${itemId}`,
                 search: `?q=${mJob.link}`,
                 state: { job: mJob, width: width }
-              }))
+              })
+              /*<JobView key={Math.random()} job={mJob} width={width}/>*/
             }
           </Fragment>
         )}
@@ -103,17 +107,15 @@ const StackJobs = ({
 
     </div>
   )
-}
+});
 
 StackJobs.propTypes = {
   getStackJobs: PropTypes.func.isRequired,
   getCurrentStack: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   jobs: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
   jobs: state.jobs
 });
 

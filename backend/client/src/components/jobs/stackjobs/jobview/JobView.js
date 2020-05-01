@@ -6,7 +6,6 @@ import JobViewActions from './JobViewActions'
 const JobView = (props) => {
   const icon = require('../company-icon.svg');
 
-  const width = !props.location ? props.width : props.location.state.width;
   const mjob = !props.location ? props.job : props.location.state.job;
 
   const ttl = mjob.title.substring(0, mjob.title.indexOf(' at '));
@@ -23,16 +22,14 @@ const JobView = (props) => {
   }
   return (
     <Fragment>
-      {width <= 902 &&
-        <div style={{width: '100%', display: 'inline-block', padding: '10px 5px'}}>
-          <input
-            onClick={() => props.history.goBack()}
-            style={{border: '1px solid #212121'}}
-            type='button'
-            className='btn btn-round-light'
-            value='Go Back' />
-        </div>
-      }
+      <div style={{width: '100%', display: 'inline-block', padding: '10px 5px'}}>
+        <input
+          onClick={() => props.history.goBack()}
+          style={{border: '1px solid #212121'}}
+          type='button'
+          className='btn btn-round-light'
+          value='Go Back' />
+      </div>
       <section className="jobs_viewer_item">
         <div className="jobs_viewer_item_header">
           <img className="viewer-img" src={icon} alt="icon"/>

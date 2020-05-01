@@ -9,7 +9,7 @@ import {} from '../../../actions/jobs';
 const LocalJobs = ({ history, auth, jobs: { lc_jobs, loading }}) => {
   return ( auth.isAuthenticated ?
     <div>
-      Authenticated!
+      No Jobs Found!
     </div> :
     <div style={{ width: '250px', margin: '40px auto'}}>
       <input

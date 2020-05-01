@@ -54,9 +54,9 @@ const Login = (props) => {
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>
       </p>
-      <span onClick={props.withGithub} style={{cursor: 'pointer'}}>
+      {/*<span onClick={props.withGithub} style={{cursor: 'pointer'}}>
         Continue with GitHub{' '}<i className="fab fa-github"></i>
-      </span>
+      </span>*/}
     </div>
   )
 }

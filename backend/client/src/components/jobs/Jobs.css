@@ -68,7 +68,7 @@ border-radius: 10px;
   display: grid;
   padding: 10px;
   grid-template-columns: 15% auto;
-  grid-template-rows: 35% 25% 20% 20%;
+  grid-template-rows: auto;
   grid-template-areas:
     "img  title"
     "img  location"
@@ -84,7 +84,7 @@ border-radius: 10px;
 }
 img.item_img {
   padding: 10px;
-  max-width: 120px;
+  max-width: 100px;
 }
 h1.item_title {
   grid-area: title;

@@ -4,8 +4,7 @@ const getRandomInt = max => {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-
-const JobItem = ({ clicked, job: { guid, title, link, pubDate, content, categories }}) => {
+const JobItem = React.memo(({ clicked, job: { guid, title, link, pubDate, content, categories }}) => {
 
   const ttl = title.substring(0, title.indexOf(' at '));
   const loc = title.substring(title.indexOf(' at ') + 3);
@@ -30,7 +29,9 @@ const JobItem = ({ clicked, job: { guid, title, link, pubDate, content, categori
       </div>
     </Fragment>
   )
-}
+}, (prev, next) => {
+  return prev.job !== next.job;
+});
 
 const borderRainbow = [
   {borderLeft: '5px solid #FF5252'},

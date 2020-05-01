@@ -1,7 +1,8 @@
 import {
   GET_GL_JOBS,
   JOBS_ERROR,
-  GET_CURR_JOB
+  GET_CURR_JOB,
+  LOADING
 } from '../actions/types'
 
 const initialState = {
@@ -14,6 +15,11 @@ const initialState = {
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case LOADING:
+      return {
+        ...state,
+        loading: true
+      }
     case GET_CURR_JOB:
       return {
         ...state,

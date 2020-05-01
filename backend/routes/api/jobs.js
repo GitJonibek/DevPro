@@ -28,6 +28,15 @@ router.get('/global', async (req, res) => {
   }
 });
 
+// @route   POST /api/jobs/post-job
+// @desc    Post a Job
+// @access  public
+router.post('/post-job', async (req, res) => {
+  try {
 
+  } catch (e) {
+
+  }
+})
 
 module.exports = router;
