@@ -115,7 +115,7 @@ router.get('/confirmation/:token', async (req, res) => {
       console.log('/confirmation/:token ->', user);
 
       res.set('Content-Type', 'text/html');
-      let html = `Account varified! Login to continue. <a href="http://localhost:3000/login">Login To Continue!</a>`
+      let html = `Account varified! Login to continue. <a href="${config.get('host')}/login">Login To Continue!</a>`
       res.status(200).send(new Buffer(html));
     }
 

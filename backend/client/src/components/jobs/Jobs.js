@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { NavLink, Route, Switch } from "react-router-dom";
 import StackJobs from './stackjobs/Jobs'
 import LocalJobs from './localjobs/Jobs'

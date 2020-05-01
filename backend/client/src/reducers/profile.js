@@ -4,7 +4,8 @@ import {
   CLEAR_PROFILE,
   UPDATE_PROFILE,
   GET_REPOS,
-  GET_PROFILES
+  GET_PROFILES,
+  LOADING
 } from '../actions/types'
 
 const initialState = {
@@ -18,6 +19,11 @@ const initialState = {
 export default function (state=initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case LOADING:
+      return {
+        ...state,
+        loading: true
+      }
     case GET_PROFILE:
     case UPDATE_PROFILE:
       return {

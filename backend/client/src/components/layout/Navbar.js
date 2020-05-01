@@ -12,12 +12,12 @@ const Navbar = (props) => {
       <li onClick={() => setLand(false)}>
         <NavLink to="/jobs" id='jobs'>
         <i className="fas fa-search-dollar"></i>{' '}
-        <span className='hide-sm'>For Jobs Seekers</span>
+        <span className='hide-sm'>Find Jobs</span>
       </NavLink></li>
     <li onClick={() => setLand(false)}>
       <NavLink to="/employers" id='developers'>
         <i className="far fa-building"></i>{' '}
-        <span className='hide-sm'>Employers</span>
+        <span className='hide-sm'>Companies</span>
       </NavLink></li>
     <li onClick={() => setLand(false)}>
       <NavLink to="/posts" id='posts'>
@@ -47,12 +47,12 @@ const Navbar = (props) => {
       <li onClick={() => setLand(false)}>
         <NavLink to="/jobs" id='jobs'>
           <i className="fas fa-search-dollar"></i>{' '}
-          <span className='hide-sm'>For Jobs Seekers</span>
+          <span className='hide-sm'>Find Jobs</span>
         </NavLink></li>
       <li onClick={() => setLand(false)}>
         <NavLink to="/employers" id='developers'>
           <i className="far fa-building"></i>{' '}
-          <span className='hide-sm'>For Employers</span>
+          <span className='hide-sm'>Companies</span>
         </NavLink></li>
       <li onClick={() => setLand(false)}>
         <NavLink to="/profiles" id='developers'>

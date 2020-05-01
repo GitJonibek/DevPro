@@ -1,8 +1,8 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
-import Spinner from '../../layout/Spinner';
+// import {Redirect} from 'react-router-dom'
+// import Spinner from '../../layout/Spinner';
 
 import {} from '../../../actions/jobs';
 

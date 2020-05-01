@@ -617,7 +617,6 @@ p {
 }
 
 .nav-items a:hover {
-  border-bottom: 2px solid #aaa;
   color: #dd2c00;
 }
 
@@ -869,7 +868,7 @@ p {
 	height: auto;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 755px) {
 	.img-medium img, .img-small img, .img-smaller img {
 		position: relative;
 		text-align: center;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Spinner from '../../layout/Spinner';
 import JobItem from './JobItem'
-import JobView from './jobview/JobView'
 
 import { getStackJobs, getCurrentStack } from '../../../actions/jobs';
 
@@ -30,7 +29,7 @@ const StackJobs = React.memo(({
 
   const [query, setQuery] = useState({ search: '', location: '' });
   const [itemId, setItemId] = useState(null);
-  const [width, height] = useWindowSize();
+  const [width] = useWindowSize();
   const { search, location } = query;
 
   const onchange = (e) => {setQuery({ ...query, [e.target.name]: e.target.value })}
@@ -50,6 +49,7 @@ const StackJobs = React.memo(({
     if (search === '' && location === '' && !gl_jobs.length) {
       getStackJobs();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getStackJobs]);
 
   const joblist = gl_jobs.map(job =>

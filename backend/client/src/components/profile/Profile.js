@@ -25,7 +25,7 @@ const Profile = ({
 
   return (
     <Fragment>
-      { loading ? <Spinner /> : profile !== null ? (
+      { profile === null ? <Spinner /> : profile !== null ? (
         <Fragment>
           <input type='button' className='btn btn-round-dark' value='Go Back' onClick={() => history.goBack()}/>
           <Link to='/profiles' className='btn btn-round-light my-1'>To Developers{"'"} Page</Link>
