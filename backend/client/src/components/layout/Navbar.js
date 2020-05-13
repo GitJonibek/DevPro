@@ -1,42 +1,42 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
 import PropTypes from 'prop-types'
 import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 
 const Navbar = (props) => {
-  const [land, setLand] = useState(true);
 
   const authLinks = (
     <ul className='nav-items'>
-      <li onClick={() => setLand(false)}>
+      <li>
         <NavLink to="/jobs" id='jobs'>
-        <i className="fas fa-search-dollar"></i>{' '}
-        <span className='hide-sm'>Find Jobs</span>
+        <i className="fas fa-search-dollar hide-lg"></i>{' '}
+        <span className='hide-sm'>Jobs</span>
       </NavLink></li>
-    <li onClick={() => setLand(false)}>
+    <li>
       <NavLink to="/employers" id='developers'>
-        <i className="far fa-building"></i>{' '}
+        <i className="far fa-building hide-lg"></i>{' '}
         <span className='hide-sm'>Companies</span>
       </NavLink></li>
-    <li onClick={() => setLand(false)}>
+    <li>
       <NavLink to="/posts" id='posts'>
-        <i className='fas fa-blog'></i>{' '}
+        <i className='fas fa-blog hide-lg'></i>{' '}
         <span className='hide-sm'>Posts</span>
       </NavLink></li>
-    <li onClick={() => setLand(false)}>
+    <li>
       <NavLink to="/profiles" id='profiles'>
-        <i className='fas fa-code'></i>{' '}
+        <i className='fas fa-code hide-lg'></i>{' '}
         <span className='hide-sm'>Developers</span>
       </NavLink></li>
-    <li onClick={() => setLand(false)}>
+    <li>
       <NavLink to="/dashboard" id='dashboard'>
-        <i className='fas fa-user'></i>{' '}
+        <i className='fas fa-user hide-lg'></i>{' '}
         <span className='hide-sm'>Dashboard</span>
       </NavLink></li>
-    <li onClick={() => setLand(true)}>
+    <li>
       <NavLink onClick={props.logout} to="/" id='logout'>
-        <i className='fas fa-sign-out-alt'></i>{' '}
+        <i className='fas fa-sign-out-alt hide-lg'></i>{' '}
         <span className='hide-sm'>Logout</span>
       </NavLink></li>
     </ul>
@@ -44,30 +44,25 @@ const Navbar = (props) => {
 
   const guestLinks = (
     <ul className='nav-items'>
-      <li onClick={() => setLand(false)}>
+      <li>
         <NavLink to="/jobs" id='jobs'>
-          <i className="fas fa-search-dollar"></i>{' '}
-          <span className='hide-sm'>Find Jobs</span>
+          <i className="fas fa-search-dollar hide-lg"></i>{' '}
+          <span className='hide-sm'>Jobs</span>
         </NavLink></li>
-      <li onClick={() => setLand(false)}>
+      <li>
         <NavLink to="/employers" id='developers'>
-          <i className="far fa-building"></i>{' '}
+          <i className="far fa-building hide-lg"></i>{' '}
           <span className='hide-sm'>Companies</span>
         </NavLink></li>
-      <li onClick={() => setLand(false)}>
+      <li>
         <NavLink to="/profiles" id='developers'>
-          <i className='fas fa-code'></i>{' '}
+          <i className='fas fa-code hide-lg'></i>{' '}
           <span className='hide-sm'>Developers</span>
         </NavLink></li>
-      <li onClick={() => setLand(false)}>
+      <li>
         <NavLink to="/register" id='signup'>
-          <i className="fas fa-user-plus"></i>{' '}
-          <span className='hide-sm'>Sign Up</span>
-        </NavLink></li>
-      <li onClick={() => setLand(false)}>
-        <NavLink to="/login" id='signin'>
-          <i className="fas fa-sign-in-alt"></i>{' '}
-          <span className='hide-sm'>Sign In</span>
+          <i className="fas fa-user-plus hide-lg"></i>{' '}
+          <span className='hide-sm bordered'>Join now</span>
         </NavLink></li>
     </ul>
   );
@@ -75,9 +70,8 @@ const Navbar = (props) => {
   return (
     <header className='fixed'>
       <div className='mNavbar-wrapper'>
-        <div className="mNavbar-helper-bk" style={land ? {background: 'transparent'} : {background: '#fff'}}></div>
         <nav className="mNavbar" >
-          <h1 onClick={() => setLand(true)}>
+          <h1>
             <NavLink to="/"> <i className="fas fa-sitemap"></i> DevPro </NavLink>
           </h1>
           {!props.auth.loading && (
@@ -100,4 +94,4 @@ const mapStatetoProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStatetoProps, { logout })(Navbar);
+export default connect(mapStatetoProps, { logout })(withRouter(Navbar));

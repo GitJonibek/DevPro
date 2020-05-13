@@ -74,7 +74,7 @@ const EditProfile = (props) => {
         <i className="fas fa-user"></i> Let's get some information to make your profile stand out
       </p>
       <small>* = required fields</small>
-      <form className="form" onSubmit={(e) => onSubmit(e)}>
+      <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
           <select name="status" value={status} onChange={(e) => onChange(e)}>
             <option value="0">* Select Professional Status</option>

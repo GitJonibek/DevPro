@@ -14,8 +14,9 @@ const EmployerSchema = mongoose.Schema({
   },
   headline: {
     type: String,
+    required: true
   },
-  short_description: {
+  salary: {
     type: String
   },
   location: {
@@ -44,9 +45,26 @@ const EmployerSchema = mongoose.Schema({
     instagram: {
       type: String
     },
+    recruitment_page: {
+      type: String
+    }
   },
   details: {
-    type: String
+    employees: {
+      type: String
+    },
+    technologies: {
+      type: String
+    },
+    remote: {
+      type: String
+    },
+    benefits: {
+      type: String
+    },
+    visa_sponsorship: {
+      type: String
+    }
   },
   open_positions: [
     {

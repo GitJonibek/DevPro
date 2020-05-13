@@ -115,7 +115,7 @@
 	overflow: hidden;
 	padding: 0 2rem;
 	margin-top: 8rem;
-	margin-bottom: 3rem
+	margin-bottom: 3rem;
 }
 
 .x-large {
@@ -435,6 +435,7 @@
 p {
   white-space: pre-wrap;
   white-space: pre-line;
+  font-weight: bold;
 }
 .form input[type='text'],
 .form input[type='email'],
@@ -464,6 +465,7 @@ input::placeholder {
   border-radius: 10px;
   padding: 40px 20px;
   max-width: 450px;
+  background: #ffffff;
   transition: all 200ms ease-in;
 }
 .form-container:hover {
@@ -517,7 +519,7 @@ body {
 	font-family: 'Raleway', sans-serif;
 	font-size: 1rem;
 	line-height: 1.6;
-	background-color: #fff;
+  background-color: #f4f5f9;
 	color: #333;
 }
 
@@ -545,16 +547,6 @@ p {
   z-index: 100;
   top: 0;
 }
-
-.mNavbar-helper-bk {
-  width: 100%;
-  height: 60px;
-  background: #fff;
-  border-bottom: 1px solid #333;
-}
-.mNavbar-helper-bk:hover {
-  border-bottom: 1px solid #212121;
-}
 .mNavbar {
 	font-family: 'Rubik', sans-serif;
 	letter-spacing: 0.1em;
@@ -568,11 +560,10 @@ p {
 	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
-  position: absolute;
-	border-radius: 10px;
+  height: 100%;
   border: 1px solid #fff;
-  background: #212121;
-  color: #fff;
+  background: #fff;
+  color: #212121;
   top: 10px;
   bottom: 0;
   left: 20px;
@@ -599,15 +590,15 @@ p {
   padding: 5px;
 }
 .mNavbar a {
-  color: #fff;
+  color: #212121;
   padding: 5px;
 }
 .mNavbar a:hover {
-  color: #dd2c00;
+  color: #ff5722;
 }
 .nav-items a {
   position: relative;
-	color: #fff;
+  color: #212121;
 	font-weight: 500;
 	padding: 0.45rem;
 	margin: 0 0.25rem;
@@ -615,9 +606,9 @@ p {
   -ms-transition: all color .2s ease-in;
   transition: all color .2s ease-in;
 }
-
+.nav-items a:focus,
 .nav-items a:hover {
-  color: #dd2c00;
+  color: #ff5722;
 }
 
 .landing {
@@ -868,87 +859,20 @@ p {
 	height: auto;
 }
 
-.jobs {
-  width: 100%;
-  margin: 50px 0px;
-  display: grid;
-  grid-gap: 40px;
-  text-align: center;
-  align-items: center;
-  grid-template-columns: 50% auto;
-}
-.gl-wrapper,
-.lc-wrapper {
-
+.hide-lg {
+  opacity: 0;
 }
 
-.jobs .gl-card,
-.jobs .lc-card {
-  max-height: 275px;
-  max-width: 100%;
-  background: gray;
-  overflow: hidden;
-  transition: all .2s ease-in;
-  position: relative;
-  border-radius: 5px;
-  background-position: 50% 50%;
+.bordered {
+  padding: 10px 20px;
+  border: 1px solid #212121;
+  border-radius: 99px;
 }
-.gl-card img,
-.lc-card img {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  transition: all .2s ease-in;
+.bordered:hover {
+  border: 1px solid #ff5722;
 }
-.jobs-gl-text,
-.jobs-lc-text {
-  color: #fff;
-  z-index: 200;
-  font-size: 1.5em;
-  transition: all .2s ease-in;
-}
-.jobs-backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 150;
-}
-.gl-card:hover .jobs-backdrop,
-.lc-card:hover .jobs-backdrop {
-  background: rgba(0, 0, 0, 0.5);
-}
-.gl-card:hover .jobs-gl-text,
-.lc-card:hover .jobs-lc-text {
-  font-weight: 600px;
-  font-size: 1.7em;
-  letter-spacing: 2px;
-}
-.gl-card:hover img,
-.lc-card:hover img {
-  transform: scale(1.05);
-}
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50% , -50%);
-  -webkit-transform: translate(-50%, -50%);
-  width: 100%;
-}
-
 
 @media (max-width: 755px) {
-  .jobs {
-    grid-template-columns: 100%;
-  }
-  .jobs div:first-child,
-  .jobs div:last-child {
-    height: 200px;
-  }
 	.img-medium img, .img-small img, .img-smaller img {
 		position: relative;
 		text-align: center;
@@ -956,6 +880,9 @@ p {
 	.hide-sm {
 		display: none
 	}
+  .hide-lg {
+    opacity: 1;
+  }
 	.container {
 		margin-top: 8rem
 	}

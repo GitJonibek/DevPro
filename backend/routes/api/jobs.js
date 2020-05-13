@@ -41,7 +41,7 @@ router.post('/post-a-job', [
   check('education_level', 'Education level is required!').not().isEmpty(),
   check('experience_level', 'Experience level is required!').not().isEmpty(),
   check('details', 'Job description is required!').not().isEmpty()
-],async (req, res) => {
+], async (req, res) => {
 
   const errors = validationResult(req);
   if(!errors.isEmpty()) {

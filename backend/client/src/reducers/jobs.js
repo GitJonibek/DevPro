@@ -7,7 +7,6 @@ import {
 
 const initialState = {
   gl_jobs: [],
-  lc_jobs: [],
   job: null,
   loading: true
 }
