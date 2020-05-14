@@ -580,7 +580,7 @@ p {
 	margin: 0 20px;
 }
 .mNavbar > ul > li {
-	margin-left: 5px;
+  margin-left: 30px;
 }
 .nav-items {
 	color: #fff;
@@ -600,8 +600,7 @@ p {
   position: relative;
   color: #212121;
 	font-weight: 500;
-	padding: 0.45rem;
-	margin: 0 0.25rem;
+	margin: 0 0.45rem;
   -webkit-transition: all color .2s ease-in;
   -ms-transition: all color .2s ease-in;
   transition: all color .2s ease-in;
@@ -861,6 +860,7 @@ p {
 
 .hide-lg {
   opacity: 0;
+  width: 0;
 }
 
 .bordered {
@@ -872,13 +872,20 @@ p {
   border: 1px solid #ff5722;
 }
 
+@media (max-width: 850px) and (min-width: 750px) {
+  .mNavbar > ul > li {
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 755px) {
 	.img-medium img, .img-small img, .img-smaller img {
 		position: relative;
 		text-align: center;
 	}
 	.hide-sm {
-		display: none
+		display: none;
+    width: auto;
 	}
   .hide-lg {
     opacity: 1;
@@ -952,4 +959,8 @@ p {
 	.post button {
 		padding: 0.3rem 0.4rem
 	}
+}
+
+@media only screen and (max-width: 470px) {
+  
 }

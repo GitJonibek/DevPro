@@ -15,7 +15,7 @@ const Navbar = (props) => {
         <span className='hide-sm'>Jobs</span>
       </NavLink></li>
     <li>
-      <NavLink to="/employers" id='developers'>
+      <NavLink to="/companies" id='developers'>
         <i className="far fa-building hide-lg"></i>{' '}
         <span className='hide-sm'>Companies</span>
       </NavLink></li>
@@ -50,7 +50,7 @@ const Navbar = (props) => {
           <span className='hide-sm'>Jobs</span>
         </NavLink></li>
       <li>
-        <NavLink to="/employers" id='developers'>
+        <NavLink to="/companies" id='developers'>
           <i className="far fa-building hide-lg"></i>{' '}
           <span className='hide-sm'>Companies</span>
         </NavLink></li>
