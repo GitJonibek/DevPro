@@ -8,10 +8,12 @@ import Experience from './Experience'
 import Education from './Education'
 import {getCurrentProfile, deleteAccount} from "../../actions/profile";
 
-const Dashboard = ({getCurrentProfile, auth, profile, deleteAccount}) => {
+const Dashboard = ({ getCurrentProfile, auth, profile, deleteAccount }) => {
 
   useEffect(() => {
-    getCurrentProfile();
+    if(!profile.profile) {
+      getCurrentProfile();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

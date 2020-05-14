@@ -4,7 +4,7 @@ import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {createProfile, getCurrentProfile} from "../../actions/profile";
 
-const EditProfile = (props) => {
+const EditProfile = ({ profile, history, createProfile, getCurrentProfile }) => {
 
   const [formData, setFormData] = useState({
     company: '',
@@ -20,28 +20,7 @@ const EditProfile = (props) => {
     youtube: '',
     instagram: ''
   });
-
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
-
-  useEffect(() => {
-    props.getCurrentProfile();
-
-    setFormData({
-      company: props.profile.loading || !props.profile.profile.company ? '' : props.profile.profile.company,
-      website: props.profile.loading || !props.profile.profile.website ? '' : props.profile.profile.website,
-      location: props.profile.loading || !props.profile.profile.location ? '' : props.profile.profile.location,
-      status: props.profile.loading || !props.profile.profile.status ? '' : props.profile.profile.status,
-      skills: props.profile.loading || !props.profile.profile.skills ? '' : props.profile.profile.skills,
-      githubusername: props.profile.loading || !props.profile.profile.githubusername ? '' : props.profile.profile.githubusername,
-      bio: props.profile.loading || !props.profile.profile.bio ? '' : props.profile.profile.bio,
-      twitter: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.twitter,
-      facebook: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.facebook,
-      linkedin: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.linkedin,
-      youtube: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.youtube,
-      instagram: props.profile.loading || !props.profile.profile.social ? '' : props.profile.profile.social.instagram,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.profile.loading]);
 
   const {
     company,
@@ -62,8 +41,29 @@ const EditProfile = (props) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    props.createProfile(formData, props.history, true);
+    createProfile(formData, history, true);
   }
+
+  useEffect(() => {
+    if(!profile.profile) {
+      getCurrentProfile();
+    }
+    setFormData({
+      company: profile.loading || !profile.profile.company ? '' : profile.profile.company,
+      website: profile.loading || !profile.profile.website ? '' : profile.profile.website,
+      location: profile.loading || !profile.profile.location ? '' : profile.profile.location,
+      status: profile.loading || !profile.profile.status ? '' : profile.profile.status,
+      skills: profile.loading || !profile.profile.skills ? '' : profile.profile.skills,
+      githubusername: profile.loading || !profile.profile.githubusername ? '' : profile.profile.githubusername,
+      bio: profile.loading || !profile.profile.bio ? '' : profile.profile.bio,
+      twitter: profile.loading || !profile.profile.social ? '' : profile.profile.social.twitter,
+      facebook: profile.loading || !profile.profile.social ? '' : profile.profile.social.facebook,
+      linkedin: profile.loading || !profile.profile.social ? '' : profile.profile.social.linkedin,
+      youtube: profile.loading || !profile.profile.social ? '' : profile.profile.social.youtube,
+      instagram: profile.loading || !profile.profile.social ? '' : profile.profile.social.instagram,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile.loading]);
 
   return (
     <Fragment>
