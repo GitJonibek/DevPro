@@ -6,7 +6,7 @@ import {
 
 export const getCompanyList = () => async dispatch => {
   try {
-    await axios.get('/companies/get-companies')
+    await axios.get('/api/companies/get-companies')
     .then(res => {
       dispatch({ type: GET_COMPANY_LIST, payload: res.data });
     })

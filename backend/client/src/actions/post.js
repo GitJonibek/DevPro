@@ -14,7 +14,7 @@ import {
 // Get posts
 export const getPosts = () => async dispatch => {
   try {
-    const res = await axios.get('/posts');
+    const res = await axios.get('/api/posts');
     dispatch({ type: GET_POSTS, payload: res.data });
   } catch (e) {
     dispatch({ type: POST_ERROR, payload: {msg: e.response.statusText, status: e.response.status} });
@@ -24,7 +24,7 @@ export const getPosts = () => async dispatch => {
 // Get posts
 export const getPost = (postId) => async dispatch => {
   try {
-    const res = await axios.get(`/posts/${postId}`);
+    const res = await axios.get(`/api/posts/${postId}`);
     dispatch({ type: GET_POST, payload: res.data });
   } catch (e) {
     dispatch({ type: POST_ERROR, payload: {msg: e.response.statusText, status: e.response.status} });
@@ -34,7 +34,7 @@ export const getPost = (postId) => async dispatch => {
 // Like a post
 export const addLike = postId => async dispatch => {
   try {
-    const res = await axios.put(`/posts/like/${postId}`);
+    const res = await axios.put(`/api/posts/like/${postId}`);
     dispatch({ type: UPDATE_LIKES, payload: {id: postId, likes: res.data }});
   } catch (e) {
     dispatch({ type: POST_ERROR, payload: {msg: e.response.statusText, status: e.response.status} });
@@ -44,7 +44,7 @@ export const addLike = postId => async dispatch => {
 // UnLike a post
 export const removeLike = postId => async dispatch => {
   try {
-    const res = await axios.put(`/posts/unlike/${postId}`);
+    const res = await axios.put(`/api/posts/unlike/${postId}`);
     dispatch({ type: UPDATE_LIKES, payload: {id: postId, likes: res.data }});
   } catch (e) {
     dispatch({ type: POST_ERROR, payload: {msg: e.response.statusText, status: e.response.status} });
@@ -59,7 +59,7 @@ export const addPost = (fromData) => async dispatch => {
     }
   }
   try {
-    const res = await axios.post('/posts/', fromData, config);
+    const res = await axios.post('/api/posts/', fromData, config);
     dispatch({ type: ADD_POST, payload: res.data });
 
     dispatch(setAlert('Post Created!', 'success', 3000));
@@ -72,7 +72,7 @@ export const addPost = (fromData) => async dispatch => {
 export const deletePost = postId => async dispatch => {
   if(window.confirm('Are you sure? This action cannot be undone.')) {
     try {
-      await axios.delete(`/posts/${postId}`);
+      await axios.delete(`/api/posts/${postId}`);
       dispatch({ type: DELETE_POST, payload: {id: postId}});
 
       dispatch(setAlert('Post Removed', 'success', 3000));
@@ -90,7 +90,7 @@ export const addComment = (postId, fromData) => async dispatch => {
     }
   }
   try {
-    const res = await axios.post(`/posts/comment/${postId}`, fromData, config);
+    const res = await axios.post(`/api/posts/comment/${postId}`, fromData, config);
     dispatch({ type: ADD_COMMENT, payload: res.data });
 
     dispatch(setAlert('Your Comment Added!', 'success', 3000));
@@ -102,7 +102,7 @@ export const addComment = (postId, fromData) => async dispatch => {
 // Delete a comment
 export const removeComment = (postId, commentId) => async dispatch => {
   try {
-    await axios.delete(`/posts/comment/${postId}/${commentId}`);
+    await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
     dispatch({ type: REMOVE_COMMENT, payload: commentId});
 
     dispatch(setAlert('Comment Removed!', 'success', 3000));
