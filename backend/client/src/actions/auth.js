@@ -14,21 +14,22 @@ import {
 
 // Load user
 export const loadUser = () => async dispatch => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
-  try {
-    await axios.get('/auth/me')
-    .then(res => {
-      dispatch({ type: USER_LOADED, payload: res.data });
-    })
-    .catch(err => {
-      dispatch({ type: AUTH_ERROR });
-    });
+  if (localStorage.token && setAuthToken(localStorage.token)) {
+    try {
+      await axios.get('/auth/me')
+      .then(res => {
+        dispatch({ type: USER_LOADED, payload: res.data });
+      })
+      .catch(err => {
+        dispatch({ type: AUTH_ERROR });
+      });
 
-  } catch (e) {
-    dispatch({ type: AUTH_ERROR });
+    } catch (e) {
+      dispatch({ type: AUTH_ERROR });
+    }
   }
+  else dispatch({ type: AUTH_ERROR });
+
 }
 
 // Register user
