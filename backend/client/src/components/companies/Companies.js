@@ -15,10 +15,6 @@ const Companies = ({ companies: { loading, companies }, getCompanyList, history,
     getCompanyList();
   }, [getCompanyList])
 
-  const companyList = companies.map((company, index) =>
-    <Main key={index + Math.random()} history={history} match={match} company={company} />
-  );
-
   return (
     <div className='company-container'>
       <div className='company-header'>
@@ -32,7 +28,9 @@ const Companies = ({ companies: { loading, companies }, getCompanyList, history,
           <Header />
         </section>
         <section className='main-section'>
-          {companyList}
+          {companies.map((company, index) =>
+            <Main key={index + Math.random()} history={history} match={match} company={company} />
+          )}
         </section>
       </main>
     </div>
