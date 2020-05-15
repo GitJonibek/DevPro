@@ -17,6 +17,7 @@ import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
 import Jobs from './components/jobs/Jobs';
 import Companies from './components/companies/Companies';
+import CompanyView from './components/companies/company-view';
 import JobView from './components/jobs/stackjobs/jobview/JobView';
 import PrivateRoute from "./components/routing/PrivateRoute";
 import './App.css';
@@ -63,6 +64,7 @@ const App = () => {
               <Route exact path='/jobs' component={Jobs} />
               <Route exact path='/job/:id' component={JobView}/>
               <Route exact path='/companies' component={Companies}/>
+              <Route exact path='/companies/:name' component={CompanyView}/>
               <PrivateRoute exact path='/posts' component={Posts} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
               <PrivateRoute exact path='/create-profile' component={CreateProfile} />

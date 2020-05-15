@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { getCompanyList } from '../../actions/companies'
 
+import Header from './header';
+import Main from './main';
 import './Companies.css'
 
-const Companies = (props) => {
+const Companies = ({ companies: { loading, companies }, getCompanyList, history, match }) => {
 
   const wave = require('./wave.svg');
+
+  useEffect(() => {
+    getCompanyList();
+  }, [getCompanyList, companies])
+
+  const companyList = companies.map((company, index) =>
+    <Main key={index} history={history} match={match} company={company} />
+  );
 
   return (
     <div className='company-container'>
@@ -17,34 +29,23 @@ const Companies = (props) => {
       </div>
       <main className='company-main'>
         <section className='side-section'>
-          <p>FILTER BY</p>
-          <div className='company-form-group'>
-            <input
-              type="text"
-              name="search"
-              value=''
-              placeholder='search'/>
-          </div>
+          <Header />
         </section>
         <section className='main-section'>
-          <div className='company-card'>
-            <div className='company-card-header'>
-              <h3>Company Name</h3>
-              <span className='job-number'>2 jobs</span>
-              <img src='' alt=''/>
-            </div>
-            <p>Descriptionloremskldskljlvdklsjkvsdlkvklnsdjkln;vjndsjknvjkdsn;nvkdjsnvjkdnskvnjkdsjvl;djvjidsjdvlslkdvldsvkidvslk</p>
-            <div className='company-card-action'>
-              <span>Capital</span>
-              <span>Location</span>
-              <input type='button' value='Details' style={{border: '1px solid #212121'}} className='btn-details'/>
-              <input type='button' value='2 Jobs' style={{border: '1px solid #212121'}} className='btn-jobs'/>
-            </div>
-          </div>
+          {companyList}
         </section>
       </main>
     </div>
   )
 }
 
-export default Companies
+Companies.propTypes = {
+  companies: PropTypes.object.isRequired,
+  getCompanyList: PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  companies: state.companies
+})
+
+export default connect(mapStateToProps, { getCompanyList })(Companies);

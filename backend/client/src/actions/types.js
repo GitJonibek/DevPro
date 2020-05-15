@@ -38,3 +38,7 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const GET_GL_JOBS = 'GET_GL_JOBS';
 export const GET_CURR_JOB = 'GET_CURR_JOB';
 export const JOBS_ERROR = 'JOBS_ERROR';
+
+// Companies
+export const GET_COMPANY_LIST = 'GET_COMPANY_LIST';
+export const COMPANY_ERROR = 'COMPANY_ERROR';

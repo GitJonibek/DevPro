@@ -234,27 +234,6 @@
   transform: scale(1.05);
 }
 
-.btn.btn-success {
-	background-color: #0b4b38;
-	color: #fff
-}
-
-.btn.btn-success:hover {
-	background: #2dbc4e;
-}
-
-.btn.btn-danger {
-	border: 2px solid #c42847;
-	background-color: #fff;
-	color: #c42847;
-}
-.btn-danger {
-  border: 2px solid #c42847;
-	background-color: #fff;
-	color: #c42847;
-  line-height: 5px;
-}
-
 .btn.btn-round-primary {
   border: 2px solid #212121;
   border-radius: 99px;
@@ -279,9 +258,8 @@
   background: #c42847;
   color: #fff;
 }
-
-.btn.btn-danger:hover {
-	background: #e04b59;
+.del-account {
+  color: #c42847;
 }
 
 .btn-thumb-up, .btn-thumb-down, .btn-comment, .btn-delete {
@@ -397,7 +375,12 @@
 	left: 0;
 	background-color: rgba(0, 0, 0, 0.7);
 }
-
+.table {
+  background: white;
+  border-collapse: collapse;
+  border-radius: 5px;
+  box-shadow: 1px 5px 20px 5px #ddd;
+}
 .table th,
 .table td {
 	padding: 1rem;
@@ -962,5 +945,5 @@ p {
 }
 
 @media only screen and (max-width: 470px) {
-  
+
 }

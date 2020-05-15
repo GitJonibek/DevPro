@@ -1,8 +1,8 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Spinner from '../../layout/Spinner';
-import JobItem from './JobItem'
+// import Spinner from '../../layout/Spinner';
+//import JobItem from './JobItem'
 
 import { getStackJobs, getCurrentStack } from '../../../actions/jobs';
 
@@ -15,13 +15,13 @@ const StackJobs = React.memo(({
 }) => {
 
   const [search, setSearch] = useState('');
-  const [itemId, setItemId] = useState(null);
+  //const [itemId, setItemId] = useState(null);
 
   const onchange = (e) => {setSearch(e.target.value)};
-  const clickHandler = (id) => {
-    setItemId(id);
-    getCurrentStack(id);
-  };
+  // const clickHandler = (id) => {
+  //   setItemId(id);
+  //   getCurrentStack(id);
+  // };
   const onSubmit = e => {
     e.preventDefault();
     if (search !== '') {
@@ -37,10 +37,11 @@ const StackJobs = React.memo(({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const joblist = gl_jobs.map(job =>
-    <JobItem key={job.pubDate + Math.random()} job={job} clicked={id => clickHandler(id)}/>);
-  let mJob = null;
-  if(itemId) { mJob = gl_jobs.find(job => job.guid === itemId); }
+  // const joblist = gl_jobs.map(job =>
+  //   <JobItem key={job.pubDate + Math.random()} job={job} clicked={id => clickHandler(id)}/>
+  // );
+  // let mJob = null;
+  // if(itemId) { mJob = gl_jobs.find(job => job.guid === itemId); }
 
   const banner = require('../../../img/search_banner.jpg');
 
@@ -69,7 +70,7 @@ const StackJobs = React.memo(({
       <main className="jobs_main">
         <section className="jobs_list">
           <div className="jobs_list_wrapper">
-            {joblist}
+            {/*joblist*/}
             Hello world
           </div>
         </section>

@@ -17,7 +17,7 @@ const Dashboard = ({ getCurrentProfile, auth, profile, deleteAccount }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return profile.profile === null && profile.loading ? <Spinner /> : (
+  return profile.profile === null ? <Spinner /> : (
     <Fragment>
       <h1 className='large text-primary'>Dashboard</h1>
       <p className='lead'>
@@ -34,7 +34,7 @@ const Dashboard = ({ getCurrentProfile, auth, profile, deleteAccount }) => {
           <Education education={profile.profile.education} />
 
           <div className='my-2'>
-            <button className='btn btn-round-danger' onClick={() => deleteAccount()}>
+            <button className='btn btn-round-danger del-account' onClick={() => deleteAccount()}>
               <i className='fas fa-user-minus'></i>{' '}Delete Account
             </button>
           </div>
