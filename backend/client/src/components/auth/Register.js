@@ -131,7 +131,7 @@ const Register = (props) => {
         <input type="submit" value="Register" className="btn btn-round-dark btn-full" />
       </form>
       <p className="my-1">
-        Already have an account? <Link to="/login">Sign In</Link>
+        Already have an account? <Link to="/login" style={{textDecoration: 'underline'}}>Sign In</Link>
       </p>
     </div>
   )

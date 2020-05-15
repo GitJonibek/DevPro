@@ -6,7 +6,7 @@ const CompanyView = ({ history: {location: {state: {company}}}, }) => {
 
   const tags = company.details.technologies
     .split(',')
-    .map((tag, index) =><span className='btn-tags'>{tag.trim()}</span>)
+    .map((tag, index) =><span key={index} className='btn-tags'>{tag.trim()}</span>)
 
   return (
     <Fragment>

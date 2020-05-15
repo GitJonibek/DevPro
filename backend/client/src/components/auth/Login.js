@@ -52,7 +52,7 @@ const Login = (props) => {
         <input type="submit" value="Login" className="btn btn-round-dark btn-full" />
       </form>
       <p className="my-1">
-        Don't have an account? <Link to="/register">Sign Up</Link>
+        Don't have an account? <Link to="/register" style={{textDecoration: 'underline'}}>Sign Up</Link>
       </p>
       {/*<span onClick={props.withGithub} style={{cursor: 'pointer'}}>
         Continue with GitHub{' '}<i className="fab fa-github"></i>

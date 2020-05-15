@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const config = require('config');
-const auth = require('../../middleware/auth');
+const auth = require('../../../middleware/auth');
 const axios = require('axios');
 const { check, validationResult } = require('express-validator')
 
-const Profile = require('../../models/Profile');
-const Post = require('../../models/Post');
-const User = require('../../models/Users');
+const Profile = require('../../../models/Profile');
+const Post = require('../../../models/Post');
+const User = require('../../../models/Users');
 
 // @route   GET /api/profile/me
 // @desc    Test route

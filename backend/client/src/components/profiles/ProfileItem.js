@@ -12,26 +12,25 @@ const ProfileItem = ({
 }) => {
 
   const mSkills = skills.map((skill, index) => (
-    <li className='text-primary' key={index}>
-      <i className='fas fa-check'></i> {skill}
-    </li>
+    <span className='profile-skill' key={index}>
+      {skill}
+    </span>
   ));
 
   return (
-    <div className='profile bg-light'>
-      <div className='img-small'>
-        <img src={avatar} alt='' className='round-img img-hovered' />
+    <div className='profile'>
+      <div className='profile-img'>
+        <img src={avatar} alt=''/>
       </div>
 
-      <div>
+      <div className='profile-context'>
         <h2>{name}</h2>
         <p>{status} {company && <span> at {company}</span>}</p>
-        <p className='my-1'>{location && <span>{location}</span>}</p>
-        <Link to={`/profile/${_id}`} className='btn btn-round-dark' >View Profile</Link>
       </div>
-
-      <ul>{mSkills}</ul>
-
+      <div className='profile-actions'>
+        <Link to={`/profile/${_id}`} className='btn-profile-view' >View Profile</Link>
+      </div>
+      <div className='profile-skillset'>{mSkills}</div>
     </div>
   )
 }

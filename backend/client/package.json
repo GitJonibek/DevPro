@@ -43,5 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": { "/*": { "target": "https://mycommunitydev.herokuapp.com/api" } }
+  "proxy": "http://localhost:8080/api"
 }

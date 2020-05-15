@@ -13,10 +13,10 @@ const Companies = ({ companies: { loading, companies }, getCompanyList, history,
 
   useEffect(() => {
     getCompanyList();
-  }, [getCompanyList, companies])
+  }, [getCompanyList])
 
   const companyList = companies.map((company, index) =>
-    <Main key={index} history={history} match={match} company={company} />
+    <Main key={index + Math.random()} history={history} match={match} company={company} />
   );
 
   return (

@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../../middleware/auth');
+const auth = require('../../../middleware/auth');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const axios = require('axios');
 const {check, validationResult} = require("express-validator");
 
-const User = require('../../models/Users')
-const AccessToken = require('../../models/AccessToken')
+const User = require('../../../models/Users')
+const AccessToken = require('../../../models/AccessToken')
 
 // @route   GET /api/auth/me
 // @desc    Get User

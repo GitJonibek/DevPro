@@ -20,8 +20,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const User = require('../../models/Users');
-const AccessToken = require('../../models/AccessToken');
+const User = require('../../../models/Users');
+const AccessToken = require('../../../models/AccessToken');
 
 // @route   POST /api/users
 // @desc    Register user

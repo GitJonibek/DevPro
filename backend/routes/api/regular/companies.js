@@ -3,14 +3,13 @@ const router = express.Router();
 const axios = require('axios');
 const { check, validationResult } = require('express-validator')
 
-const Employer = require('../../models/Employer');
+const Employer = require('../../../models/Employer');
 
 // @route   GET /api/companies/get-companies
 // @desc    Get Companies list
 // @access  public
 router.get('/get-companies', async (req, res) => {
   try {
-    console.log('Here');
     const companies = await Employer.find().sort({ date: -1 });
     res.json(companies);
   } catch (e) {

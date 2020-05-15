@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from "react-redux";
 require('dotenv').config()
 
@@ -20,8 +20,9 @@ const Landing = (props) => {
             other developers.
           </p>
           <div className="buttons">
-            <Link to="/register" className="btn btn-round-light my-1">Sign Up</Link>
-            <Link to="/login" className="btn btn-round-light my-1">Sign In</Link>
+            <button onClick={() => props.history.push('/register')} type="button" name="button" className="btn-join-now">
+              Join our community
+            </button>
             {/* <a href='https://github.com/login/oauth/authorize?client_id=8f6eb02bfcdaa7b11bed' alt=''>Login with github</a> */}
           </div>
         </div>

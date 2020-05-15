@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../../middleware/auth');
+const auth = require('../../../middleware/auth');
 const axios = require('axios');
 const { check, validationResult } = require('express-validator')
 
@@ -8,7 +8,7 @@ let encoding = require('encoding-japanese');
 let Parser = require('rss-parser');
 let parser = new Parser();
 
-const Job = require('../../models/Job');
+const Job = require('../../../models/Job');
 
 // @route   GET /api/jobs/global
 // @desc    Get All global Jobs
