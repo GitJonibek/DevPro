@@ -11,9 +11,7 @@ import {getCurrentProfile, deleteAccount} from "../../actions/profile";
 const Dashboard = ({ getCurrentProfile, auth, profile, deleteAccount }) => {
 
   useEffect(() => {
-    if(!profile.profile) {
-      getCurrentProfile();
-    }
+    getCurrentProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
