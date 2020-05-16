@@ -9,28 +9,29 @@ const CommentItem = ({ postId, comment: { date, _id, text, name, avatar, user },
 
   return (
     <div className="post bg-white p-1 my-1">
-      <div className='img-wrapper'>
+      <div className='post-item-img'>
         <Link to={`/profile/${user}`}>
-          <img className="round-img img-hovered" src={avatar} alt="" style={{width: '70px'}}/>
-          <h4 className='text-primary'>{name.split(' ')[0]}</h4>
+          <img className="round-img img-hovered" src={avatar} alt="" style={{width: '50px'}}/>
         </Link>
+        <h4 className='text-primary'>{name.split(' ')[0]}</h4>
       </div>
-
       <div>
         <p className="my-1">{text}</p>
-        <p className="post-date" style={{fontSize: '0.9em', color: '#666'}}>
-          Commented on:{' '}
-          <Moment format='YYYY/MM/DD hh:mm'>{date}</Moment>
-        </p>
-        {!auth.loading && user === auth.user._id &&
-          <button
-            style={{margin: '5px 0'}}
-            type='button'
-            className='btn-danger btn-delete'
-            onClick={(e) => removeComment(postId, _id)}>
-            Delete
-          </button>
-        }
+        <div className='post-action-footer post-comment'>
+          <p className="post-date" style={{fontSize: '0.9em', color: '#666'}}>
+            Commented on:{' '}
+            <Moment format='YYYY/MM/DD hh:mm'>{date}</Moment>
+          </p>
+          {!auth.loading && user === auth.user._id &&
+            <button
+              style={{margin: '5px 0'}}
+              type='button'
+              className='btn-danger btn-delete'
+              onClick={(e) => removeComment(postId, _id)}>
+              Delete
+            </button>
+          }
+        </div>
       </div>
     </div>
   )

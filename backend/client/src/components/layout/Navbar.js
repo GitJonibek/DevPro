@@ -60,7 +60,7 @@ const Navbar = (props) => {
           <span className='hide-sm'>Developers</span>
         </NavLink></li>
       <li>
-        <NavLink to="/register" id='signup'>
+        <NavLink to="/login" id='signup'>
           <i className="fas fa-user-plus hide-lg"></i>{' '}
           <span className='hide-sm bordered'>Join now</span>
         </NavLink></li>

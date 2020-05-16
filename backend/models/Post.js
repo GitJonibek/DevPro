@@ -5,6 +5,9 @@ const PostSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users',
   },
+  title: {
+
+  },
   text: {
     type: String,
     required: true
@@ -13,6 +16,9 @@ const PostSchema = new mongoose.Schema({
     type: String
   },
   avatar: {
+    type: String
+  },
+  tags: {
     type: String
   },
   likes: [

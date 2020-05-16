@@ -7,7 +7,7 @@ import {
   ADD_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
-} from '../actions/types'
+} from '../actions/types';
 
 const initialState = {
   post: null,
@@ -15,6 +15,7 @@ const initialState = {
   loading: true,
   error: {}
 }
+
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
