@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import {connect} from "react-redux";
 import {setAlert} from "../../actions/alert";
@@ -7,7 +7,7 @@ import Spinner from '../layout/Spinner'
 import PropTypes from 'prop-types'
 
 
-const passRegEx = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&.*])[\w!@#$.%^&*]{7,}$/;
+const passRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;;
 
 const Register = (props) => {
 
@@ -31,15 +31,18 @@ const Register = (props) => {
       case 'checkbox':
         setFormData({ ...formData, [e.target.name]: !checkbox });
         break;
-      case 'password':
-        setValidator({ ...validator, [e.target.name]: (passRegEx.test(password) && password.length > 0) });
-        break;
       case 'password2':
-        setValidator({ ...validator, [e.target.name]: passRegEx.test(password2) && (e.target.value === password) });
+        setValidator({ ...validator, [e.target.name]: (e.target.value === password) });
         break;
       default: break;
     }
   };
+
+  useEffect(() => {
+    if(password.length){
+      setValidator({ password: passRegEx.test(password)});
+    }
+  }, [password])
 
   const onSubmit = async (e) => {
     e.preventDefault();
