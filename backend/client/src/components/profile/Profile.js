@@ -25,7 +25,7 @@ const Profile = ({
 
   return (
     <Fragment>
-      { profile === null ? <Spinner /> : profile !== null ? (
+      { profile === null && loading ? <Spinner /> : profile !== null ? (
         <Fragment>
           <input type='button' style={{padding: '10px 20px'}} className='btn btn-round-light my-1' value='Go Back' onClick={() => history.goBack()}/>
           { auth.isAuthenticated &&

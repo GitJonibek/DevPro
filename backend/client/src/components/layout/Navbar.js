@@ -10,32 +10,32 @@ const Navbar = (props) => {
   const authLinks = (
     <ul className='nav-items'>
       <li>
-        <NavLink to="/jobs" id='jobs'>
+        <NavLink to="/jobs" id='jobs' activeStyle={{color: "#ff5722"}}>
         <i className="fas fa-search-dollar hide-lg"></i>{' '}
         <span className='hide-sm'>Jobs</span>
       </NavLink></li>
     <li>
-      <NavLink to="/companies" id='developers'>
+      <NavLink to="/companies" id='developers' activeStyle={{color: "#ff5722"}}>
         <i className="far fa-building hide-lg"></i>{' '}
         <span className='hide-sm'>Companies</span>
       </NavLink></li>
     <li>
-      <NavLink to="/posts" id='posts'>
+      <NavLink to="/posts" id='posts' activeStyle={{color: "#ff5722"}}>
         <i className='fas fa-blog hide-lg'></i>{' '}
         <span className='hide-sm'>Posts</span>
       </NavLink></li>
     <li>
-      <NavLink to="/profiles" id='profiles'>
+      <NavLink to="/profiles" id='profiles' activeStyle={{color: "#ff5722"}}>
         <i className='fas fa-code hide-lg'></i>{' '}
         <span className='hide-sm'>Developers</span>
       </NavLink></li>
     <li>
-      <NavLink to="/dashboard" id='dashboard'>
+      <NavLink to="/dashboard" id='dashboard' activeStyle={{color: "#ff5722"}}>
         <i className='fas fa-user hide-lg'></i>{' '}
         <span className='hide-sm'>Dashboard</span>
       </NavLink></li>
     <li>
-      <NavLink onClick={props.logout} to="/" id='logout'>
+      <NavLink onClick={props.logout} to="/" id='logout' activeStyle={{color: "#ff5722"}}>
         <i className='fas fa-sign-out-alt hide-lg'></i>{' '}
         <span className='hide-sm'>Logout</span>
       </NavLink></li>
@@ -45,22 +45,22 @@ const Navbar = (props) => {
   const guestLinks = (
     <ul className='nav-items'>
       <li>
-        <NavLink to="/jobs" id='jobs'>
+        <NavLink to="/jobs" id='jobs' activeStyle={{color: "#ff5722"}}>
           <i className="fas fa-search-dollar hide-lg"></i>{' '}
           <span className='hide-sm'>Jobs</span>
         </NavLink></li>
       <li>
-        <NavLink to="/companies" id='developers'>
+        <NavLink to="/companies" id='developers' activeStyle={{color: "#ff5722"}}>
           <i className="far fa-building hide-lg"></i>{' '}
           <span className='hide-sm'>Companies</span>
         </NavLink></li>
       <li>
-        <NavLink to="/profiles" id='developers'>
+        <NavLink to="/profiles" id='developers' activeStyle={{color: "#ff5722"}}>
           <i className='fas fa-code hide-lg'></i>{' '}
           <span className='hide-sm'>Developers</span>
         </NavLink></li>
       <li>
-        <NavLink to="/login" id='signup'>
+        <NavLink to="/login" id='signup' activeStyle={{color: "#ff5722"}}>
           <i className="fas fa-user-plus hide-lg"></i>{' '}
           <span className='hide-sm bordered'>Join now</span>
         </NavLink></li>
@@ -94,4 +94,4 @@ const mapStatetoProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStatetoProps, { logout })(withRouter(Navbar));
+export default withRouter(connect(mapStatetoProps, { logout })(Navbar));

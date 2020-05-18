@@ -37,17 +37,21 @@ const Login = (props) => {
             type="email"
             name='email'
             value={ email }
-            placeholder="email"
+            placeholder=" "
+            autoComplete="username email"
             required />
+          <span className='placeholder-email'>Email</span>
         </div>
-        <div className="form-group rounded">
+        <div className="form-group">
           <input
             onChange={e => onChangeHandler(e)}
             type="password"
             name="password"
             value={ password }
-            placeholder="password"
+            placeholder=" "
+            autoComplete="current-password"
             minLength="6" />
+          <span className='placeholder-password'>Password</span>
         </div>
         <input type="submit" value="Login" className="btn btn-round-dark btn-full" />
       </form>

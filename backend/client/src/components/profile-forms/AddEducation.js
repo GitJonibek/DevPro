@@ -47,13 +47,16 @@ const AddEducation = (props) => {
         <small>* = required field</small>
         <form className="form" onSubmit={(e) => onSubmit(e)}>
           <div className="form-group">
-            <input type="text" placeholder="* Degree or Certificate" value={degree} onChange={e => onChange(e)} name="degree" required />
+            <input type="text" placeholder=" " value={degree} onChange={e => onChange(e)} name="degree" required />
+            <span className='placeholder-text'>* Degree or Certificate</span>
           </div>
           <div className="form-group">
-            <input type="text" placeholder="* School or Bootcamp" value={school} onChange={e => onChange(e)} name="school" required />
+            <input type="text" placeholder=" " value={school} onChange={e => onChange(e)} name="school" required />
+            <span className='placeholder-text'>* School or Bootcamp</span>
           </div>
           <div className="form-group">
-            <input type="text" placeholder="Field of Study" value={fieldofstudy} onChange={e => onChange(e)} name="fieldofstudy" />
+            <input type="text" placeholder=" " value={fieldofstudy} onChange={e => onChange(e)} name="fieldofstudy" />
+            <span className='placeholder-text'>Field of Study</span>
           </div>
           <div className="form-group">
             <h4>From Date</h4>

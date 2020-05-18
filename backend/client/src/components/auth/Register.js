@@ -7,7 +7,7 @@ import Spinner from '../layout/Spinner'
 import PropTypes from 'prop-types'
 
 
-const passRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;;
+const passRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 
 const Register = (props) => {
 
@@ -79,8 +79,9 @@ const Register = (props) => {
             type="text"
             name='name'
             value={name}
-            placeholder="full name"
+            placeholder=" "
             required />
+          <span className='placeholder-text'>Full Name</span>
         </div>
         <div className="form-group">
           <input
@@ -88,8 +89,10 @@ const Register = (props) => {
             type="email"
             name='email'
             value={ email }
-            placeholder="email"
+            placeholder=" "
+            autoComplete="username email"
             required />
+          <span className='placeholder-email'>Email</span>
           <small className="form-text">
             This site uses Gravatar, so if you want a profile image, use a
             Gravatar email
@@ -102,8 +105,10 @@ const Register = (props) => {
             type="password"
             name="password"
             value={ password }
-            placeholder="password"
+            placeholder=" "
+            autoComplete="new-password"
             minLength="7" />
+          <span className='placeholder-password' style={{background: '#fff'}}>Password</span>
           <small className="form-text" style={(password.length > 0) ? styleS1 : {display: 'none'}}>
             Password must contain at least one Capital character, small character,
             one digit, one symbol, and must be more than 7 characters.
@@ -116,8 +121,10 @@ const Register = (props) => {
             type="password"
             name="password2"
             value={ password2 }
-            placeholder="confirm password"
+            placeholder=" "
+            autoComplete="new-password"
             minLength="7" />
+          <span className='placeholder-password' style={{background: '#fff'}}>Confirm Password</span>
           <small className="form-text" style={(password2.length > 0) ? styleS2 : {display: 'none'}}>
             Passwords must be match to each other.
           </small>

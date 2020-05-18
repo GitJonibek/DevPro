@@ -17,14 +17,17 @@ router.post('/', [auth, [
   if(!errors.isEmpty()){
     res.status(400).json({errors: errors.array()});
   }
+  
+  const RegEx = /[^A-Za-z0-9]+/g;
+  const temp = req.body.tags.trim();
+  const tags = !RegEx.test(temp) ? temp : '';
 
   try {
     const user = await User.findById(req.user.id).select('-password');
-
     const newpost = new Post({
       title: req.body.title,
       text: req.body.text,
-      tags: req.body.tags,
+      tags: tags,
       avatar: user.avatar,
       name: user.name,
       user: req.user.id

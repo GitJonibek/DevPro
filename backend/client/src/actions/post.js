@@ -8,12 +8,14 @@ import {
   DELETE_POST,
   ADD_POST,
   ADD_COMMENT,
+  CLEAR_PROFILE,
   REMOVE_COMMENT
 } from './types'
 
 // Get posts
 export const getPosts = () => async dispatch => {
   try {
+    dispatch({ type: CLEAR_PROFILE });
     const res = await axios.get('/api/posts');
     dispatch({ type: GET_POSTS, payload: res.data });
   } catch (e) {

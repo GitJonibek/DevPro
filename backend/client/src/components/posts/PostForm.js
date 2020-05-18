@@ -46,14 +46,13 @@ const PostForm = ({ addPost, user, closed }) => {
           value={text}
           onChange={(e) => onTextareChange(e)}
           required />
-        <div className='post-tags-div'>
+        <div className='form-group'>
           <input type='text'
-            className='post-input-tags'
             value={tags}
             onChange={(e) => onTagsChange(e)}
-            placeholder='Ex: react,nodejs, etc.'
+            placeholder=' '
             name='tags'/>
-          <span className='tag-span'>Tags</span>
+          <span className='placeholder-text'>Ex: react,nodejs, etc.</span>
         </div>
         <input type='submit' className='btn btn-round-dark' value='Submit' />
       </form>

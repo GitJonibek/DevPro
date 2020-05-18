@@ -422,6 +422,7 @@
 }
 
 .form-group {
+  position: relative;
 	margin: 1.2rem 0;
 }
 
@@ -439,10 +440,11 @@
 .form textarea {
 	display: block;
 	width: 100%;
-	padding: 0.4rem;
-	font-size: 1.2rem;
+	padding: 10px 10px 5px 10px;
+	font-size: 1.1rem;
   border: 1px solid #999;
   border-radius: 4px;
+  padding-left: 15px;
   outline: none;
 }
 p {
@@ -450,26 +452,46 @@ p {
   white-space: pre-line;
   font-weight: bold;
 }
-.form input[type='text'],
-.form input[type='email'],
-.form input[type='password'] {
-  border-radius: 99px;
-  padding-left: 15px;
+span.placeholder-text, span.placeholder-email, span.placeholder-password {
+  position: absolute;
+  top: 7px;
+  left: 15px;
+  border-radius: 4px;
+  pointer-events: none;
+  transition: all .2s ease;
+  background: #fff;
 }
+.form input[type='text']:focus + span.placeholder-text,
+.form input[type='text']:not(:placeholder-shown) + span.placeholder-text,
+.form input[type='email']:focus + span.placeholder-email,
+.form input[type='email']:not(:placeholder-shown) + span.placeholder-email,
+.form input[type='password']:focus + span.placeholder-password,
+.form input[type='password']:not(:placeholder-shown) + span.placeholder-password {
+  top: -10px;
+  font-size: .8em;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.form input[type='text']:focus + span.placeholder-text,
+.form input[type='email']:focus + span.placeholder-email,
+.form input[type='password']:focus + span.placeholder-password {
+  color: #212121;
+  background: none;
+}
+
 input::placeholder {
-  color: #bbc;
+  color: #999;
 }
-.form input[type='email']:active,
-.form input[type='email']:hover,
-.form input[type='password']:active,
-.form input[type='password']:hover,
-.form input[type='date']:active,
-.form input[type='date']:hover,
-.form input[type='text']:active,
-.form input[type='text']:hover,
-.form textarea:hover,
-.form textarea:active {
-  border: 1px solid #101D30;
+.form input[type='email']:focus,
+.form input[type='password']:focus,
+.form input[type='date']:focus,
+.form input[type='text']:focus{
+  border: none;
+  border-radius: 1px;
+  border-bottom: 2px solid #212121;
+}
+.form textarea:focus {
+  border: 1px solid #212121;
 }
 .form input[type='text'].post-input-tags {
   border-radius: 4px;
@@ -641,7 +663,16 @@ p {
   -ms-transition: all color .2s ease-in;
   transition: all color .2s ease-in;
 }
-.nav-items a:focus,
+.bordered {
+  padding: 10px 20px;
+  border: 1px solid #212121;
+  border-radius: 99px;
+}
+.bordered:hover {
+  border: 1px solid #ff5722;
+}
+
+.nav-items a:focus
 .nav-items a:hover {
   color: #ff5722;
 }
@@ -1023,15 +1054,6 @@ p {
 .hide-lg {
   opacity: 0;
   width: 0;
-}
-
-.bordered {
-  padding: 10px 20px;
-  border: 1px solid #212121;
-  border-radius: 99px;
-}
-.bordered:hover {
-  border: 1px solid #ff5722;
 }
 
 .posts-backdrop-img {

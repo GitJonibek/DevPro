@@ -4,13 +4,12 @@ import {connect} from 'react-redux'
 // import Spinner from '../../layout/Spinner';
 //import JobItem from './JobItem'
 
-import { getStackJobs, getCurrentStack } from '../../../actions/jobs';
+import { getStackJobs } from '../../../actions/jobs';
 
 const StackJobs = React.memo(({
   match,
   history,
   getStackJobs,
-  getCurrentStack,
   jobs: { gl_jobs, loading }
 }) => {
 
@@ -82,7 +81,6 @@ const StackJobs = React.memo(({
 
 StackJobs.propTypes = {
   getStackJobs: PropTypes.func.isRequired,
-  getCurrentStack: PropTypes.func.isRequired,
   jobs: PropTypes.object.isRequired
 };
 
@@ -90,4 +88,4 @@ const mapStateToProps = state => ({
   jobs: state.jobs
 });
 
-export default connect(mapStateToProps, { getCurrentStack, getStackJobs })(StackJobs);
+export default connect(mapStateToProps, { getStackJobs })(StackJobs);

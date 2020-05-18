@@ -47,13 +47,16 @@ const AddExperience = (props) => {
       <small>* = required field</small>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
-          <input type="text" placeholder="* Job Title" value={title} onChange={e => onChange(e)} name="title" required />
+          <input type="text" placeholder=" " value={title} onChange={e => onChange(e)} name="title" required />
+          <span className='placeholder-text'>* Job Title</span>
         </div>
         <div className="form-group">
-          <input type="text" placeholder="* Company" value={company} onChange={e => onChange(e)} name="company" required />
+          <input type="text" placeholder=" " value={company} onChange={e => onChange(e)} name="company" required />
+          <span className='placeholder-text'>* Company</span>
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Location" value={location} onChange={e => onChange(e)} name="location" />
+          <input type="text" placeholder=" " value={location} onChange={e => onChange(e)} name="location" />
+          <span className='placeholder-text'>Location</span>
         </div>
         <div className="form-group">
           <h4>From Date</h4>
