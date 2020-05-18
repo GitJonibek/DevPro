@@ -1064,10 +1064,7 @@ p {
   bottom: 0;
   z-index: -1;
   overflow: hidden;
-}
-.posts-backdrop-img img {
-  display: block;
-  width: 100%;
+  background: url("./assets/posts-bk.svg") no-repeat center center/cover;
 }
 .post-tags {
   margin-bottom: 10px;

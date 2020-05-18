@@ -20,6 +20,7 @@ const EditProfile = ({ profile, history, createProfile, getCurrentProfile }) => 
     youtube: '',
     instagram: ''
   });
+
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   const {
@@ -111,12 +112,7 @@ const EditProfile = ({ profile, history, createProfile, getCurrentProfile }) => 
           <small className="form-text">Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)</small>
         </div>
         <div className="form-group">
-          <input
-            type="text"
-            placeholder=" "
-            name="githubusername"
-            value={githubusername} onChange={(e) => onChange(e)}
-          />
+          <input type="text" placeholder=" " name="githubusername" value={githubusername} onChange={(e) => onChange(e)} />
           <span className='placeholder-text'>Github Username</span>
           <small className="form-text">If you want your latest repos and a Github link, include your username</small>
         </div>

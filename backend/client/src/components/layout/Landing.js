@@ -7,7 +7,7 @@ require('dotenv').config()
 const Landing = (props) => {
 
   if(props.isAuthenticated) {
-    return <Redirect to='/dashboard' />
+    return <Redirect to='/posts' />
   }
 
   return (
@@ -23,7 +23,6 @@ const Landing = (props) => {
             <button onClick={() => props.history.push('/register')} type="button" name="button" className="btn-join-now">
               Join our community
             </button>
-            {/* <a href='https://github.com/login/oauth/authorize?client_id=8f6eb02bfcdaa7b11bed' alt=''>Login with github</a> */}
           </div>
         </div>
       </div>

@@ -16,13 +16,9 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     getPosts();
   }, [getPosts]);
 
-  const bk = require('../../assets/posts-bk.svg');
-
   return loading ? <Spinner /> : (
     <Fragment>
-      <div className='posts-backdrop-img' style={{height: `${window.height}`}}>
-        <img src={bk} alt=''/>
-      </div>
+      <div className='posts-backdrop-img' />
       <h1 className='large text-primary'>Posts</h1>
       <p className='lead'>
         Welcome to the community!
