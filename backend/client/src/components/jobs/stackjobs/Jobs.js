@@ -41,17 +41,13 @@ const StackJobs = React.memo(({
   // );
   // let mJob = null;
   // if(itemId) { mJob = gl_jobs.find(job => job.guid === itemId); }
-
-  const banner = require('../../../img/search_banner.jpg');
-
+  const icon  = require('../res/jobs.jpg');
   return (
     <div className="jobs">
       <header className="jobs_header">
         <div className="job_header">
-          <div className="banner-backdrop"></div>
-          <div className='img-banner'>
-            <img src={banner} alt=''/>
-          </div>
+          <div className="banner-backdrop" />
+          <img className='img-banner' src={icon} alt=''/>
           <form className='form-search' onSubmit={e=>onSubmit(e)}>
             <h1>Explore Jobs</h1>
             <p>Find your dream job and get offer from one of our tech giants.</p>
@@ -70,7 +66,6 @@ const StackJobs = React.memo(({
         <section className="jobs_list">
           <div className="jobs_list_wrapper">
             {/*joblist*/}
-            Hello world
           </div>
         </section>
       </main>

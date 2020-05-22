@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 const CompanyView = ({ history: {location: {state: {company}}}, }) => {
 
-  const company_bk = require('./company_bk.jpg');
+  const company_bk = require('../res/company_bk.jpg');
 
   const tags = company.details.technologies
     .split(',')

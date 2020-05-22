@@ -9,6 +9,9 @@ const JobSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'employers',
   },
+  application_email: {
+    type: String,
+  },
   application_url: {
     type: String,
   },
@@ -32,6 +35,10 @@ const JobSchema = mongoose.Schema({
     type: String
   },
   details: {
+    type: String,
+    required: true
+  },
+  application_type: {
     type: String,
     required: true
   },

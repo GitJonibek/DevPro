@@ -4,7 +4,6 @@ import Moment from 'react-moment';
 import JobViewActions from './JobViewActions'
 
 const JobView = (props) => {
-  const icon = require('../company-icon.svg');
 
   const mjob = !props.location ? props.job : props.location.state.job;
 
@@ -32,7 +31,7 @@ const JobView = (props) => {
       </div>
       <section className="jobs_viewer_item">
         <div className="jobs_viewer_item_header">
-          <img className="viewer-img" src={icon} alt="icon"/>
+          <img className="viewer-img" src='' alt="icon"/>
           <h1 className="viewer-title">{ttl}</h1>
           <p className="viewer-location">{loc}</p>
           <div className="jobs_viewer_item_header_actions">

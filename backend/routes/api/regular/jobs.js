@@ -9,22 +9,17 @@ let Parser = require('rss-parser');
 let parser = new Parser();
 
 const Job = require('../../../models/Job');
+const Employer = require('../../../models/Employer');
 
-// @route   GET /api/jobs/global
+// @route   GET /api/jobs
 // @desc    Get All global Jobs
 // @access  public
-router.get('/global', async (req, res) => {
-
-  const { query, location } = req.query;
-  let q, l = '';
-
-  q = query.split(' ').join('+');
-  l = location.split(' ').join('+');
+router.get('/', async (req, res) => {
 
   try {
-    let feed = await parser.parseURL(`https://stackoverflow.com/jobs/feed?q=${q}&l=${l}`);
-    const arr = feed.items.slice(0, 200);
-    res.json(arr);
+    await Job.find().sort({ date: -1 })
+    .then(response => res.json(response))
+    .catch(err => res.status(500).send('Server Error!'));
   } catch (e) {
     console.error(e.message);
     res.status(500).send('Server Error!');
@@ -32,16 +27,17 @@ router.get('/global', async (req, res) => {
 });
 
 // @route   POST /api/jobs/post-job
-// @desc    Post a Job
+// @desc    Post/Update a Job
 // @access  public
-router.post('/post-a-job', [
+router.post('/post-a-job', [auth, [
   check('title', 'Job title is required!').not().isEmpty(),
   check('location', 'Job location is required!').not().isEmpty(),
   check('job_type', 'Job type is required!').not().isEmpty(),
   check('education_level', 'Education level is required!').not().isEmpty(),
   check('experience_level', 'Experience level is required!').not().isEmpty(),
-  check('details', 'Job description is required!').not().isEmpty()
-], async (req, res) => {
+  check('details', 'Job description is required!').not().isEmpty(),
+  check('application_type', 'Application choice is required!').not().isEmpty()
+]], async (req, res) => {
 
   const errors = validationResult(req);
   if(!errors.isEmpty()) {
@@ -50,7 +46,53 @@ router.post('/post-a-job', [
 
   try {
 
+    const {
+      title,
+      application_type,
+      application_email,
+      application_url,
+      location,
+      job_type,
+      education_level,
+      experience_level,
+      working_hours,
+      details,
+      posted,
+      update,
+      id
+    } = req.body;
 
+    const new_job = {};
+    new_job.company = req.user.id;
+
+    if(title) new_job.title = title;
+    if(location) new_job.location = location;
+    if(job_type) new_job.job_type = job_type;
+    if(education_level) new_job.education_level = education_level;
+    if(experience_level) new_job.experience_level = experience_level;
+    if(working_hours) new_job.working_hours = working_hours;
+    if(details) new_job.details = details;
+    if(application_type) {
+      new_job.application_type = application_type;
+      if (application_type === 'url' && application_url) new_job.application_url = application_url;
+      if (application_type === 'email' && application_email) new_job.application_email = application_email;
+    }
+    if(posted) new_job.posted = posted;
+
+    if(update && id) {
+      job = await Job.findOneAndUpdate(
+        { _id: id },
+        { $set: new_job },
+        { new: true }
+      );
+      res.json(job);
+      return;
+    }
+
+    job = new Job(new_job);
+    await job.save();
+
+    res.json(job);
 
   } catch (e) {
     console.error(e.message);

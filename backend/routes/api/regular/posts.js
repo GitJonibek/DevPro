@@ -17,7 +17,7 @@ router.post('/', [auth, [
   if(!errors.isEmpty()){
     res.status(400).json({errors: errors.array()});
   }
-  
+
   const RegEx = /[^A-Za-z0-9]+/g;
   const temp = req.body.tags.trim();
   const tags = !RegEx.test(temp) ? temp : '';

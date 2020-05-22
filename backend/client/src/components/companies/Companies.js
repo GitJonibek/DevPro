@@ -9,8 +9,6 @@ import './Companies.css'
 
 const Companies = ({ companies: { loading, companies }, getCompanyList, history, match }) => {
 
-  const wave = require('./wave.svg');
-
   useEffect(() => {
     getCompanyList();
   }, [getCompanyList])
@@ -19,9 +17,8 @@ const Companies = ({ companies: { loading, companies }, getCompanyList, history,
     <div className='company-container'>
       <div className='company-header'>
         <h1>Tech Companies. <br/>In Japan. <br/> That you'll love.</h1>
-        <div className="company-wave">
-          <img src={wave} alt=''/>
-        </div>
+        <div className="company-backdrop"/>
+        <div className="company-img"/>
       </div>
       <main className='company-main'>
         <section className='side-section'>

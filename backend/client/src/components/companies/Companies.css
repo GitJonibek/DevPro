@@ -11,14 +11,29 @@
 }
 .company-header h1 {
   font-size: 3.5em;
+  position: relative;
+  z-index: 100;
 }
-.company-wave {
+
+.company-img {
   position: absolute;
   left: 0;
-  top: 80px;
-  right: 0;
-  height: 400px;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('./res/company.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   z-index: -1;
+}
+.company-backdrop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .company-main {

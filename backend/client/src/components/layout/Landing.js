@@ -20,7 +20,7 @@ const Landing = (props) => {
             other developers.
           </p>
           <div className="buttons">
-            <button onClick={() => props.history.push('/register')} type="button" name="button" className="btn-join-now">
+            <button onClick={() => props.history.push('/login')} type="button" name="button" className="btn-join-now">
               Join our community
             </button>
           </div>
