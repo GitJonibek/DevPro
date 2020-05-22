@@ -10,7 +10,8 @@ import './Companies.css'
 const Companies = ({ companies: { loading, companies }, getCompanyList, history, match }) => {
 
   useEffect(() => {
-    getCompanyList();
+    if(!companies.length) { getCompanyList(); }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getCompanyList])
 
   return (

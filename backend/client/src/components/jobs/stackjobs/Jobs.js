@@ -2,46 +2,43 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 // import Spinner from '../../layout/Spinner';
-//import JobItem from './JobItem'
+import JobItem from './JobItem'
 
-import { getStackJobs } from '../../../actions/jobs';
+import { getJobs } from '../../../actions/jobs';
 
 const StackJobs = React.memo(({
   match,
   history,
-  getStackJobs,
+  getJobs,
   jobs: { gl_jobs, loading }
 }) => {
 
   const [search, setSearch] = useState('');
-  //const [itemId, setItemId] = useState(null);
+  const [itemId, setItemId] = useState(null);
 
   const onchange = (e) => {setSearch(e.target.value)};
-  // const clickHandler = (id) => {
-  //   setItemId(id);
-  //   getCurrentStack(id);
-  // };
+  const clickHandler = (id) => {
+    setItemId(id);
+  };
   const onSubmit = e => {
     e.preventDefault();
     if (search !== '') {
-      getStackJobs(search);
+      // Search Patterns
       setSearch('')
     }
   }
 
   useEffect(() => {
-    // if (search === '' && location === '' && !gl_jobs.length) {
-    //   getStackJobs();
-    // }
+    if(!gl_jobs.length) {
+      getJobs();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const joblist = gl_jobs.map(job =>
-  //   <JobItem key={job.pubDate + Math.random()} job={job} clicked={id => clickHandler(id)}/>
-  // );
-  // let mJob = null;
-  // if(itemId) { mJob = gl_jobs.find(job => job.guid === itemId); }
+  const jobs = gl_jobs.map((job, index) => <JobItem key={index} clicked={clickHandler} job={job} />);
+
   const icon  = require('../res/jobs.jpg');
+
   return (
     <div className="jobs">
       <header className="jobs_header">
@@ -63,11 +60,7 @@ const StackJobs = React.memo(({
         </div>
       </header>
       <main className="jobs_main">
-        <section className="jobs_list">
-          <div className="jobs_list_wrapper">
-            {/*joblist*/}
-          </div>
-        </section>
+        {jobs}
       </main>
 
     </div>
@@ -75,7 +68,7 @@ const StackJobs = React.memo(({
 });
 
 StackJobs.propTypes = {
-  getStackJobs: PropTypes.func.isRequired,
+  getJobs: PropTypes.func.isRequired,
   jobs: PropTypes.object.isRequired
 };
 
@@ -83,4 +76,4 @@ const mapStateToProps = state => ({
   jobs: state.jobs
 });
 
-export default connect(mapStateToProps, { getStackJobs })(StackJobs);
+export default connect(mapStateToProps, { getJobs })(StackJobs);

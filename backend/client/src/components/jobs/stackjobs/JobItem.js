@@ -1,46 +1,31 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 
-const getRandomInt = max => {
-  return Math.floor(Math.random() * Math.floor(max));
-}
+const JobItem = ({ job, clicked }) => {
 
-const JobItem = React.memo(({ clicked, job: { guid, title, link, pubDate, content, categories }}) => {
-
-  const ttl = title.substring(0, title.indexOf(' at '));
-  const loc = title.substring(title.indexOf(' at ') + 3);
-  const cats = categories ? categories.map(cat => <input type='button' key={Math.random()} className='category-span' value={cat}/>) : null;
-
-  const num = getRandomInt(7);
+  const skills = job.technologies.split(',').map(tech => <div key={Math.random() + 1} className="job-item skill">{tech}</div>)
 
   return (
-    <Fragment>
-      <div className="jobs_item" style={borderRainbow[num]}>
-        <div className='item_img_wrap'>
-          <img className="item_img" src='' alt="icon"/>
+    <div className='mobile-wrapper'>
+      <article className="job-item job-card">
+        <div className="job-item company-logo-img">
+          <img src="https://s3-ap-southeast-1.amazonaws.com/hs.user-files/employer_logo/346/primetech-technology.png"
+            alt='something' />
         </div>
-        <div className='item_title_wrap'>
-          <h1 className="item_title" onClick={() => clicked(guid)}>{ttl}</h1>
-          <p className="item_location">{loc}</p>
+        <div className='job-item company-wrapper'>
+          <div className="job-item job-title">{job.title}</div>
+          <div className="job-item company-name">{job.company.name}</div>
         </div>
-        <div className='item_details'>
-          <div className="item_category">{cats}</div>
-          <small className="item_datetime">{pubDate}</small>
+        <div className="job-item job-details">{job.details}</div>
+        <div className="job-item skills-container">
+          {skills}
         </div>
-      </div>
-    </Fragment>
+        <div className="btn-container">
+          <button className="job-item-btn apply">Apply</button>
+          <button className="job-item-btn save">Save Job</button>
+        </div>
+      </article>
+    </div>
   )
-}, (prev, next) => {
-  return prev.job !== next.job;
-});
-
-const borderRainbow = [
-  {borderLeft: '5px solid #FF5252'},
-  {borderLeft: '5px solid #212121'},
-  {borderLeft: '5px solid #3F51B5'},
-  {borderLeft: '5px solid #8BC34A'},
-  {borderLeft: '5px solid #5D4037'},
-  {borderLeft: '5px solid #607D8B'},
-  {borderLeft: '5px solid #FFCA28'},
-]
+}
 
 export default JobItem;

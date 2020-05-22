@@ -6,8 +6,31 @@ const JobSchema = mongoose.Schema({
     required: true
   },
   company: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'employers',
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'employers',
+    },
+    name: {
+      type: String
+    },
+    avatar: {
+      type: String
+    },
+    details: {
+      remote: {
+        type: String
+      },
+      benefits: {
+        type: String
+      },
+      visa_sponsorship: {
+        type: String
+      }
+    }
+  },
+  technologies: {
+    type: String,
+    required: true
   },
   application_email: {
     type: String,
@@ -18,6 +41,26 @@ const JobSchema = mongoose.Schema({
   location: {
     type: String,
     required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  qualifications: {
+    required: [
+      {
+        required_skill: {
+          type: String
+        }
+      }
+    ],
+    preffered: [
+      {
+        preffered_skill: {
+          type: String
+        }
+      }
+    ]
   },
   job_type: {
     type: String,
@@ -33,10 +76,6 @@ const JobSchema = mongoose.Schema({
   },
   working_hours: {
     type: String
-  },
-  details: {
-    type: String,
-    required: true
   },
   application_type: {
     type: String,

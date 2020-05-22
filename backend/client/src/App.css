@@ -605,6 +605,7 @@ p {
   transition: top 0.3s;
   z-index: 100;
   top: 0;
+  background: #fff;
 }
 .mNavbar {
 	font-family: 'Rubik', sans-serif;
@@ -813,7 +814,8 @@ p {
 }
 .profile-grid .profile-top img {
   border: 4px solid white;
-	width: 250px;
+	max-width: 220px;
+	max-height: 220px;
 }
 .img-medium img {
 	width: 150px;
@@ -1131,6 +1133,10 @@ p {
   .mNavbar > ul > li {
     margin-left: 0;
   }
+  .profile-top img {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 @media (max-width: 755px) {
@@ -1185,6 +1191,10 @@ p {
   .profile-grid .exp-edu-wrapper {
     display: grid;
     grid-area: exp-edu-wrap;
+  }
+  .profile-top img {
+    width: 100px;
+    height: 100px;
   }
   .profile-grid .exp-edu-wrapper > .profile-exp {
     border-radius: 10px 10px 0 0;

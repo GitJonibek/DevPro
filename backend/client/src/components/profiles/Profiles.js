@@ -8,7 +8,7 @@ import ProfileItem from './ProfileItem';
 const Profiles = ({ getProfiles, profile }) => {
 
   useEffect(() => {
-    getProfiles();
+    if (!profile.profiles.length) getProfiles();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -72,12 +72,12 @@
   bottom: 0;
   background: #000;
   opacity: 0.5;
-  z-index: 100;
+  z-index: 0;
 }
 
 .jobs_main {
   position: relative;
-  margin-top: 400px;
+  margin-top: 420px;
 }
 
 img.img-banner {
@@ -87,6 +87,118 @@ img.img-banner {
   object-position: center;
 }
 
+article.job-card {
+  display: grid;
+  grid-template-columns: 80px auto 100px;
+  grid-template-areas:
+    'icon company button'
+    'icon company button'
+    'details details  details'
+    'skills skills  skills';
+  width: 100%;
+  position: relative;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+  font-family: 'Helvetica';
+  padding: 15px;
+  cursor: pointer;
+}
+
+article.job-card:hover,
+article.job-card:focus {
+  background-color: rgba(0,166,194,.03);
+  border-color: #b2e4ec;
+}
+
+.company-logo-img {
+  grid-area: icon;
+  background-color: #fff;
+  border: 1px solid #e3e3e3;
+  height: 80px;
+  width: 80px;
+  box-sizing: border-box;
+  position: relative;
+  padding: 5px;
+}
+
+.company-logo-img img {
+  max-height: calc(100% - 10px);
+  max-width: calc(100% - 10px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.company-wrapper {
+  grid-area: company;
+}
+.job-title {
+  font-size: 16px;
+  align-self: start;
+  font-weight: 500;
+  margin-top: 5px;
+  padding: 0 24px;
+}
+.company-name {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0 24px;
+}
+
+.job-details {
+  grid-area: details;
+  align-self: flex-start;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+.skills-container {
+  grid-area: skills;
+  padding-top: 10px;
+  display: flex;
+  flex-flow: wrap;
+}
+
+.skill {
+  display: inline;
+  color: #00a6c2;
+  border-radius: 2px;
+  background-color: rgba(0,166,194,.05);
+  border: 1px solid rgba(0,166,194,.15);
+  border-radius: 3px;
+  padding: 3px 8px;
+  font-size: .7em;
+  margin-left: 5px;
+}
+
+.job-item-btn {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 8px 12px;
+  margin: 5px auto;
+}
+.btn-container {
+  width: 100%;
+  grid-area: button;
+}
+.btn-container .apply {
+  background-color: #1ab059;
+  color: #fff;
+  outline-color: #a9def9;
+}
+.btn-container .save {
+  background-color: #fff;
+  border: 1px solid #a4a5a8;
+  color: #777;
+  outline-color: #edf6f9;
+}
+
 @media only screen and (max-width: 902px) {
   .form-search {
     width: 70%;
@@ -94,7 +206,7 @@ img.img-banner {
   }
 }
 
-@media only screen and (max-width: 712px) {
+@media only screen and (max-width: 755px) {
   .form-search > h1 {
     font-size: 3rem;
     letter-spacing: 1px;
@@ -106,5 +218,26 @@ img.img-banner {
   .form-search {
     width: 90%;
     margin: 10px auto;
+  }
+
+  article.job-card {
+    grid-template-columns: 80px auto;
+    grid-template-areas:
+      'icon company'
+      'icon company'
+      'details details'
+      'skills  skills'
+      'button  button';
+  }
+  .btn-container {
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .job-item-btn {
+    height: 38px;
+    margin: 5px;
   }
 }

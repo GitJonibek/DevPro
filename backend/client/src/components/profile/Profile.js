@@ -15,13 +15,14 @@ const Profile = ({
   match,
   history,
   getProfileById,
-  profile: { profile, loading },
+  profile: { profile, loading, profiles },
   auth,
 }) => {
 
   useEffect(() => {
     getProfileById(match.params.id);
-  }, [getProfileById, match.params.id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getProfileById]);
 
   return (
     <Fragment>
