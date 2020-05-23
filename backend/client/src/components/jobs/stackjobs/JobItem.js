@@ -15,7 +15,7 @@ const JobItem = ({ job, clicked }) => {
           <div className="job-item job-title">{job.title}</div>
           <div className="job-item company-name">{job.company.name}</div>
         </div>
-        <div className="job-item job-details">{job.details}</div>
+        <div className="job-item job-details">{job.description}</div>
         <div className="job-item skills-container">
           {skills}
         </div>
