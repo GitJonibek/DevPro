@@ -22,6 +22,17 @@ const Education = ({education, deleteEducation}) => {
           <i className="fas fa-trash-alt"></i>{' '}
         </button>
       </td>
+      <td>
+        <Link to={{
+              pathname: '/add-education',
+              state: {
+                education: edu
+              }
+            }}><button className='btn btn-round-primary'>
+            <i className="fas fa-pencil-alt"></i>{' '}
+          </button>
+        </Link>
+      </td>
     </tr>
   ));
 
@@ -43,6 +54,7 @@ const Education = ({education, deleteEducation}) => {
             <th>School</th>
             <th className="hide-sm">Degree</th>
             <th className="hide-sm">years</th>
+            <th />
             <th />
           </tr>
         </thead>

@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 
 import {Link, withRouter} from "react-router-dom";
@@ -33,8 +33,28 @@ const AddEducation = (props) => {
 
     const onSubmit = e => {
       e.preventDefault();
-      props.addEducation(formData, props.history);
+      if(props.location.state && props.location.state.education)
+        {props.addEducation(formData, props.history, true, props.location.state.education._id);}
+      else
+        {props.addEducation(formData, props.history, false, '');}
+
     }
+
+    useEffect(() => {
+      if(props.location.state && props.location.state.education) {
+        const edu = props.location.state.education;
+        setFormData({
+          degree: edu.degree,
+          school: edu.school,
+          fieldofstudy: edu.fieldofstudy,
+          from: edu.from,
+          to: '',
+          current: edu.current,
+          description: edu.description
+        });
+        toggleDisabled(edu.to);
+      }
+    }, [props.location.state]);
 
     return (
       <Fragment>

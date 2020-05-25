@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 
 import {Link, withRouter} from "react-router-dom";
@@ -33,8 +33,27 @@ const AddExperience = (props) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    props.addExperience(formData, props.history);
+    if(props.location.state && props.location.state.experience)
+      {props.addExperience(formData, props.history, true, props.location.state.experience._id);}
+    else
+      {props.addExperience(formData, props.history, false, '');}
   }
+
+  useEffect(() => {
+    if(props.location.state && props.location.state.experience) {
+      const exp = props.location.state.experience;
+      setFormData({
+        title: exp.title,
+        company: exp.company,
+        location: exp.location,
+        from: exp.from,
+        to: '',
+        current: false,
+        description: exp.description
+      });
+      toggleDisabled(exp.to);
+    }
+  }, [props.location.state]);
 
   return (
     <Fragment>

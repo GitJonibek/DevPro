@@ -68,10 +68,8 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 
     dispatch({ type: GET_PROFILE, payload: res.data });
 
-    dispatch(setAlert(edit ? 'Profile Updated!' : 'Prfile Created!', 'success', 2000));
-    if(!edit) {
-      history.push('/dashboard');
-    }
+    dispatch(setAlert(edit ? 'Profile Updated!' : 'Prfile Created!', 'success', 3000));
+    history.push('/dashboard');
   } catch (e) {
     const errors = e.response.data.errors;
     if(errors) {
@@ -82,7 +80,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 }
 
 // Add Experience
-export const addExperience = (formData, history) => async dispatch => {
+export const addExperience = (formData, history, edit, id) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -90,13 +88,34 @@ export const addExperience = (formData, history) => async dispatch => {
       }
     }
 
-    const res = await axios.put('/api/profile/experience', formData, config);
-
-    dispatch({ type: UPDATE_PROFILE, payload: res.data });
-
-    dispatch(setAlert('Experience Added!', 'success', 2000));
-
-    history.push('/dashboard');
+    if(!edit) {
+      await axios.put('/api/profile/experience', formData, config)
+      .then(res => {
+        dispatch({ type: UPDATE_PROFILE, payload: res.data });
+        dispatch(setAlert('Experience Added!', 'success', 3000));
+        history.push('/dashboard');
+      })
+      .catch(err => {
+        const errors = err.response.data.errors;
+        if(errors) {
+          errors.forEach(error => dispatch(setAlert(error.msg, 'danger', 3000)));
+        }
+      })
+    }
+    else if(edit && id) {
+      await axios.put(`/api/profile/experience/update/${id}`, formData, config)
+      .then(res => {
+        dispatch({ type: UPDATE_PROFILE, payload: res.data });
+        dispatch(setAlert('Experience Updated!', 'success', 3000));
+        history.push('/dashboard');
+      })
+      .catch(err => {
+        const errors = err.response.data.errors;
+        if(errors) {
+          errors.forEach(error => dispatch(setAlert(error.msg, 'danger', 3000)));
+        }
+      })
+    }
 
   } catch (e) {
     const errors = e.response.data.errors;
@@ -108,7 +127,7 @@ export const addExperience = (formData, history) => async dispatch => {
 }
 
 // Add Education
-export const addEducation = (formData, history) => async dispatch => {
+export const addEducation = (formData, history, edit, id) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -116,13 +135,34 @@ export const addEducation = (formData, history) => async dispatch => {
       }
     }
 
-    const res = await axios.put('/api/profile/education', formData, config);
-
-    dispatch({ type: UPDATE_PROFILE, payload: res.data });
-
-    dispatch(setAlert('Education Added!', 'success', 2000));
-
-    history.push('/dashboard');
+    if(!edit) {
+      await axios.put('/api/profile/education', formData, config)
+      .then(res => {
+        dispatch({ type: UPDATE_PROFILE, payload: res.data });
+        dispatch(setAlert('Experience Added!', 'success', 3000));
+        history.push('/dashboard');
+      })
+      .catch(err => {
+        const errors = err.response.data.errors;
+        if(errors) {
+          errors.forEach(error => dispatch(setAlert(error.msg, 'danger', 3000)));
+        }
+      })
+    }
+    else {
+      await axios.put(`/api/profile/education/update/${id}`, formData, config)
+      .then(res => {
+        dispatch({ type: UPDATE_PROFILE, payload: res.data });
+        dispatch(setAlert('Experience Added!', 'success', 3000));
+        history.push('/dashboard');
+      })
+      .catch(err => {
+        const errors = err.response.data.errors;
+        if(errors) {
+          errors.forEach(error => dispatch(setAlert(error.msg, 'danger', 3000)));
+        }
+      })
+    }
 
   } catch (e) {
     const errors = e.response.data.errors;

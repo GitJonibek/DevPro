@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import { Link } from "react-router-dom";
 import {deleteExperience} from "../../actions/profile";
 
-const Experience = ({experience, deleteExperience}) => {
+const Experience = ({experience, deleteExperience, history}) => {
 
   const experiences = experience.map(exp => (
     <tr key={exp._id}>
@@ -21,6 +21,17 @@ const Experience = ({experience, deleteExperience}) => {
         <button className='btn btn-round-danger' onClick={() => deleteExperience(exp._id)}>
           <i className="fas fa-trash-alt"></i>{' '}
         </button>
+      </td>
+      <td>
+        <Link to={{
+              pathname: '/add-experience',
+              state: {
+                experience: exp
+              }
+            }}><button className='btn btn-round-primary'>
+            <i className="fas fa-pencil-alt"></i>{' '}
+          </button>
+        </Link>
       </td>
     </tr>
   ));
@@ -43,6 +54,7 @@ const Experience = ({experience, deleteExperience}) => {
             <th>Company</th>
             <th className="hide-sm">Title</th>
             <th className="hide-sm">years</th>
+            <th />
             <th />
           </tr>
         </thead>
