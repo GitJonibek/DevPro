@@ -88,8 +88,8 @@
   box-shadow: 5px 0 10px -4px #ddd;
   transform: translateY(-1%);
 }
-.company-card:hover .company-card-header > h3 {
-  color: #3a86ff;
+.company-card:hover .company-card-header > a {
+  color: #ff006e;
 }
 .company-card p {
   margin: 20px auto;
@@ -109,6 +109,7 @@
 
 .company-card-header h3 {
   flex: 1;
+  color: #ff006e;
 }
 .company-card-header span {
   flex: 1;
@@ -145,7 +146,7 @@
   color: #ffffff;
 }
 .company-card-action span:hover {
-  color: #fb5607;
+  color: #ff006e;
 }
 
 .company-view-container {
@@ -261,7 +262,7 @@
   text-decoration: underline;
 }
 .cmp-view-main-article i {
-  color: #fb5607;
+  color: #ff006e;
   margin-right: 20px;
 }
 .cmp-view-main-article div {

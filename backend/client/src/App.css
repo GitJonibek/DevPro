@@ -202,8 +202,8 @@
   animation-direction: alternate;
 }
 .btn-join-now:hover {
-  border: 1px solid #ff5722;
-  color: #ff5722
+  border: 1px solid #ff006e;
+  color: #ff006e
 }
 
 @keyframes join-now {
@@ -243,6 +243,17 @@
   height: 60px;
 }
 
+.btn.btn-primary {
+	border-radius: 4px;
+  background: #ff006e;
+	color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.btn.btn-primary:hover {
+	background: #bb0042;
+}
+
 .btn.btn-round-light {
 	background-color: #fff;
   border-radius: 99px;
@@ -268,8 +279,7 @@
   border: 2px solid #212121;
   border-radius: 99px;
 }
-.btn.btn-round-primary:hover,
-.btn.btn-round-primary:hover i {
+.btn.btn-round-primary:hover {
   color: #fff;
   border-color: #4577D1;
   background: #4577D1;
@@ -440,8 +450,9 @@
 .form textarea {
 	display: block;
 	width: 100%;
-	padding: 10px 10px 5px 10px;
-	font-size: 1.1rem;
+	padding: 12px 12px 5px 12px;
+	font-size: 1em;
+  letter-spacing: .9px;
   border: 1px solid #999;
   border-radius: 4px;
   padding-left: 15px;
@@ -621,8 +632,7 @@ p {
 	-ms-flex-pack: justify;
 	justify-content: space-between;
   height: 100%;
-  border: 1px solid #fff;
-  background: #fff;
+  background: #212121;
   color: #212121;
   top: 10px;
   bottom: 0;
@@ -640,7 +650,7 @@ p {
 	margin: 0 20px;
 }
 .mNavbar > ul > li {
-  margin-left: 30px;
+  margin-left: 10px;
 }
 .nav-items {
 	color: #fff;
@@ -650,34 +660,39 @@ p {
   padding: 5px;
 }
 .mNavbar a {
-  color: #212121;
+  color: #fff;
   padding: 5px;
 }
-.mNavbar a:hover {
-  color: #ff5722;
+.mNavbar li > a:hover {
+  color: #ff006e;
 }
 .nav-items a {
-  position: relative;
-  color: #212121;
-	font-weight: 500;
-	margin: 0 0.45rem;
+  color: #fff;
+  font-weight: 500;
+  font-size: .8rem;
+  margin: 0 0.45rem;
+  text-transform: uppercase;
   -webkit-transition: all color .2s ease-in;
   -ms-transition: all color .2s ease-in;
   transition: all color .2s ease-in;
 }
+.nav-items a:focus
+.nav-items a:hover {
+  color: #ff006e;
+}
+.nav-items li {
+  position: relative;
+}
+
 .bordered {
   padding: 10px 20px;
-  border: 1px solid #212121;
+  border: 1px solid #fff;
   border-radius: 99px;
 }
 .bordered:hover {
-  border: 1px solid #ff5722;
+  border: 1px solid #ff006e;
 }
 
-.nav-items a:focus
-.nav-items a:hover {
-  color: #ff5722;
-}
 
 .landing {
 	position: absolute;
@@ -730,7 +745,7 @@ p {
   cursor: pointer;
 }
 .profile:hover h2 {
-  color: #ff5722;
+  color: #ff006e;
 }
 .profile:hover {
   transform: translateY(-3px);
@@ -763,8 +778,15 @@ p {
   grid-area: skill;
 }
 .profile-skillset span {
-  display: block;
-  margin-right: 20px;
+  display: inline;
+  color: #00a6c2;
+  border-radius: 2px;
+  background-color: rgba(0,166,194,.05);
+  border: 1px solid rgba(0,166,194,.15);
+  border-radius: 3px;
+  padding: 3px 8px;
+  font-size: .7em;
+  margin-left: 5px;
 }
 
 .img-hovered:hover {
@@ -779,8 +801,8 @@ p {
   text-align: center;
 }
 .btn-profile-view:hover {
-  border: 1px solid #ff5722;
-  color: #ff5722;
+  border: 1px solid #ff006e;
+  color: #ff006e;
 }
 
 .profile-grid {
@@ -795,28 +817,40 @@ p {
 	-ms-grid-column: 1;
 	-ms-grid-column-span: 2;
 	grid-area: top;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	text-align: center;
+  background: #131313;
+  color: #fff;
   border-radius: 10px 10px 0 0;
   box-shadow: 5px 3px 15px 3px #ddd;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+  'img  name'
+  'img  status'
+  'img  location'
+  'img  icons';
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .profile-grid .profile-top img {
-  border: 4px solid white;
+  border-radius: 7px 0 0 0;
 	max-width: 220px;
 	max-height: 220px;
+  grid-area: img;
+  margin-right: 10px;
 }
+.profile-top h1.large {
+  grid-area: name;
+}
+.profile-top p.lead {
+  grid-area: status;
+}
+.profile-top p.profile-top-location {
+  grid-area: location;
+}
+.profile-top .icons {
+  grid-area: icons;
+}
+
 .img-medium img {
 	width: 150px;
 }
@@ -835,7 +869,7 @@ p {
 
 .profile-grid .profile-top .icons a > i:hover {
   color: linear-gradient(90deg, rgba(36,0,26,1) 0%, rgba(121,9,90,1) 50%, rgba(68,34,98,1) 100%, rgba(255,141,0,1) 100%);
-  color: rgba(255,141,0,1);
+  color: rgba(255,0,110,1);
   transform: scale(1.1);
 }
 
@@ -848,25 +882,11 @@ p {
   border-radius: 0 0 10px 10px;
 }
 
-.profile-grid .profile-about .skills {
-	display: -webkit-box;
-	display: -ms-flexbox;
+.profile-grid .profile-about .profile-skillset {
+  width: 100%;
 	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
 	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
 	align-items: center;
-	text-align: center
-}
-
-.profile-skill {
-  margin: 5px;
-  color: #212121;
-  border-radius: 99px;
-  padding: 0 7px;
-  background: #c2d7dd;
 }
 
 .profile-grid .exp-edu-wrapper {
@@ -1100,8 +1120,8 @@ p {
 
 .posts-fab {
   position: fixed;
-  color: #212121;
-  background: #ff5722;
+  color: #fff;
+  background: #ff006e;
   right: 20px;
   bottom: 50px;
   width: 60px;
@@ -1129,17 +1149,13 @@ p {
   }
 }
 
-@media (max-width: 850px) and (min-width: 755px) {
+@media (max-width: 950px) and (min-width: 866px) {
   .mNavbar > ul > li {
-    margin-left: 0;
-  }
-  .profile-top img {
-    width: 150px;
-    height: 150px;
+    margin: 0;
   }
 }
 
-@media (max-width: 755px) {
+@media (max-width: 866px) {
 	.img-medium img, .img-small img, .img-smaller img {
 		position: relative;
 		text-align: center;
@@ -1158,10 +1174,10 @@ p {
 		font-size: 3rem
 	}
 	.large {
-		font-size: 2rem
+		font-size: 1.5rem
 	}
 	.lead {
-		font-size: 1rem
+		font-size: .9rem
 	}
 	.mNavbar {
 		display: block;
@@ -1192,10 +1208,7 @@ p {
     display: grid;
     grid-area: exp-edu-wrap;
   }
-  .profile-top img {
-    width: 100px;
-    height: 100px;
-  }
+
   .profile-grid .exp-edu-wrapper > .profile-exp {
     border-radius: 10px 10px 0 0;
     border-bottom: 0;
@@ -1221,8 +1234,19 @@ p {
   .posts-tags-wrapper {
     height: auto;
   }
-}
-
-@media only screen and (max-width: 470px) {
-
+  .profile-top {
+    height: 150px;
+    display: grid;
+    grid-template-columns: 150px auto;
+  }
+  .profile-grid .profile-top img {
+    border-radius: 7px 0 0 0;
+  	width: 150px;
+  }
+  .profile-top p.lead > span {
+    display: none;
+  }
+  .profile-top .icons a > i {
+    font-size: .9rem;
+  }
 }

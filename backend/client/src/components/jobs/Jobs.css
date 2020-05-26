@@ -8,7 +8,7 @@
 
 .jobs_header {
   position: absolute;
-  top: 58px;
+  top: 0;
   left: 0;
   right: 0;
   width: 100%;
@@ -22,12 +22,17 @@
   right: 0;
   width: 100%;
   display: block;
-  height: 450px;
+  height: 500px;
   margin: 20px 0;
   padding: 30px;
   border: 1px solid #aaa;
   display: block;
   overflow: hidden;
+  background-image: url('./res/jobs.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
 }
 .job_header .img-banner {
   position: absolute;
@@ -198,7 +203,7 @@ article.job-card:focus {
   grid-area: button;
 }
 .btn-container .apply {
-  background-color: #1ab059;
+  background-color: #ff005e;
   color: #fff;
   outline-color: #a9def9;
 }

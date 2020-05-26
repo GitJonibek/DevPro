@@ -10,32 +10,32 @@ const Navbar = (props) => {
   const authLinks = (
     <ul className='nav-items'>
       <li>
-        <NavLink to="/posts" id='posts' activeStyle={{color: "#ff5722"}}>
+        <NavLink to="/posts" id='posts' activeStyle={{color: "#ff006e"}}>
           <i className='fas fa-blog hide-lg'></i>{' '}
             <span className='hide-sm'>Posts</span>
           </NavLink></li>
       <li>
-        <NavLink to="/jobs" id='jobs' activeStyle={{color: "#ff5722"}}>
+        <NavLink to="/jobs" id='jobs' activeStyle={{color: "#ff006e"}}>
         <i className="fas fa-search-dollar hide-lg"></i>{' '}
         <span className='hide-sm'>Jobs</span>
       </NavLink></li>
       <li>
-        <NavLink to="/companies" id='developers' activeStyle={{color: "#ff5722"}}>
+        <NavLink to="/companies" id='developers' activeStyle={{color: "#ff006e"}}>
           <i className="far fa-building hide-lg"></i>{' '}
           <span className='hide-sm'>Companies</span>
         </NavLink></li>
       <li>
-        <NavLink to="/profiles" id='profiles' activeStyle={{color: "#ff5722"}}>
+        <NavLink to="/profiles" id='profiles' activeStyle={{color: "#ff006e"}}>
           <i className='fas fa-code hide-lg'></i>{' '}
           <span className='hide-sm'>Developers</span>
         </NavLink></li>
       <li>
-        <NavLink to="/dashboard" id='dashboard' activeStyle={{color: "#ff5722"}}>
+        <NavLink to="/dashboard" id='dashboard' activeStyle={{color: "#ff006e"}}>
           <i className='fas fa-user hide-lg'></i>{' '}
           <span className='hide-sm'>Dashboard</span>
         </NavLink></li>
       <li>
-        <NavLink onClick={props.logout} to="/" id='logout' activeStyle={{color: "#ff5722"}}>
+        <NavLink onClick={props.logout} to="/" id='logout' activeStyle={{color: "#ff006e"}}>
           <i className='fas fa-sign-out-alt hide-lg'></i>{' '}
           <span className='hide-sm'>Logout</span>
         </NavLink></li>
@@ -45,24 +45,29 @@ const Navbar = (props) => {
   const guestLinks = (
     <ul className='nav-items'>
       <li>
-        <NavLink to="/jobs" id='jobs' activeStyle={{color: "#ff5722"}}>
+        <NavLink to="/jobs" id='jobs' activeStyle={{color: "#ff006e"}}>
           <i className="fas fa-search-dollar hide-lg"></i>{' '}
           <span className='hide-sm'>Jobs</span>
         </NavLink></li>
       <li>
-        <NavLink to="/companies" id='developers' activeStyle={{color: "#ff5722"}}>
+        <NavLink to="/companies" id='developers' activeStyle={{color: "#ff006e"}}>
           <i className="far fa-building hide-lg"></i>{' '}
           <span className='hide-sm'>Companies</span>
         </NavLink></li>
       <li>
-        <NavLink to="/profiles" id='developers' activeStyle={{color: "#ff5722"}}>
+        <NavLink to="/profiles" id='developers' activeStyle={{color: "#ff006e"}}>
           <i className='fas fa-code hide-lg'></i>{' '}
           <span className='hide-sm'>Developers</span>
         </NavLink></li>
       <li>
-        <NavLink to="/login" id='signup' activeStyle={{color: "#ff5722"}}>
+        <NavLink to="/login" id='signup' activeStyle={{color: "#ff006e"}}>
           <i className="fas fa-user-plus hide-lg"></i>{' '}
           <span className='hide-sm bordered'>Join now</span>
+        </NavLink></li>
+      <li>
+        <NavLink to="/for-employers" id='for-employers' activeStyle={{color: "#ff006e"}}>
+          <i className="fas fa-user-tie"></i>{' '}
+          <span className='hide-sm'>For Employers</span>
         </NavLink></li>
     </ul>
   );

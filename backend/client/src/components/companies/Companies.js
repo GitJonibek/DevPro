@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Spinner from '../layout/Spinner';
 import { getCompanyList } from '../../actions/companies'
 
 import Header from './header';
@@ -10,11 +11,11 @@ import './Companies.css'
 const Companies = ({ companies: { loading, companies }, getCompanyList, history, match }) => {
 
   useEffect(() => {
-    if(!companies.length) { getCompanyList(); }
+    getCompanyList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getCompanyList])
 
-  return (
+  return (loading && !companies.length ? <Spinner /> :
     <div className='company-container'>
       <div className='company-header'>
         <h1>Tech Companies. <br/>In Japan. <br/> That you'll love.</h1>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Main = ({ company, history, match }) => {
 
@@ -12,7 +13,7 @@ const Main = ({ company, history, match }) => {
   return (
     <div className='company-card'>
       <div className='company-card-header'>
-        <h3>{company.name}</h3>
+        <Link to={location}><h3>{company.name}</h3></Link>
         <span className='job-number'>{ company.open_positions.length > 0 && company.open_positions}</span>
         <img src='' alt=''/>
       </div>
