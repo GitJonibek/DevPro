@@ -1,0 +1,63 @@
+.employers-landing {
+  display: block;
+}
+.background-svg {
+  position: fixed;
+  background-image: url('../../assets/empoyers_landing_bk.svg');
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.emp-list-container {
+  display: flex;
+  min-height: 400px;
+  align-items: center;
+  justify-content: space-between;
+  animation-name: list-container;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+}
+@keyframes list-container {
+  from {
+    display: none;
+    margin-top: 600px;
+  }
+  to {
+    display: block;
+    margin-top: 0;
+  }
+}
+.emp-list-items {
+  text-align: center;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: column;
+  max-width: 360px;
+}
+.emp-list-items span {
+  text-align: center;
+  color: #ff006e;
+  font-size: 3rem;
+}
+h1.large {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+.emp-footer-bk {
+  position: absolute;
+  bottom: -30px;
+  top: 40vw;
+  left: 0;
+  right: 0;
+  min-height: 300px;
+  margin-top: 200px;
+  background: url('../../assets/wave.svg');
+  z-index: 0;
+}
