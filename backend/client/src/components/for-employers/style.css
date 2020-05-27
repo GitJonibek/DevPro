@@ -1,5 +1,7 @@
 .employers-landing {
   display: block;
+  display: flex;
+  flex-direction: column;
 }
 .background-svg {
   position: fixed;
@@ -19,9 +21,10 @@
   align-items: center;
   justify-content: space-between;
   animation-name: list-container;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-iteration-count: 1;
   animation-direction: alternate;
+  margin-bottom: 100px;
 }
 @keyframes list-container {
   from {
@@ -36,28 +39,101 @@
 .emp-list-items {
   text-align: center;
   display: flex;
-  flex-flow: wrap;
   flex-direction: column;
-  max-width: 360px;
+  max-width: 400px;
 }
 .emp-list-items span {
   text-align: center;
   color: #ff006e;
   font-size: 3rem;
 }
-h1.large {
+h1.emp-large {
+  font-size: 3rem;
   text-align: center;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  margin-top: 60px;
 }
-.emp-footer-bk {
-  position: absolute;
-  bottom: -30px;
-  top: 40vw;
+span.bottom-border {
+  width: 100px;
+  margin: auto;
+  text-align: center;
+  border-top: 2px solid #ff006e;
+  margin-bottom: 20px;
+}
+.emp-footer {
+  position: relative;
+  text-align: center;
+}
+
+.btn-emp-start {
+  border: 1px solid #ff006e;
+  border-radius: 99px;
+  background: #fff;
+  padding: 15px 80px;
+  font-size: 1rem;
+  color: #ff006e;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  animation: slide 1s ease-in-out infinite;
+}
+.btn-emp-start:focus {
+  animation: none;
+}
+@keyframes slide {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, 10px);
+  }
+}
+
+.contact-container {
+  text-align: center;
+}
+.contact-background {
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  min-height: 300px;
-  margin-top: 200px;
-  background: url('../../assets/wave.svg');
-  z-index: 0;
+  bottom: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, .5);
+}
+.contact-us {
+  margin: auto;
+  position: absolute;
+  top: 100px; left: 0; right: 0;
+  border-radius: 5px;
+  max-width: 500px;
+  min-height: 400px;
+  background: #fff;
+  z-index: 101;
+  padding: 24px;
+}
+.contact-us:focus ~ .btn-emp-start {
+  animation: none;
+}
+.contact-us p {
+  margin-bottom: 50px;
+}
+
+@media (max-width: 1100px) {
+  .emp-list-container {
+    flex-direction: column;
+  }
+  .emp-list-items {
+    margin-bottom: 50px;
+  }
+}
+@media (max-width: 866px) {
+  h1.emp-large {
+    font-size: 2rem;
+    margin-top: 30px;
+  }
+  span.bottom-border {
+    width: 50px;
+    margin-bottom: 40px;
+  }
 }

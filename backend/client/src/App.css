@@ -493,7 +493,7 @@ span.placeholder-text, span.placeholder-email, span.placeholder-password {
 .form input[type='text']:focus + span.placeholder-text,
 .form input[type='email']:focus + span.placeholder-email,
 .form input[type='password']:focus + span.placeholder-password {
-  color: #212121;
+  color: #ff006e;
   background: none;
 }
 
@@ -506,7 +506,7 @@ input::placeholder {
 .form input[type='text']:focus{
   border: none;
   border-radius: 1px;
-  border-bottom: 2px solid #212121;
+  border-bottom: 2px solid #ff006e;
 }
 .form textarea:focus {
   border: 1px solid #212121;
@@ -597,6 +597,7 @@ body {
 	line-height: 1.6;
   background-color: #f4f5f9;
 	color: #333;
+  min-height: 100%;
 }
 
 a {
@@ -1154,6 +1155,8 @@ p {
     margin-bottom: 0px;
   }
 }
+
+
 
 @media (max-width: 950px) and (min-width: 866px) {
   .mNavbar > ul > li {

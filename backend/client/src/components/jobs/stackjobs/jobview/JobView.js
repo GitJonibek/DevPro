@@ -1,51 +1,63 @@
-import React, { Fragment } from 'react';
-import Moment from 'react-moment';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import JobViewActions from './JobViewActions'
+const JobView = ({ job, clicked }) => {
 
-const JobView = (props) => {
+  const skills = job.technologies.split(',').map(
+    tech => <div key={Math.random() + 1} className="job-item skill">{tech}</div>
+  );
+  const reqired_q = job.qualifications.required.map(skill => <li key={Math.random()}>{skill.required_skill}</li>)
+  const preffered_q = job.qualifications.preffered.map(skill => <li key={Math.random()}>{skill.preffered_skill}</li>)
 
-  const mjob = !props.location ? props.job : props.location.state.job;
-
-  const ttl = mjob.title.substring(0, mjob.title.indexOf(' at '));
-  const loc = mjob.title.substring(mjob.title.indexOf(' at ') + 3);
-  const cats = mjob.categories ? mjob.categories.map(
-    cat => <input key={cat} type='button' className='category-span' value={cat}/>
-  ) : null;
-
-  // const parser = new DOMParser();
-  // const doc = parser.parseFromString(mjob.content, "text/html");
-
-  const clickHandler = () => {
-    window.open(mjob.link, "_blank")
-  }
   return (
-    <Fragment>
-      <div style={{width: '100%', display: 'inline-block', padding: '10px 5px'}}>
-        <input
-          onClick={() => props.history.goBack()}
-          style={{border: '1px solid #212121'}}
-          type='button'
-          className='btn btn-round-light'
-          value='Go Back' />
-      </div>
-      <section className="jobs_viewer_item">
-        <div className="jobs_viewer_item_header">
-          <img className="viewer-img" src='' alt="icon"/>
-          <h1 className="viewer-title">{ttl}</h1>
-          <p className="viewer-location">{loc}</p>
-          <div className="jobs_viewer_item_header_actions">
-            <JobViewActions clicked={clickHandler}/>
+    <div className='jobview-container'>
+      <div className='job-backdrop' onClick={clicked}/>
+      <div className='job-main-container'>
+        <div className='job-header'>
+          <img src='https://s3-ap-southeast-1.amazonaws.com/hs.user-files/employer_logo/346/primetech-technology.png' alt='hell'/>
+          <span className='job-company-name'>{job.company.name}</span>
+          <span className='job-company-location'><small>{job.location}</small></span>
+          <button type='button' className='btn btn-primary'>APPLY NOW</button>
+        </div>
+        <div className='job-main'>
+          <h1 className='large my-2'>{job.title}</h1>
+          <div className="job-item skills-container my-1"> {skills} </div>
+          <div className='job-basic-details'>
+            <span><i className="fas fa-map-marker-alt"></i>{' '}{job.location}</span>
+            <span><i className="far fa-clock"></i>{job.job_type}</span>
+            <span><i className="fas fa-yen-sign"></i>{' '}Salary</span>
+          </div>
+          <h3>Job Description</h3>
+          <p>{job.description}</p>
+          <div className='job-qualifications'>
+            <h3>Your Qualifications</h3>
+
+            <span>Required</span>
+            <ul> {reqired_q} </ul>
+
+            <span>Preffered</span>
+            <ul> {preffered_q} </ul>
+
+            <span>Working hours</span>
+            <p>core hours 11:00~16:00, Flex-time</p>
+          </div>
+          <div className='job-company-details'>
+            <h3>Overview</h3>
+
+            <span>Remote</span>
+            <p>{job.company.details.remote}</p>
+
+            <span>Benefits</span>
+            <p>{job.company.details.benefits}</p>
+
+            <span>Visa sponsorship</span>
+            <p>{job.company.details.visa_sponsorship}</p>
           </div>
         </div>
-        <div className="jobs_viewer_item_body">
-          <p className="viewer-body-date"><small><Moment format='D MMM YYYY, HH:mm (Z)'>{mjob.pubDate}</Moment>TMZ</small></p>
-          <div className="viewer-body-category">{cats}</div>
-          <p id='content' className="viewer-body-description">{mjob.contentSnippet}</p>
-        </div>
-      </section>
-    </Fragment>
+      </div>
+      <div className='btn-job-bottom'>APPLY NOW</div>
+    </div>
   )
 }
 
-export default (JobView);
+export default JobView;
